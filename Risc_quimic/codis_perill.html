@@ -15,7 +15,7 @@
         
         .question-box { background: white; border-bottom: 5px solid var(--primary); padding: 25px; margin-bottom: 20px; border-radius: 8px; width: 100%; max-width: 900px; text-align: center; font-size: 1.3em; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         
-        /* Nota sol¡¤licitada en catal¨¤ */
+        /* Nota solï¿½ï¿½licitada en catalï¿½ï¿½ */
         .info-note { background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9em; margin-bottom: 20px; border: 1px solid #ffeeba; color: #856404; }
 
         .grid-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; width: 100%; max-width: 1000px; padding-bottom: 40px; }
@@ -37,7 +37,7 @@
 <body>
 
 <div id="sidebar">
-    <a href="../../../index.html" style="text-decoration:none; color:#666; font-weight:bold; margin-bottom:20px; display:block;">Inici</a>
+    <a href="../index.html" style="text-decoration:none; color:#666; font-weight:bold; margin-bottom:20px; display:block;">Inici</a>
     
     <h2>Codis de Perill ADR</h2>
     
@@ -69,7 +69,7 @@
             const data = await resp.json();
             allData = data.preguntas;
             
-            // Ordenaci¨® num¨¨rica ignorant la X per a la posici¨®
+            // Ordenaciï¿½ï¿½ numï¿½ï¿½rica ignorant la X per a la posiciï¿½ï¿½
             const codes = allData.map(item => ({
                 label: item.l,
                 val: parseInt(item.l.replace('X', '')),
@@ -88,7 +88,7 @@
             document.getElementById('total').textContent = allData.length;
             next();
         } catch (e) {
-            document.getElementById('question').textContent = "Error de c¨¤rrega de dades.";
+            document.getElementById('question').textContent = "Error de cï¿½ï¿½rrega de dades.";
         }
     }
 
