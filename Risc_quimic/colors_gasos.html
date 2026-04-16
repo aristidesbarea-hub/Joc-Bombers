@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Joc: Colors de les Ampolles de Gas</title>
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --primary: #2c3e50;
+            --success: #27ae60;
+            --error: #e74c3c;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { background: var(--card); padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 800px; text-align: center; }
+        
+        h1 { color: var(--primary); margin-bottom: 10px; }
+        .question-box { background: #e8f4fd; border-left: 5px solid #3498db; padding: 20px; margin: 20px 0; font-size: 1.25em; font-weight: bold; min-height: 50px; display: flex; align-items: center; justify-content: center; }
+        
+        .color-palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
+        .color-btn { 
+            height: 70px; border: 3px solid #ddd; border-radius: 10px; cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em;
+            transition: transform 0.1s, border-color 0.2s; text-transform: uppercase;
+        }
+        .color-btn:hover { transform: scale(1.03); border-color: #3498db; }
+        
+        /* Paleta de colors ajustada segons les teves instruccions */
+        .c-groc { background-color: #f1c40f; color: #000; }
+        .c-verd-intens { background-color: #2ecc71; color: #000; }
+        .c-verd-fosc { background-color: #1b5e20; color: white; }
+        .c-Vermell { background-color: #e74c3c; color: white; }
+        .c-blau-clar { background-color: #3498db; color: white; }
+        .c-blanc { background-color: #ffffff; color: #000; border: 3px solid #ccc; }
+        .c-negre { background-color: #000000; color: white; }
+        .c-gris { background-color: #95a5a6; color: #000; }
+        .c-blau-fosc { background-color: #0d47a1; color: white; }
+        .c-marro { background-color: #795548; color: white; }
+        .c-verd-antic { background-color: #27ae60; color: white; } /* Pintat verd segons petició */
+
+        .stats { display: flex; justify-content: space-around; margin-top: 20px; font-weight: bold; font-size: 1.1em; border-top: 1px solid #eee; padding-top: 15px; }
+        #feedback { height: 30px; margin-top: 10px; font-weight: bold; font-size: 1.1em; }
+        .correct { color: var(--success); }
+        .wrong { color: var(--error); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../../../index.html" style="float: left; text-decoration: none; color: #95a5a6; font-weight: bold;">← Inici</a>
+    <br>
+    <h1>Identificació d'Ampolles de Gas</h1>
+    <p>Identifica el color de l'ogiva segons el risc o el gas específic</p>
+
+    <div id="question" class="question-box">Carregant...</div>
+    <div id="feedback"></div>
+
+    <div class="color-palette">
+        <div class="color-btn c-groc" onclick="check('Groc')">Groc</div>
+        <div class="color-btn c-verd-intens" onclick="check('Verd intens')">Verd Intens</div>
+        <div class="color-btn c-verd-fosc" onclick="check('Verd fosc')">Verd Fosc</div>
+        <div class="color-btn c-Vermell" onclick="check('Vermell')">Vermell</div>
+        <div class="color-btn c-blau-clar" onclick="check('Blau clar')">Blau Clar</div>
+        <div class="color-btn c-blanc" onclick="check('Blanc')">Blanc</div>
+        <div class="color-btn c-negre" onclick="check('Negre')">Negre</div>
+        <div class="color-btn c-gris" onclick="check('Gris')">Gris</div>
+        <div class="color-btn c-blau-fosc" onclick="check('Blau')">Blau</div>
+        <div class="color-btn c-marro" onclick="check('Marró')">Marró</div>
+        <div class="color-btn c-verd-antic" onclick="check('Verd')">Verd (o altres)</div>
+    </div>
+
+    <div class="stats">
+        <div>Punts: <span id="points">0</span></div>
+        <div>Preguntes restants: <span id="remaining">0</span></div>
+    </div>
+</div>
+
+<script>
+    const allQuestions = [
+        // Riscos Generals (Sistema Nou)
+        { q: "Nou codi europeu: Quin color indica un gas Tòxic/Corrosiu?", a: "Groc" },
+        { q: "Nou codi europeu: Quin color indica un gas Inerte (Argó i mescles)?", a: "Verd intens" },
+        { q: "Nou codi europeu: Quin segon color pot indicar un gas Inerte?", a: "Verd fosc" },
+        { q: "Nou codi europeu: Quin color indica un gas Inflamable?", a: "Vermell" },
+        { q: "Nou codi europeu: Quin color indica un gas Oxidant?", a: "Blau clar" },
+        
+        // Riscos Generals (Sistema Antic)
+        { q: "Sistema antic: Quin color s'utilitzava per a gasos Inflamables?", a: "Vermell" },
+        { q: "Sistema antic: Quin color s'utilitzava per a gasos Oxidants?", a: "Blanc" },
+        { q: "Sistema antic: Quin color s'utilitzava per a Tòxic/Corrosiu?", a: "Verd" },
+        
+        // Gasos que no canvien
+        { q: "De quin color és l'ampolla d'Oxigen?", a: "Blanc" },
+        { q: "De quin color és l'ampolla de Nitrogen?", a: "Negre" },
+        { q: "De quin color és l'ampolla d'Hidrogen?", a: "Vermell" },
+        { q: "De quin color és l'ampolla de Diòxid de Carboni (CO2)?", a: "Gris" },
+        { q: "De quin color és l'ampolla d'Òxid Nitrós?", a: "Blau" },
+        { q: "De quin color és l'ampolla d'Heli?", a: "Marró" }
+    ];
+
+    let currentPool = [];
+    let currentQ;
+    let points = 0;
+
+    function nextQuestion() {
+        // Si no queden preguntes a la "bossa", la tornem a omplir
+        if (currentPool.length === 0) {
+            currentPool = [...allQuestions];
+            shuffle(currentPool);
+        }
+
+        currentQ = currentPool.pop();
+        document.getElementById('question').innerText = currentQ.q;
+        document.getElementById('remaining').innerText = currentPool.length;
+        document.getElementById('feedback').innerText = "";
+    }
+
+    function check(color) {
+        const feedback = document.getElementById('feedback');
+        if (color === currentQ.a) {
+            points += 10;
+            feedback.innerText = "✓ Correcte!";
+            feedback.className = "correct";
+            document.getElementById('points').innerText = points;
+            setTimeout(nextQuestion, 800);
+        } else {
+            feedback.innerText = "✗ Incorrecte, prova-ho de nou";
+            feedback.className = "wrong";
+        }
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Iniciar el joc
+    nextQuestion();
+</script>
+
+</body>
+</html>

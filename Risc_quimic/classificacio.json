@@ -1,0 +1,17 @@
+{
+  "preguntas": [
+    {"t": "Asfixiant", "d": "Gasos que desplacen l'oxigen de l'aire (típic de la Classe 2).", "l": "A"},
+    {"t": "Corrosiu", "d": "Matèries que destrueixen teixits vius o metalls (Classe 8).", "l": "C"},
+    {"t": "Explosiu dessensibilitzat", "d": "Explosius diluïts en aigua o alcohol per fer-los estables.", "l": "D"},
+    {"t": "Inflamable", "d": "Matèries que s'encenen fàcilment (Líquids Classe 3 o Sòlids 4.1).", "l": "F"},
+    {"t": "Infecció", "d": "Matèries amb microorganismes patògens (Classe 6.2).", "l": "I"},
+    {"t": "Matèries diverses", "d": "El 'calaix de sastre' per a perills variats (Classe 9).", "l": "M"},
+    {"t": "Comburent", "d": "Matèries que alliberen oxigen i alimenten el foc (Classe 5.1).", "l": "O"},
+    {"t": "Peròxid orgànic", "d": "Molt inestables, poden cremar-se o explotar (Classe 5.2).", "l": "P"},
+    {"t": "Material Polimeritzant", "d": "Substàncies que poden reaccionar en cadena generant molta calor.", "l": "PM"},
+    {"t": "Inflamació Espontània", "d": "Matèries pirofòriques o que s'escalfen soles (Classe 4.2).", "l": "S"},
+    {"t": "Autoreactiva", "d": "Matèries que es descomponen soles sense aire (Classe 4.1).", "l": "SR"},
+    {"t": "Tòxic", "d": "Matèries que poden emmalaltir o matar (Classe 6.1 o gasos).", "l": "T"},
+    {"t": "Reacció amb aigua", "d": "Desprenen gasos inflamables en mullar-se (Classe 4.3).", "l": "W"}
+  ]
+}

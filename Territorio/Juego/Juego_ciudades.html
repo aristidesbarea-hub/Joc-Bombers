@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>Joc de Ciutats al Mapa</title>
+<style>
+    :root { 
+        --primary: #2c3e50; 
+        --success: #27ae60; 
+        --error: #e74c3c; 
+        --accent: #007BFF; 
+        --bg-color: #f0f2f5;
+        --gray-back: #6c757d;
+        --hint-gold: #f1c40f;
+    }
+
+    body { 
+        display: flex; 
+        height: 100vh; 
+        margin: 0; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background-color: var(--bg-color);
+    }
+
+    #sidebar { 
+        width: 300px; 
+        background: white; 
+        padding: 20px; 
+        box-sizing: border-box; 
+        border-right: 1px solid #ddd; 
+        box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        overflow-y: auto; 
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    .btn-home-small {
+        display: inline-block;
+        background: var(--gray-back);
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.2s;
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+    .btn-home-small:hover { background: #5a6268; }
+
+    h2 { color: var(--primary); font-size: 1.4em; margin: 15px 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    h3 { font-size: 1em; color: var(--gray-back); margin: 10px 0; }
+
+    #mapContainer { 
+        flex: 1; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        background: #e9ecef; 
+        padding: 20px;
+    }
+
+    svg { 
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        max-width: 100%; 
+        max-height: 100%; 
+        background: #ffffff; 
+    }
+    
+    .comarca { 
+        stroke: #ccc; 
+        stroke-width: 0.5; 
+        stroke-linejoin: round; 
+        fill: transparent; 
+    }
+    
+    .city-point {
+        fill: white;
+        r: 5;
+        stroke: var(--primary);
+        stroke-width: 1.5;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .city-point:hover {
+        fill: var(--accent);
+        stroke-width: 2.5;
+    }
+    .city-point.correct { fill: var(--success); stroke: #1e7e34; r: 6; }
+    .city-point.wrong { fill: var(--error); stroke: #bd2130; }
+    .city-point.hint-used { fill: var(--hint-gold); stroke: #d35400; cursor: default; }
+
+    /* Animació pista */
+    .blinking { animation: blink 0.8s infinite; stroke-width: 3; }
+    @keyframes blink { 0%, 100% { fill: var(--hint-gold); r: 5; } 50% { fill: white; r: 9; } }
+
+    .target-city-box {
+        font-weight: bold;
+        color: var(--accent);
+        font-size: 1.4em;
+        background-color: #eef7ff;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin: 15px 0;
+        border: 1px solid #cce5ff;
+    }
+    
+    #score-box {
+        background: var(--primary);
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    #hintButton {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+    }
+    #hintButton:hover { background-color: #0056b3; }
+    #hintButton:disabled { background-color: #ccc; cursor: not-allowed; }
+
+    #hintedCitiesList {
+        font-size: 0.85em;
+        background: #fff8f0;
+        padding: 10px 10px 10px 30px;
+        border-radius: 8px;
+        border: 1px solid #ffeeba;
+        color: #d35400;
+        margin-top: 5px;
+    }
+
+    .welcome-screen, .game-content { text-align: center; width: 100%; }
+
+    .difficulty-btn {
+        display: block; width: 100%; margin: 10px 0; padding: 12px;
+        font-size: 1em; font-weight: bold; cursor: pointer;
+        border: 1px solid #ddd; border-radius: 8px; background-color: white;
+        transition: all 0.2s; color: var(--primary);
+    }
+    .difficulty-btn:hover { background-color: var(--accent); color: white; }
+
+    #restartButton {
+        width: 100%; padding: 12px; margin-top: 20px; border: none;
+        border-radius: 8px; background: var(--success); color: white;
+        font-weight: bold; cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" class="btn-home-small">🏠 Inici</a>
+
+    <div id="welcomeScreen" class="welcome-screen">
+        <h2>Selecciona la dificultat</h2>
+        <button class="difficulty-btn" onclick="startGame('easy')">📍 Capitals de comarca (Fàcil)</button>
+        <button class="difficulty-btn" onclick="startGame('hard')">🗺️ Totes les ciutats (Difícil)</button>
+    </div>
+    
+    <div id="gameContent" class="game-content" style="display: none;">
+        <h2>On es troba...?</h2>
+        <div class="target-city-box">
+            <span id="targetCityName"></span>
+        </div>
+        <div id="score-box">Puntuació: <span id="scoreText">0 / 0</span></div>
+        
+        <button id="hintButton">💡 Mostrar Pista</button>
+
+        <div style="margin-top:20px; text-align: left;">
+            <h3>Ciutats amb pista:</h3>
+            <ul id="hintedCitiesList"></ul>
+        </div>
+
+        <button id="restartButton" style="display: none;">Tornar al Menú</button>
+    </div>
+</div>
+
+<div id="mapContainer">
+    <svg viewBox="0 0 800 800">
+        <g id="backgroundLayer">
+            <image href="MRelieve.png" x="0" y="0" width="800" height="800"></image>
+        </g>
+        <g id="comarcasLayer"></g>
+        <g id="citiesLayer"></g>
+    </svg>
+</div>
+
+<script>
+    let comarcas = [];
+    let allCities = []; 
+    let gameCities = []; 
+    let answeredCorrectPermanent = new Set();
+    let hintedCities = new Set();
+    let targetCity = null;
+    let score = 0;
+    let hintUsedForTarget = false;
+    
+    const comarcasLayer = document.getElementById('comarcasLayer');
+    const citiesLayer = document.getElementById('citiesLayer');
+    const targetCityNameEl = document.getElementById('targetCityName');
+    const scoreText = document.getElementById('scoreText');
+    const hintButton = document.getElementById('hintButton');
+    const hintedCitiesList = document.getElementById('hintedCitiesList');
+    const restartButton = document.getElementById('restartButton');
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const gameContent = document.getElementById('gameContent');
+
+    async function loadData() {
+        try {
+            const timestamp = new Date().getTime();
+            const comarcasResponse = await fetch(`comarcas.json?t=${timestamp}`);
+            comarcas = await comarcasResponse.json();
+            const ciudadesResponse = await fetch(`ciudades.json?t=${timestamp}`);
+            const ciudadesData = await ciudadesResponse.json();
+            allCities = ciudadesData.ciudades;
+            drawBaseMap();
+        } catch (error) { console.error('Error:', error); }
+    }
+
+    function drawBaseMap() {
+        comarcasLayer.innerHTML = "";
+        if (comarcas && comarcas.comarcas) {
+            comarcas.comarcas.forEach(comarca => {
+                comarca.polygons.forEach(polygon => {
+                    const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                    poly.setAttribute("points", polygon.points.map(p => `${p.x},${p.y}`).join(" "));
+                    poly.setAttribute("class", "comarca");
+                    comarcasLayer.appendChild(poly);
+                });
+            });
+        }
+    }
+
+    function startGame(difficulty) {
+        gameCities = (difficulty === 'easy') ? allCities.filter(c => c.tipo === 'capital') : allCities;
+        welcomeScreen.style.display = 'none';
+        gameContent.style.display = 'block';
+        score = 0;
+        answeredCorrectPermanent.clear();
+        hintedCities.clear();
+        hintedCitiesList.innerHTML = "";
+        drawCities();
+        askNewQuestion();
+        updateScoreDisplay();
+        hintButton.onclick = giveHint;
+    }
+
+    function drawCities() {
+        citiesLayer.innerHTML = "";
+        gameCities.forEach(ciudad => {
+            const cityPoint = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            cityPoint.setAttribute("id", `city-${ciudad.nombre.replace(/\s+/g, '-')}`);
+            cityPoint.setAttribute("cx", ciudad.x);
+            cityPoint.setAttribute("cy", ciudad.y);
+            cityPoint.setAttribute("class", "city-point");
+            cityPoint.addEventListener('click', () => checkAnswer(ciudad));
+            citiesLayer.appendChild(cityPoint);
+        });
+    }
+
+    function askNewQuestion() {
+        const unaswered = gameCities.filter(c => !answeredCorrectPermanent.has(c.nombre));
+        if (unaswered.length === 0) {
+            endGame();
+            return;
+        }
+        targetCity = unaswered[Math.floor(Math.random() * unaswered.length)];
+        targetCityNameEl.textContent = targetCity.nombre;
+        hintUsedForTarget = false;
+        hintButton.disabled = false;
+    }
+
+    function giveHint() {
+        if (!targetCity || hintUsedForTarget) return;
+        hintUsedForTarget = true;
+        hintButton.disabled = true;
+        const point = document.getElementById(`city-${targetCity.nombre.replace(/\s+/g, '-')}`);
+        if (point) point.classList.add('blinking');
+    }
+
+    function checkAnswer(clickedCity) {
+        if (!targetCity) return;
+        const clickedPoint = document.getElementById(`city-${clickedCity.nombre.replace(/\s+/g, '-')}`);
+        
+        if (clickedCity.nombre === targetCity.nombre) {
+            answeredCorrectPermanent.add(targetCity.nombre);
+            clickedPoint.classList.remove('blinking');
+            
+            if (hintUsedForTarget) {
+                hintedCities.add(targetCity.nombre);
+                clickedPoint.classList.add("hint-used");
+                const li = document.createElement('li');
+                li.textContent = targetCity.nombre;
+                hintedCitiesList.appendChild(li);
+            } else {
+                score += 10;
+                clickedPoint.classList.add("correct");
+            }
+            
+            updateScoreDisplay();
+            setTimeout(() => askNewQuestion(), 600);
+        } else {
+            clickedPoint.classList.add("wrong");
+            score = Math.max(0, score - 2);
+            updateScoreDisplay();
+            setTimeout(() => clickedPoint.classList.remove("wrong"), 800);
+        }
+    }
+
+    function updateScoreDisplay() {
+        scoreText.textContent = `${answeredCorrectPermanent.size} / ${gameCities.length} (Punts: ${score})`;
+    }
+
+    function endGame() {
+        targetCityNameEl.textContent = "🏆 Joc Completat!";
+        hintButton.style.display = 'none';
+        restartButton.style.display = 'block';
+        restartButton.onclick = () => location.reload();
+    }
+
+    loadData();
+</script>
+</body>
+</html>

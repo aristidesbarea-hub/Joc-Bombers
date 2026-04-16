@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>ADR - Classes de Classificació</title>
+<style>
+    :root { 
+        --primary: #2c3e50; --success: #27ae60; --error: #e74c3c; 
+        --accent: #007BFF; --bg-color: #f0f2f5; --gray: #6c757d;
+    }
+    body { display: flex; height: 100vh; margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); overflow: hidden; }
+    #sidebar { width: 350px; background: white; padding: 20px; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
+    .btn-menu { width: 100%; padding: 12px; margin-bottom: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; background: var(--primary); color: white; transition: 0.3s; }
+    .btn-menu:hover { background: var(--accent); }
+    #main-content { flex: 1; padding: 30px; display: flex; justify-content: center; align-items: center; }
+    
+    .game-container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 800px; text-align: center; }
+    
+    .question-box { background: #fff4e5; border: 2px solid #ff8c00; padding: 25px; margin-bottom: 25px; border-radius: 10px; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .main-text { font-size: 1.8em; font-weight: 800; color: #d35400; margin-bottom: 8px; }
+    .sub-text { font-size: 1em; font-weight: 400; color: #555; font-style: italic; }
+    
+    .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 12px; }
+    .card { padding: 18px; border: 3px solid var(--primary); border-radius: 12px; background: white; font-size: 1.4em; font-weight: 900; cursor: pointer; transition: 0.2s; display: flex; justify-content: center; align-items: center; }
+    .card:hover { transform: scale(1.05); border-color: var(--accent); background: #f8fbff; }
+    .card.correct { background: var(--success) !important; color: white !important; border-color: #1e7e34; pointer-events: none; opacity: 0.4; }
+    .card.wrong { background: var(--error) !important; color: white !important; animation: shake 0.3s; }
+
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" style="text-decoration:none; color:var(--gray); font-weight:bold; margin-bottom:20px; display:block;">🏠 Inici</a>
+    <h2>Classificació</h2>
+    <button class="btn-menu" onclick="restartGame()">🔄 Reiniciar Joc</button>
+    <div style="margin-top:auto; padding:15px; background:#eee; border-radius:8px;">
+        Punts: <span id="score">0</span> / <span id="total">0</span>
+    </div>
+</div>
+
+<div id="main-content">
+    <div id="game-ui" class="game-container">
+        <div id="question" class="question-box">
+            <div id="main-q" class="main-text">Carregant...</div>
+            <div id="sub-q" class="sub-text"></div>
+        </div>
+        <div id="options" class="options-grid"></div>
+    </div>
+</div>
+
+<script>
+    let masterData = []; // Guardem les dades aquí per no tornar a fer el "fetch"
+    let questions = [];
+    let currentTarget = null;
+    let score = 0;
+    const codes = ["A", "C", "D", "F", "I", "M", "O", "P", "PM", "S", "SR", "T", "W"];
+
+    // 1. Carregar dades només UN cop al principi
+    async function loadData() {
+        try {
+            const response = await fetch('classificacio.json');
+            const data = await response.json();
+            masterData = data.preguntas;
+            restartGame();
+        } catch (e) {
+            document.getElementById('main-q').textContent = "Error de càrrega";
+            document.getElementById('sub-q').textContent = "Revisa que classificacio.json estigui a la carpeta.";
+        }
+    }
+
+    // 2. Funció per reiniciar sense recarregar el fitxer
+    function restartGame() {
+        // Reset dades
+        questions = masterData.map(q => ({...q, done: false}));
+        score = 0;
+        
+        // Reset interfície
+        document.getElementById('total').textContent = questions.length;
+        document.getElementById('score').textContent = score;
+        
+        renderOptions();
+        nextQuestion();
+    }
+
+    function renderOptions() {
+        const grid = document.getElementById('options');
+        grid.innerHTML = '';
+        codes.forEach(code => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.textContent = code;
+            card.id = "card-" + code;
+            card.onclick = () => checkAnswer(code, card);
+            grid.appendChild(card);
+        });
+    }
+
+    function nextQuestion() {
+        const pending = questions.filter(q => !q.done);
+        if (pending.length === 0) {
+            document.getElementById('main-q').textContent = "🏆 TEST COMPLETAT!";
+            document.getElementById('sub-q').textContent = "Has encertat totes les classes.";
+            return;
+        }
+        currentTarget = pending[Math.floor(Math.random() * pending.length)];
+        
+        document.getElementById('main-q').textContent = currentTarget.t;
+        document.getElementById('sub-q').textContent = currentTarget.d;
+    }
+
+    function checkAnswer(code, element) {
+        if (code === currentTarget.l) {
+            currentTarget.done = true;
+            score++;
+            element.classList.add('correct');
+            document.getElementById('score').textContent = score;
+            nextQuestion();
+        } else {
+            element.classList.add('wrong');
+            setTimeout(() => element.classList.remove('wrong'), 300);
+        }
+    }
+
+    // Inici automàtic
+    loadData();
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrenament CLP - Estratègia de Codis</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --success: #27ae60;
+            --error: #e74c3c;
+            --bg: #f4f7f6;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 700px; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 5px; }
+        .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 5px; margin: 20px 0; overflow: hidden; }
+        #progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
+        .question-box { font-size: 1.2em; font-weight: bold; margin-bottom: 20px; min-height: 60px; color: var(--primary); }
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .btn-option { padding: 15px; text-align: left; font-size: 1em; cursor: pointer; border: 2px solid #ddd; border-radius: 8px; background: #fff; transition: 0.2s; }
+        .btn-option:hover { border-color: var(--accent); background: #f0f7ff; }
+        .btn-option.correct { background: var(--success) !important; color: white; border-color: #219150; }
+        .btn-option.wrong { background: var(--error) !important; color: white; border-color: #c0392b; }
+        .feedback { margin-top: 15px; padding: 10px; border-radius: 5px; display: none; font-weight: bold; text-align: center; }
+        .score-board { text-align: center; margin-top: 20px; font-weight: bold; color: #666; }
+        .nav-btn { margin-top: 20px; padding: 12px 24px; cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../../../index.html" style="text-decoration: none; color: #95a5a6; font-weight: bold;">← Inici</a>
+        <h1>Test d'Entrenament CLP</h1>
+        <p style="text-align: center; color: #7f8c8d;">Domina l'estratègia de codis (H, P, EUH)</p>
+        
+        <div class="progress-bar"><div id="progress-fill"></div></div>
+        
+        <div id="game-area">
+            <div id="question" class="question-box">Carregant preguntes...</div>
+            <div id="options" class="options-grid"></div>
+            <div id="feedback" class="feedback"></div>
+        </div>
+
+        <div class="score-board">
+            Pregunta: <span id="current-q">0</span> / 30 | Encerts: <span id="score">0</span>
+        </div>
+    </div>
+
+<script>
+    const quizData = [
+        { q: "Si en una etiqueta apareix el codi H330, davant quin tipus de perill estem?", a: "Un perill per a la salut humana.", o: ["Un perill físic per pressió.", "Un perill per al medi ambient.", "Un perill per a la salut humana.", "Un consell de prudència preventiu."], e: "El dígit 3 indica Salut." },
+        { q: "Una substància presenta el codi H242. Quin risc descriu?", a: "Perill físic (com risc d'incendi en escalfar-se).", o: ["Toxicitat per ingestió.", "Perill físic (com risc d'incendi en escalfar-se).", "Irritació ocular greu.", "Toxicitat per als peixos."], e: "El dígit 2 indica Perill Físic." },
+        { q: "Quin d'aquests codis correspon a un perill específic europeu com 'L'exposició repetida pot provocar sequedat o formació de gretes a la pell'?", a: "EUH066", o: ["H301", "P202", "EUH066", "H411"], e: "Els perills específics/suplementaris de la UE usen EUH." },
+        { q: "El codi H410 fa referència a un perill de tipus:", a: "Medi ambient aquàtic.", o: ["Reactivitat química.", "Salut pública.", "Medi ambient aquàtic.", "Explosió imminent."], e: "El dígit 4 indica Medi Ambient." },
+        { q: "Quina és la diferència principal entre H204 i EUH204 (Isocianats)?", a: "H204 és un perill físic i EUH204 és una informació específica europea.", o: ["H204 és més greu que EUH204.", "H204 és un perill físic i EUH204 és una informació específica europea.", "EUH204 és per a sòlids i H204 per a gasos.", "No hi ha diferència, s'usen indistintament."], e: "H és l'estàndard de perill físic; EUH és el matís específic europeu." },
+        { q: "Si l'enunciat diu 'Reacciona violentament amb l'aigua', quin codi és més probable segons l'especificitat europea?", a: "EUH014", o: ["H200", "EUH014", "H314", "P301"], e: "EUH s'usa per a reaccions específiques com aquesta." },
+        { q: "Un codi que comença per P3... (ex. P302) indica:", a: "Una mesura de resposta o intervenció en cas d'accident.", o: ["Un perill per a la salut.", "Una mesura de resposta o intervenció en cas d'accident.", "Una mesura d'emmagatzematge.", "Un perill per al medi ambient."], e: "P indica Prudència i el 3 indica Resposta/Intervenció." },
+        { q: "Si et pregunten per un gas inflamable, quin d'aquests codis buscaries primer?", a: "H220", o: ["H315", "H400", "H220", "EUH210"], e: "La inflamabilitat és un perill físic: H2XX." },
+        { q: "Què indica el codi EUH031 ('En contacte amb àcids allibera gasos tòxics')?", a: "Una advertència suplementària de la UE sobre una reacció química específica.", o: ["Un perill físic general.", "Una advertència suplementària de la UE sobre una reacció química específica.", "Un consell de prudència sobre l'envàs.", "Que el producte és un àcid fort."], e: "Les reaccions específiques en barrejar-se solen ser EUH." },
+        { q: "Un perill de 'Toxicitat específica en determinats òrgans' començarà per:", a: "H3...", o: ["H2...", "H3...", "H4...", "EUH..."], e: "Afecta la salut humana." },
+        { q: "Quin d'aquests codis es refereix a un consell de PREVENCIÓ (ex. 'No respirar la pols')?", a: "P260", o: ["H202", "P260", "P360", "EUH401"], e: "P indica Prudència i el 2 indica Prevenció." },
+        { q: "El codi H280 es refereix a gasos a pressió. A quina categoria pertany?", a: "Perills físics.", o: ["Perills per a la salut.", "Perills físics.", "Perills ambientals.", "Consells d'eliminació."], e: "Dígit 2 = Físic." },
+        { q: "Si una substància és 'Cancerígena', el seu codi començarà per:", a: "H3", o: ["H2", "H3", "H4", "EUH"], e: "És un dany greu a la salut." },
+        { q: "El codi EUH001 ('Explosiu en estat sec') s'usa perquè:", a: "És una propietat molt específica detallada per la normativa europea.", o: ["És un perill físic estàndard.", "És una propietat molt específica detallada per la normativa europea.", "És un consell de com guardar el producte.", "Substitueix el pictograma de la bomba explotant."], e: "EUH per a matisos de risc específics." },
+        { q: "Un codi H400 indica un perill:", a: "Agut per al medi ambient aquàtic.", o: ["Agut per al medi ambient aquàtic.", "Crònic per a la salut.", "D'explosió massiva.", "De corrosió metàl·lica."], e: "Dígit 4 = Medi Ambient." },
+        { q: "Què significa el codi P102 ('Mantenir fora de l'abast dels nens')?", a: "Consell de prudència general.", o: ["Perill físic de nivell 1.", "Consell de prudència general.", "Perill per a la salut infantil.", "Informació suplementària europea."], e: "P1 indica consells generals." },
+        { q: "Davant un codi H318 ('Lesions oculars greus'), sabem que és:", a: "Un risc per a la salut.", o: ["Un risc físic per projecció.", "Un risc per a la salut.", "Una frase de resposta davant salpicadures.", "Un risc ambiental."], e: "Dígit 3 = Salut." },
+        { q: "El codi EUH059 ('Perillós per a la capa d'ozó') és específic de la UE. Si fos un perill ambiental estàndard, per quin número començaria?", a: "H4", o: ["H2", "H3", "H4", "P4"], e: "Ambiental = 4." },
+        { q: "Una substància que 'Pot ser corrosiva per als metalls' porta el codi H290. Per què comença per 2 si causa dany?", a: "Perquè es considera un perill físic (reacció química sobre matèria inerta).", o: ["Perquè és un perill per a la salut del metall.", "Perquè es considera un perill físic (reacció química sobre matèria inerta).", "Perquè és un error de la norma.", "Perquè els corrosius sempre són 2."], e: "La corrosió de metalls és un Perill Físic." },
+        { q: "Si llegeixes 'En contacte amb l'aigua allibera gasos inflamables', quin codi li correspon?", a: "H260", o: ["H302", "H260", "P260", "H410"], e: "És un perill físic, per tant comença per 2." },
+        { q: "Quin codi de prudència usaries per a 'Emmagatzemar en un lloc ben ventilat'?", a: "P403", o: ["P230", "P330", "P403", "P501"], e: "P4 indica Emmagatzematge." },
+        { q: "La frase EUH208 conté informació sobre 'Substàncies sensibilitzants'. L'ús d'EUH indica:", a: "Que és una informació suplementària de la UE sobre etiquetatge específic.", o: ["Que és un verí potent.", "Que és una informació suplementària de la UE sobre etiquetatge específic.", "Que el producte és d'origen europeu.", "Que no és perillós per a la salut."], e: "Informació d'etiquetatge específica." },
+        { q: "El codi H335 ('Pot irritar les vies respiratòries') pertany a:", a: "Perills per a la salut.", o: ["Perills físics.", "Perills per a la salut.", "Perills per al medi ambient.", "Consells de resposta."], e: "Dígit 3 = Salut." },
+        { q: "Un producte amb H222 és un 'Aerosol extremadament inflamable'. El 2 indica:", a: "Perill físic.", o: ["Perill per a la salut.", "Perill físic.", "Que hi ha 2 aerosols.", "Que és de segona categoria."], e: "Dígit 2 = Físic." },
+        { q: "Quin d'aquests codis es refereix a l'eliminació de residus?", a: "P501", o: ["P101", "P301", "P501", "H501"], e: "P5 indica Eliminació." },
+        { q: "La frase 'Explosiu en contacte o no amb l'aire' correspon a EUH006. Què ens diu el codi?", a: "Que és una propietat específica identificada per la UE.", o: ["Que és un perill per a la salut respiratòria.", "Que és una propietat específica identificada per la UE.", "Que és un consell de prevenció.", "Que és un gas a pressió."], e: "EUH = Especificitat UE." },
+        { q: "H370 significa 'Provoca danys als òrgans'. És un perill de tipus:", a: "Salut.", o: ["Físic.", "Ambiental.", "Salut.", "Suplementari."], e: "Dígit 3 = Salut." },
+        { q: "Un codi P210 ('Mantenir allunyat de la calor, de superfícies calentes...') és:", a: "Un consell de prudència de prevenció.", o: ["Una frase de perill físic.", "Un consell de prudència de prevenció.", "Un perill per al medi ambient.", "Una frase de resposta mèdica."], e: "P2 = Prevenció." },
+        { q: "Quin d'aquests codis indica un perill per al medi ambient?", a: "H412", o: ["H226", "H336", "H412", "EUH014"], e: "Dígit 4 = Medi Ambient." },
+        { q: "Si trobem el codi EUH401, el prefix EUH s'usa perquè:", a: "Es una frase específica de la UE per a productes fitosanitaris.", o: ["És un codi que només s'usa en incendis forestals.", "Es una frase específica de la UE per a productes fitosanitaris.", "Substitueix totes les frases H3 i H4.", "Indica que el producte és biodegradable."], e: "Informació suplementària específica europea." }
+    ];
+
+    let currentIdx = 0;
+    let score = 0;
+    let shuffledQuiz = [];
+
+    function initGame() {
+        shuffledQuiz = [...quizData].sort(() => Math.random() - 0.5);
+        currentIdx = 0;
+        score = 0;
+        updateScore();
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const q = shuffledQuiz[currentIdx];
+        document.getElementById('question').textContent = q.q;
+        document.getElementById('current-q').textContent = currentIdx + 1;
+        document.getElementById('progress-fill').style.width = ((currentIdx / 30) * 100) + "%";
+        
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = '';
+        
+        // Barrejar opcions
+        const shuffledOptions = [...q.o].sort(() => Math.random() - 0.5);
+        
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-option';
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(opt, btn);
+            optionsDiv.appendChild(btn);
+        });
+        
+        document.getElementById('feedback').style.display = 'none';
+    }
+
+    function checkAnswer(selected, btn) {
+        const correct = shuffledQuiz[currentIdx].a;
+        const feedback = document.getElementById('feedback');
+        const allBtns = document.querySelectorAll('.btn-option');
+        
+        allBtns.forEach(b => b.style.pointerEvents = 'none');
+
+        if (selected === correct) {
+            btn.classList.add('correct');
+            score++;
+            feedback.textContent = "✓ Correcte! " + shuffledQuiz[currentIdx].e;
+            feedback.style.background = "#d4edda";
+            feedback.style.color = "#155724";
+        } else {
+            btn.classList.add('wrong');
+            feedback.textContent = "✗ Incorrecte. La resposta era: " + correct + ". " + shuffledQuiz[currentIdx].e;
+            feedback.style.background = "#f8d7da";
+            feedback.style.color = "#721c24";
+            allBtns.forEach(b => {
+                if(b.textContent === correct) b.classList.add('correct');
+            });
+        }
+        
+        feedback.style.display = 'block';
+        updateScore();
+
+        setTimeout(() => {
+            currentIdx++;
+            if (currentIdx < shuffledQuiz.length) {
+                showQuestion();
+            } else {
+                showFinal();
+            }
+        }, 2500);
+    }
+
+    function updateScore() {
+        document.getElementById('score').textContent = score;
+    }
+
+    function showFinal() {
+        const area = document.getElementById('game-area');
+        let rank = score > 25 ? "Ets un expert en CLP!" : "Bona feina, segueix practicant.";
+        area.innerHTML = `
+            <div style="text-align:center;">
+                <h2>Test Finalitzat</h2>
+                <p style="font-size:1.5em;">Puntuació: ${score} / 30</p>
+                <p>${rank}</p>
+                <button class="nav-btn" onclick="location.reload()">Torna a jugar</button>
+            </div>
+        `;
+        document.getElementById('progress-fill').style.width = "100%";
+    }
+
+    initGame();
+</script>
+</body>
+</html>

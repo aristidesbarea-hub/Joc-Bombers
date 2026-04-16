@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Substàncies ADR</title>
+    <style>
+        :root { --primary: #2c3e50; --success: #27ae60; --error: #e74c3c; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 600px; text-align: center; }
+        h1 { color: var(--primary); margin-bottom: 5px; }
+        .substance-display { font-size: 1.5em; font-weight: bold; margin: 20px 0; color: #2980b9; min-height: 60px; display: flex; align-items: center; justify-content: center; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .btn-option { padding: 20px; font-size: 1.2em; font-weight: bold; cursor: pointer; border: 2px solid #ddd; border-radius: 8px; background: #fff; transition: 0.2s; }
+        .btn-option:hover { border-color: var(--primary); background: #f8f9fa; }
+        .btn-option.correct { background: var(--success) !important; color: white; border-color: #219150; }
+        .btn-option.wrong { background: var(--error) !important; color: white; border-color: #c0392b; }
+        .score-board { margin-top: 25px; font-size: 1.1em; color: #666; }
+        .nav-btn { margin-top: 20px; padding: 10px 20px; cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../../../index.html" style="float: left; color: #999; text-decoration: none; font-weight: bold;">← Inici</a>
+        <br>
+        <h1>Test de Substàncies</h1>
+        <p>Quin és el codi de perill correcte?</p>
+
+        <div id="substance" class="substance-display">Carregant...</div>
+
+        <div id="options" class="options-grid">
+            </div>
+
+        <div class="score-board">
+            Pregunta: <span id="current-idx">0</span> / <span id="total-q">0</span> | 
+            Encerts: <span id="score">0</span>
+        </div>
+        
+        <button class="nav-btn" onclick="location.reload()">Reiniciar Test</button>
+    </div>
+
+<script>
+    let questions = [];
+    let currentIdx = 0;
+    let score = 0;
+    let canAnswer = true;
+
+    async function loadData() {
+        try {
+            const response = await fetch('test_adr.json');
+            const data = await response.json();
+            questions = data.preguntas.sort(() => Math.random() - 0.5); // Barrejar preguntes
+            document.getElementById('total-q').textContent = questions.length;
+            showQuestion();
+        } catch (e) {
+            document.getElementById('substance').textContent = "Error carregant dades.";
+        }
+    }
+
+    function showQuestion() {
+        canAnswer = true;
+        const q = questions[currentIdx];
+        document.getElementById('substance').textContent = q.substancia;
+        document.getElementById('current-idx').textContent = currentIdx + 1;
+        
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = '';
+
+        q.opcions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-option';
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(opt, btn);
+            optionsDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected, btn) {
+        if (!canAnswer) return;
+        canAnswer = false;
+
+        const correct = questions[currentIdx].correcta;
+        if (selected === correct) {
+            btn.classList.add('correct');
+            score++;
+            document.getElementById('score').textContent = score;
+        } else {
+            btn.classList.add('wrong');
+            // Marcar la correcta perquè l'usuari aprengui
+            Array.from(document.getElementsByClassName('btn-option')).forEach(b => {
+                if (b.textContent === correct) b.classList.add('correct');
+            });
+        }
+
+        setTimeout(() => {
+            currentIdx++;
+            if (currentIdx < questions.length) {
+                showQuestion();
+            } else {
+                showFinalResults();
+            }
+        }, 1500);
+    }
+
+    function showFinalResults() {
+        const container = document.querySelector('.container');
+        container.innerHTML = `
+            <h1>Test Finalitzat!</h1>
+            <p style="font-size: 1.5em;">Has encertat <strong>${score}</strong> de <strong>${questions.length}</strong>.</p>
+            <button class="nav-btn" onclick="location.reload()">Torna-ho a provar</button>
+            <br><br>
+            <a href="../../../index.html" style="color: var(--primary);">Tornar a l'inici</a>
+        `;
+    }
+
+    loadData();
+</script>
+</body>
+</html>

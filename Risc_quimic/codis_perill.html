@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>ADR - Codis de Perill</title>
+    <style>
+        :root { 
+            --primary: #2c3e50; --success: #27ae60; --error: #e74c3c; 
+            --special-orange: #e67e22; --bg: #f4f7f6; 
+        }
+        body { display: flex; height: 100vh; margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); overflow: hidden; }
+        
+        #sidebar { width: 320px; background: white; padding: 20px; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
+        #main-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+        
+        .question-box { background: white; border-bottom: 5px solid var(--primary); padding: 25px; margin-bottom: 20px; border-radius: 8px; width: 100%; max-width: 900px; text-align: center; font-size: 1.3em; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* Nota sol¡¤licitada en catal¨¤ */
+        .info-note { background: #fff3cd; padding: 15px; border-radius: 5px; font-size: 0.9em; margin-bottom: 20px; border: 1px solid #ffeeba; color: #856404; }
+
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; width: 100%; max-width: 1000px; padding-bottom: 40px; }
+        
+        .btn-code { padding: 15px 5px; background: white; border: 2px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1.1em; transition: 0.2s; }
+        
+        /* Estil taronja per als codis especials */
+        .btn-code.especial { border: 2.5px solid var(--special-orange); background: #fffcf5; color: #d35400; }
+
+        .btn-code:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .btn-code.correct { background: var(--success) !important; color: white !important; border-color: #219150; }
+        .btn-code.wrong { background: var(--error) !important; color: white !important; animation: shake 0.3s; }
+
+        .btn-sidebar { padding: 10px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
+
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" style="text-decoration:none; color:#666; font-weight:bold; margin-bottom:20px; display:block;">Inici</a>
+    
+    <h2>Codis de Perill ADR</h2>
+    
+    <div class="info-note">
+        S'han marcat en <strong>taronja</strong> els codis amb significat especial.
+    </div>
+    
+    <button class="btn-sidebar" onclick="location.reload()">Reiniciar Partida</button>
+    
+    <div style="margin-top:auto; font-weight:bold; padding: 15px; background: #eee; border-radius: 8px;">
+        Encerts: <span id="score">0</span> / <span id="total">0</span>
+    </div>
+</div>
+
+<div id="main-content">
+    <div id="question" class="question-box">Carregant dades...</div>
+    <div id="options-grid" class="grid-options"></div>
+</div>
+
+<script>
+    let allData = [];
+    let currentQ = null;
+    let score = 0;
+
+    async function init() {
+        try {
+            const resp = await fetch('codis_perill.json');
+            if (!resp.ok) throw new Error("JSON no trobat");
+            const data = await resp.json();
+            allData = data.preguntas;
+            
+            // Ordenaci¨® num¨¨rica ignorant la X per a la posici¨®
+            const codes = allData.map(item => ({
+                label: item.l,
+                val: parseInt(item.l.replace('X', '')),
+                especial: item.especial || false
+            })).sort((a, b) => a.val - b.val);
+
+            const grid = document.getElementById('options-grid');
+            codes.forEach(c => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-code' + (c.especial ? ' especial' : '');
+                btn.textContent = c.label;
+                btn.onclick = () => check(c.label, btn);
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('total').textContent = allData.length;
+            next();
+        } catch (e) {
+            document.getElementById('question').textContent = "Error de c¨¤rrega de dades.";
+        }
+    }
+
+    function next() {
+        const pending = allData.filter(i => !i.done);
+        if(pending.length === 0) {
+            document.getElementById('question').innerHTML = "Felicitats! Has completat el joc.";
+            return;
+        }
+        currentQ = pending[Math.floor(Math.random() * pending.length)];
+        document.getElementById('question').textContent = currentQ.q;
+        
+        document.querySelectorAll('.btn-code').forEach(b => b.classList.remove('correct', 'wrong'));
+    }
+
+    function check(code, btn) {
+        if(code === currentQ.l) {
+            btn.classList.add('correct');
+            currentQ.done = true;
+            score++;
+            document.getElementById('score').textContent = score;
+            setTimeout(next, 700);
+        } else {
+            btn.classList.add('wrong');
+            setTimeout(() => btn.classList.remove('wrong'), 400);
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>Joc de Rius - Selecció per Punt</title>
+<style>
+    :root { 
+        --primary: #2c3e50; 
+        --success: #27ae60; 
+        --error: #e74c3c; 
+        --accent: #007BFF; 
+        --bg-color: #f0f2f5;
+        --gray-back: #6c757d;
+        --river-blue: #3498db;
+        --hint-gold: #f1c40f;
+    }
+
+    body { 
+        display: flex; 
+        height: 100vh; 
+        margin: 0; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background-color: var(--bg-color);
+    }
+
+    /* Sidebar estilitzat */
+    #sidebar {
+        width: 300px;
+        background: white;
+        padding: 20px;
+        box-sizing: border-box;
+        border-right: 1px solid #ddd;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    .btn-home-small {
+        display: inline-block;
+        background: var(--gray-back);
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.2s;
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+    .btn-home-small:hover { background: #5a6268; }
+
+    h2 { color: var(--primary); font-size: 1.4em; margin: 15px 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    h3 { font-size: 1em; color: var(--gray-back); margin: 10px 0; }
+
+    #mapContainer { 
+        flex: 1; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        background: #e9ecef; 
+        padding: 20px;
+        position: relative;
+    }
+
+    svg { 
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        max-width: 100%; 
+        max-height: 100%; 
+        background: #ffffff; 
+    }
+
+    /* Estils Rius */
+    .comarca { stroke: #ccc; stroke-width: 0.5; fill: transparent; }
+    .river { stroke-width: 2.5; fill: none; stroke-linecap: round; stroke: var(--river-blue); opacity: 0.7; transition: all 0.3s; }
+    .river.hint-active { stroke: var(--hint-gold); stroke-width: 5; opacity: 1; stroke-dasharray: 4; animation: riverDash 1s linear infinite; }
+    .river.correct-river { stroke: #2980b9; stroke-width: 3; opacity: 1; }
+    
+    @keyframes riverDash { to { stroke-dashoffset: -8; } }
+
+    /* Punts interactius CORREGITS (sense transform scale) */
+    .river-target-point { 
+        fill: white; 
+        r: 6; 
+        stroke: var(--primary); 
+        stroke-width: 2; 
+        cursor: pointer; 
+        transition: fill 0.2s, stroke 0.2s, stroke-width 0.2s; 
+    }
+    .river-target-point:hover { 
+        fill: var(--accent); 
+        stroke: var(--primary);
+        stroke-width: 3;
+    }
+    .river-target-point.correct { fill: var(--success); stroke: #1e7e34; cursor: default; }
+    .river-target-point.wrong { fill: var(--error); stroke: #bd2130; }
+    .river-target-point.hint-used { fill: var(--hint-gold); stroke: #d35400; cursor: default; }
+    
+    .blinking { animation: blink 0.8s infinite; stroke-width: 3; }
+    @keyframes blink { 0%, 100% { fill: var(--hint-gold); r: 6; } 50% { fill: white; r: 8; } }
+
+    /* Estils del Joc */
+    .target-river-name { 
+        font-weight: bold; 
+        color: var(--accent); 
+        font-size: 1.4em; 
+        background-color: #eef7ff; 
+        padding: 15px; 
+        border-radius: 8px; 
+        text-align: center; 
+        margin: 15px 0;
+        border: 1px solid #cce5ff;
+    }
+
+    #score-box {
+        background: var(--primary);
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    #hintButton {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #hintButton:hover { background-color: #0056b3; }
+
+    #hintedRiversList {
+        font-size: 0.85em;
+        background: #fff8f0;
+        padding: 10px 10px 10px 30px;
+        border-radius: 8px;
+        border: 1px solid #ffeeba;
+        color: #d35400;
+    }
+
+    #bigRiverName {
+        position: absolute;
+        pointer-events: none;
+        font-size: 4em;
+        font-weight: 900;
+        color: var(--accent);
+        text-shadow: 0 0 15px white, 0 0 5px white;
+        opacity: 0;
+        text-transform: uppercase;
+        z-index: 20;
+    }
+    #bigRiverName.visible { opacity: 0.8; transition: none; }
+    #bigRiverName.fade-out { opacity: 0; transition: opacity 1.5s ease-out; }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" class="btn-home-small">🏠 Inici</a>
+    <h2>Joc de Rius</h2>
+    <div id="score-box">Puntuació: <span id="score">0</span></div>
+    <div id="riverButtons"></div>
+    <button id="hintButton">💡 Mostrar Pista</button>
+    <div style="margin-top:20px;">
+        <h3>Rius amb pista:</h3>
+        <ul id="hintedRiversList"></ul>
+    </div>
+</div>
+
+<div id="mapContainer">
+    <svg viewBox="0 0 800 800">
+        <g id="backgroundLayer"><image href="MRelieve.png" x="0" y="0" width="800" height="800"></image></g>
+        <g id="comarcasLayer"></g>
+        <g id="riversLayer"></g>
+        <g id="riverPointsLayer"></g>
+    </svg>
+    <div id="bigRiverName"></div>
+</div>
+
+<script>
+let comarcas=[], rios=[], answeredCorrectPermanent=new Set(), correctlyAnsweredInSession=new Set(), hintedRivers=new Set();
+let targetRiver=null, riverPointsMap=new Map(), riverPolylinesMap=new Map(), hintUsedForTarget=false;
+let score=0;
+const X_OFFSET=-100;
+
+const comarcasLayer=document.getElementById('comarcasLayer');
+const riversLayer=document.getElementById('riversLayer');
+const riverPointsLayer=document.getElementById('riverPointsLayer');
+const riverButtonsDiv=document.getElementById('riverButtons');
+const hintButton=document.getElementById('hintButton');
+const bigRiverNameDiv=document.getElementById('bigRiverName');
+const hintedRiversList=document.getElementById('hintedRiversList');
+const scoreSpan=document.getElementById('score');
+
+async function loadData(){
+    try{
+        const ts=new Date().getTime();
+        comarcas=(await (await fetch(`comarcas.json?t=${ts}`)).json());
+        const dataRios=(await (await fetch(`rios.json?t=${ts}`)).json());
+        rios=[];
+        if(dataRios.rios){
+            dataRios.rios.forEach(r=>{
+                rios.push(r);
+                if(r.afluentes) r.afluentes.forEach(a=>rios.push(a));
+            });
+        }
+        initializeGame();
+    }catch(e){console.error('Error:',e);}
+}
+
+function drawMap(){
+    comarcasLayer.innerHTML="";
+    if(comarcas && comarcas.comarcas){
+        comarcas.comarcas.forEach(c=>{
+            c.polygons.forEach(p=>{
+                const poly=document.createElementNS("http://www.w3.org/2000/svg","polygon");
+                poly.setAttribute("points",p.points.map(pt=>`${pt.x},${pt.y}`).join(" "));
+                poly.setAttribute("class","comarca");
+                comarcasLayer.appendChild(poly);
+            });
+        });
+    }
+}
+
+function initializeGame(){
+    drawMap(); drawRiverLines();
+    targetRiver=getRandomRiver(); 
+    hintUsedForTarget=false;
+    if(targetRiver){ drawRiverPoints(); updateTargetDisplay(); }
+    hintButton.onclick=giveHint;
+}
+
+function drawRiverLines(){
+    riversLayer.innerHTML=""; riverPolylinesMap.clear();
+    const offset=p=>`${p[0]+X_OFFSET},${p[1]}`;
+    rios.forEach(r=>{
+        const g=document.createElementNS("http://www.w3.org/2000/svg","g");
+        r.segmentos.forEach(s=>{
+            const poly=document.createElementNS("http://www.w3.org/2000/svg","polyline");
+            poly.setAttribute("points",s.puntos.map(offset).join(" "));
+            poly.setAttribute("class","river");
+            g.appendChild(poly);
+        });
+        riversLayer.appendChild(g);
+        riverPolylinesMap.set(r.nombre,g);
+    });
+}
+
+function drawRiverPoints(){
+    riverPointsLayer.innerHTML=""; riverPointsMap.clear();
+    rios.forEach(r=>{
+        const pts=r.segmentos[0].puntos;
+        const p=pts[Math.floor(pts.length/2)];
+        const point=document.createElementNS("http://www.w3.org/2000/svg","circle");
+        point.setAttribute("cx",p[0]+X_OFFSET); 
+        point.setAttribute("cy",p[1]);
+        point.dataset.riverName=r.nombre; 
+        point.setAttribute("class","river-target-point");
+
+        if(answeredCorrectPermanent.has(r.nombre)){
+            if(hintedRivers.has(r.nombre)) point.classList.add('hint-used');
+            else point.classList.add('correct');
+        } else {
+            point.onclick=e=>checkAnswer(e.target.dataset.riverName,e.target);
+        }
+
+        riverPointsMap.set(r.nombre,point);
+        riverPointsLayer.appendChild(point);
+    });
+}
+
+function updateScore(points){
+    score+=points; scoreSpan.textContent=score;
+}
+
+function checkAnswer(name,point){
+    if(!targetRiver) return;
+    if(name===targetRiver.nombre){
+        answeredCorrectPermanent.add(targetRiver.nombre);
+        correctlyAnsweredInSession.add(targetRiver.nombre);
+        
+        if(hintUsedForTarget){
+            hintedRivers.add(targetRiver.nombre);
+            point.classList.add('hint-used');
+            const li=document.createElement('li'); li.textContent=targetRiver.nombre;
+            hintedRiversList.appendChild(li);
+            updateScore(0);
+        }else{ 
+            point.classList.add('correct'); 
+            updateScore(10); 
+        }
+
+        const g=riverPolylinesMap.get(targetRiver.nombre);
+        if(g) g.querySelectorAll('.river').forEach(poly=>{ 
+            poly.classList.remove('hint-active'); 
+            poly.classList.add('correct-river'); 
+        });
+
+        setTimeout(()=>{
+            targetRiver=getRandomRiver(); hintUsedForTarget=false;
+            if(targetRiver){ updateTargetDisplay(); drawRiverPoints(); }
+        },1000);
+    } else { 
+        point.classList.add('wrong'); 
+        updateScore(-1);
+        setTimeout(()=>point.classList.remove('wrong'), 800);
+    }
+}
+
+function getRandomRiver(){
+    const unans=rios.filter(r=>!answeredCorrectPermanent.has(r.nombre));
+    if(unans.length===0){ showEndGameOptions(); return null; }
+    return unans[Math.floor(Math.random()*unans.length)];
+}
+
+function showEndGameOptions(){
+    riverButtonsDiv.innerHTML=`<div class="target-river-name" style="color:var(--success)">🏆 COMPLETAT!</div>`;
+    const restart=document.createElement('button');
+    restart.textContent="Reiniciar Joc";
+    restart.className="btn-home-small";
+    restart.style.width="100%";
+    restart.onclick=()=>location.reload();
+    riverButtonsDiv.appendChild(restart);
+}
+
+function updateTargetDisplay(){
+    riverButtonsDiv.innerHTML='';
+    if(!targetRiver) return;
+    const label=document.createElement('h3'); label.textContent="Busca al mapa:"; 
+    riverButtonsDiv.appendChild(label);
+    
+    const targetName=document.createElement('div'); 
+    targetName.className='target-river-name'; 
+    targetName.textContent=targetRiver.nombre.toUpperCase(); 
+    riverButtonsDiv.appendChild(targetName);
+    
+    const remaining=document.createElement('p'); 
+    remaining.style.textAlign="center";
+    remaining.textContent=`Rius restants: ${rios.length-answeredCorrectPermanent.size}`; 
+    riverButtonsDiv.appendChild(remaining);
+
+    bigRiverNameDiv.textContent=targetRiver.nombre;
+    bigRiverNameDiv.className='visible';
+    setTimeout(()=>{ bigRiverNameDiv.className='fade-out'; },600);
+}
+
+function giveHint(){
+    if(!targetRiver || hintUsedForTarget) return;
+    hintUsedForTarget=true;
+    const g=riverPolylinesMap.get(targetRiver.nombre);
+    if(g) g.querySelectorAll('.river').forEach(poly=>poly.classList.add('hint-active'));
+    const point=riverPointsMap.get(targetRiver.nombre);
+    if(point) point.classList.add('blinking');
+}
+
+loadData();
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Jocs Educatius</title>
+    <style>
+        :root {
+            --geo-color: #007BFF;
+            --geo-hover: #0056b3;
+            --mmpp-color: #e67e22;
+            --mmpp-hover: #d35400;
+            --struct-color: #9b59b6; /* Color lila per a Estructura */
+            --struct-hover: #8e44ad;
+            --bg-color: #f4f4f4;
+        }
+
+        /* Reseteig per evitar desbordaments */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: var(--bg-color);
+            padding: 50px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        h1 { color: #333; margin-top: 0; margin-bottom: 20px; font-size: 1.8em; }
+        h2 { color: #666; font-size: 1.1em; margin-bottom: 25px; font-weight: normal; }
+
+        ul { 
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+            width: 100%; 
+        }
+        
+        li { 
+            margin-bottom: 12px; 
+            width: 100%;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: block;
+            width: 100%;
+            transition: all 0.2s ease;
+            font-weight: bold;
+            font-size: 1.05em;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn:active { transform: translateY(0); }
+
+        /* Colors de categories */
+        .btn-main-geo { background-color: var(--geo-color); }
+        .btn-main-geo:hover { background-color: var(--geo-hover); }
+
+        .btn-main-mmpp { background-color: var(--mmpp-color); }
+        .btn-main-mmpp:hover { background-color: var(--mmpp-hover); }
+
+        .btn-main-struct { background-color: var(--struct-color); }
+        .btn-main-struct:hover { background-color: var(--struct-hover); }
+
+        /* Botó de tornar */
+        .btn-back {
+            background-color: #6c757d;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        .btn-back:hover { background-color: #5a6268; }
+
+        /* Seccions */
+        .menu-section { display: none; width: 100%; }
+        .active { display: block; animation: fadeIn 0.3s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="main-menu" class="menu-section active">
+            <h1>Menú Principal</h1>
+            <h2>Selecciona una Categoria</h2>
+            <ul>
+                <li><button class="btn btn-main-geo" onclick="showMenu('geo-menu')">Territori</button></li>
+                <li><button class="btn btn-main-mmpp" onclick="showMenu('mmpp-menu')">Matèries Perilloses</button></li>
+                <li><button class="btn btn-main-struct" onclick="showMenu('struct-menu')">Estructura DGPEIS</button></li>
+            </ul>
+        </div>
+
+        <div id="geo-menu" class="menu-section">
+            <h1>Territori</h1>
+            <h2>Geografia de Catalunya</h2>
+            <ul>
+                <li><a href="Territorio/Juego/Juego_carreteras.html" class="btn btn-main-geo">Carreteres</a></li>
+                <li><a href="Territorio/Juego/Juego_ciudades.html" class="btn btn-main-geo">Ciutats</a></li>
+                <li><a href="Territorio/Juego/Juego_comarcas.html" class="btn btn-main-geo">Comarques</a></li>
+                <li><a href="Territorio/Juego/Juego_rios.html" class="btn btn-main-geo">Rius</a></li>
+                <li><a href="Territorio/Juego/Juego_sierras.html" class="btn btn-main-geo">Relleu</a></li>
+                <li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
+            </ul>
+        </div>
+
+        <div id="mmpp-menu" class="menu-section">
+            <h1>Risc Químic</h1>
+            <h2>Matèries Perilloses</h2>
+            <ul>
+                <li><a href="Risc_quimic/ClasesMMPP.html" class="btn btn-main-mmpp">Classes de perill</a></li>
+                <li><a href="Risc_quimic/GrupComp.html" class="btn btn-main-mmpp">Grups de compatibilitat, classe 1, ADR</a></li>
+                <li><a href="Risc_quimic/classe9.html" class="btn btn-main-mmpp">Subcategories, classe 9, ADR</a></li>
+                <li><a href="Risc_quimic/classificacio.html" class="btn btn-main-mmpp">Codi de classificació MMPP ADR</a></li>
+                <li><a href="Risc_quimic/codis_perill.html" class="btn btn-main-mmpp">Codis de perill Kemler MMPP ADR</a></li>
+                <li><a href="Risc_quimic/test_adr.html" class="btn btn-main-mmpp">Test substancies principals ADR</a></li>
+                <li><a href="Risc_quimic/colors_gasos.html" class="btn btn-main-mmpp">Colors ampolles gasos</a></li>
+                <li><a href="Risc_quimic/CLP.html" class="btn btn-main-mmpp">Normativa CLP</a></li>
+                <li><a href="Risc_quimic/CLP2.html" class="btn btn-main-mmpp">Normativa CLP: frases EUH000 vs H000</a></li>
+                <li><a href="Risc_quimic/nfpa_704.html" class="btn btn-main-mmpp">Test NFPA 704</a></li>
+                <li><a href="Risc_quimic/joc_toxicitat.html" class="btn btn-main-mmpp">Toxicitat CL50 i DL50</a></li>
+                <li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
+            </ul>
+        </div>
+
+        <div id="struct-menu" class="menu-section">
+            <h1>Normativa i Estructura</h1>
+            <h2>Decret 12/2023</h2>
+            <ul>
+                <li><a href="DGPEIS/organigrama_speis.html" class="btn btn-main-struct">Organigrama DGPEIS</a></li>
+                <li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showMenu(menuId) {
+            const sections = document.querySelectorAll('.menu-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(menuId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

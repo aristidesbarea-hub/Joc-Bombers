@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8" />
+<title>Joc de Comarques</title>
+<style>
+    :root { 
+        --primary: #2c3e50; 
+        --success: #27ae60; 
+        --error: #e74c3c; 
+        --accent: #007BFF; 
+        --bg-color: #f0f2f5;
+        --gray-back: #6c757d;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        background-color: var(--bg-color);
+    }
+
+    /* Sidebar estilitzat coherent */
+    #sidebar {
+        width: 300px;
+        padding: 20px;
+        background: white;
+        border-right: 1px solid #ddd;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+
+    /* Botó d'Inici */
+    .btn-home-small {
+        display: inline-block;
+        background: var(--gray-back);
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.2s;
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+    .btn-home-small:hover { background: #5a6268; }
+
+    h2 { color: var(--primary); font-size: 1.4em; margin: 15px 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    
+    #mapContainer {
+        flex: 1;
+        background: #e9ecef;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    svg {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        background: #ffffff;
+        overflow: visible;
+        display: block;
+    }
+
+    /* Estils de les Comarques */
+    .comarcaPath {
+        stroke: #333;
+        stroke-width: 0.8;
+        fill: #eee;
+        cursor: pointer;
+        transition: fill 0.2s, stroke-width 0.2s;
+    }
+    .comarcaPath:hover {
+        fill: #e0e0e0;
+        stroke-width: 1.5;
+    }
+    
+    .correct { fill: var(--success) !important; stroke: #1e7e34; }
+    .wrong { fill: var(--error) !important; stroke: #bd2130; }
+
+    /* Missatges del joc */
+    #currentComarca { 
+        font-weight: bold; 
+        color: var(--accent); 
+        font-size: 1.4em; 
+        background-color: #eef7ff; 
+        padding: 15px; 
+        border-radius: 8px; 
+        text-align: center; 
+        margin: 15px 0;
+        border: 1px solid #cce5ff;
+    }
+
+    #message { 
+        font-weight: 600; 
+        margin-bottom: 10px; 
+        min-height: 24px; 
+        text-align: center;
+        font-size: 0.95em;
+    }
+
+    .instructions {
+        font-size: 0.9em;
+        color: var(--gray-back);
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" class="btn-home-small">🏠 Inici</a>
+    
+    <h2>Joc de Comarques</h2>
+    <p class="instructions">Clica sobre la comarca que es demana al requadre blau.</p>
+    
+    <div id="message">Carregant dades...</div>
+    <div id="currentComarca"></div>
+</div>
+
+<div id="mapContainer">
+    <svg id="map" viewBox="0 0 800 800">
+        <g id="mapGroup"></g>
+    </svg>
+</div>
+
+<script>
+let comarcas = [];
+let mapGroup = document.getElementById("mapGroup");
+let currentTarget = null;
+
+const messageDiv = document.getElementById("message");
+const currentComarcaDiv = document.getElementById("currentComarca");
+
+function showMessage(msg, type="info"){
+    messageDiv.textContent = msg;
+    if(type==="correct") messageDiv.style.color="var(--success)";
+    else if(type==="wrong") messageDiv.style.color="var(--error)";
+    else messageDiv.style.color="var(--primary)";
+}
+
+async function loadJSONFile(url){
+    try {
+        const timestamp = new Date().getTime();
+        const resp = await fetch(`${url}?t=${timestamp}`);
+        const data = await resp.json();
+        comarcas = (data.comarcas||[]).map(c => ({
+            name: c.name,
+            polygons: c.polygons,
+            status: "pending"
+        }));
+        drawComarcas();
+        nextComarca();
+    } catch(e){
+        showMessage("Error carregant el mapa: " + e.message, "wrong");
+    }
+}
+
+function drawComarcas(){
+    mapGroup.innerHTML = "";
+    comarcas.forEach(c => {
+        let d = "";
+        c.polygons.forEach(poly => {
+            if(!poly.points || poly.points.length<3) return;
+            d += "M " + poly.points.map(p=>`${p.x} ${p.y}`).join(" L ") + " Z ";
+        });
+        const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+        path.setAttribute("d", d);
+        path.setAttribute("class", "comarcaPath");
+        
+        if(c.status==="correct") path.classList.add("correct");
+        else if(c.status==="wrong") path.classList.add("wrong");
+
+        path.addEventListener("click", () => selectComarca(c));
+        mapGroup.appendChild(path);
+    });
+}
+
+function selectComarca(c){
+    if(!currentTarget) return;
+    if(c.status==="correct") return;
+
+    if(c.name === currentTarget.name){
+        c.status="correct";
+
+        // Netejar errors previs per mantenir el mapa net
+        comarcas.forEach(cc => {
+            if(cc.status==="wrong") cc.status="pending";
+        });
+
+        drawComarcas();
+        showMessage(`Molt bé! Has trobat ${c.name}.`, "correct");
+        setTimeout(nextComarca, 600);
+    } else {
+        c.status="wrong";
+        drawComarcas();
+        showMessage(`No, aquesta no és. Busca ${currentTarget.name}.`, "wrong");
+    }
+}
+
+function nextComarca(){
+    const pending = comarcas.filter(c => c.status !== "correct");
+    if(pending.length===0){
+        showMessage("🏆 Felicitats! Has completat totes les comarcas.", "correct");
+        currentTarget = null;
+        currentComarcaDiv.textContent = "¡JOC COMPLET!";
+        return;
+    }
+    const idx = Math.floor(Math.random()*pending.length);
+    currentTarget = pending[idx];
+    currentComarcaDiv.textContent = currentTarget.name;
+    showMessage("On es troba la comarca següent?", "info");
+}
+
+loadJSONFile("comarcas.json");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>CLP: H vs EUH - El Desafiament</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --h-color: #2980b9;
+            --euh-color: #8e44ad;
+            --success: #27ae60;
+            --error: #e74c3c;
+            --bg: #f8f9fa;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 750px; text-align: center; }
+        
+        h1 { color: var(--primary); margin-bottom: 5px; }
+        .description { color: #666; margin-bottom: 20px; font-style: italic; }
+
+        .question-card { 
+            background: #ffffff; border: 2px solid #eee; border-radius: 12px; padding: 25px; margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .phrase { font-size: 1.4em; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+        .category-hint { font-size: 0.9em; color: #7f8c8d; text-transform: uppercase; letter-spacing: 1px; }
+
+        .options-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .opt-btn { 
+            flex: 1; padding: 20px; font-size: 1.3em; font-weight: bold; cursor: pointer;
+            border: 3px solid #ddd; border-radius: 10px; background: white; transition: 0.2s;
+        }
+        .opt-btn:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .opt-btn.h-style { color: var(--h-color); border-color: var(--h-color); }
+        .opt-btn.euh-style { color: var(--euh-color); border-color: var(--euh-color); }
+
+        .feedback-box { min-height: 60px; margin-top: 20px; padding: 15px; border-radius: 8px; display: none; }
+        .feedback-correct { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .feedback-wrong { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        .stats { display: flex; justify-content: space-between; margin-top: 30px; font-weight: bold; color: #7f8c8d; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+        #progress { height: 100%; background: var(--primary); width: 0%; transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../../../index.html" style="float: left; text-decoration: none; color: #95a5a6; font-weight: bold;">← Inici</a>
+    <br>
+    <h1>H vs EUH</h1>
+
+
+    <div class="question-card">
+        <div id="category" class="category-hint">Carregant...</div>
+        <div id="phrase" class="phrase">...</div>
+        <div class="options-container" id="options">
+            </div>
+    </div>
+
+    <div id="feedback" class="feedback-box"></div>
+
+    <div class="stats">
+        <span>Pregunta <span id="current">0</span> / 20</span>
+        <span>Punts: <span id="score">0</span></span>
+    </div>
+    <div class="progress-bar"><div id="progress"></div></div>
+</div>
+
+<script>
+    const questions = [
+        { p: "Reacciona violentament amb l'aigua", c: "Peligro de reacción específica", h: "H214", euh: "EUH014", a: "EUH014", exp: "És una reacció específica amb un agent extern (aigua), típica dels codis suplementaris europeus." },
+        { p: "Gas extremadament inflamable", c: "Peligro físico intrínseco", h: "H220", euh: "EUH220", a: "H220", exp: "La inflamabilitat és un perill físic estàndard i directe." },
+        { p: "Explosiu en estat sec", c: "Peligro condicionado", h: "H201", euh: "EUH001", a: "EUH001", exp: "No és explosiu sempre, sinó 'en estat sec', un matís d'especificitat europea." },
+        { p: "Líquid i vapors molt inflamables", c: "Peligro físico", h: "H225", euh: "EUH225", a: "H225", exp: "És una propietat física bàsica del producte." },
+        { p: "En contacte amb l'aigua allibera gasos tòxics", c: "Reacción específica", h: "H300", euh: "EUH029", a: "EUH029", exp: "L'origen del perill és la reacció específica amb l'aigua." },
+        { p: "Provoca cremades greus a la pell", c: "Peligro para la salud", h: "H314", euh: "EUH314", a: "H314", exp: "És un dany directe a la salut humana (H3XX)." },
+        { p: "Risc d'explosió en escalfar-lo en ambient confinat", c: "Matiz operativo", h: "H240", euh: "EUH044", a: "EUH044", exp: "Peligre específic que ocorre només sota confinament (específic UE)." },
+        { p: "Tòxic per als organismes aquàtics", c: "Peligro ambiental", h: "H411", euh: "EUH411", a: "H411", exp: "Els perills ambientals estàndard usen sempre H4XX." },
+        { p: "En contacte amb àcids allibera gasos tòxics", c: "Reacción química específica", h: "H331", euh: "EUH031", a: "EUH031", exp: "Advertència suplementària sobre barreges amb àcids." },
+        { p: "Conté gas a pressió; perill d'explosió en cas d'escalfament", c: "Peligro físico", h: "H280", euh: "EUH280", a: "H280", exp: "Perill físic derivat de l'estat de l'envàs." },
+        { p: "L'exposició repetida pot provocar sequedat o esquerdes a la pell", c: "Efecto acumulativo", h: "H315", euh: "EUH066", a: "EUH066", exp: "Efecte fisicoquímic molt específic per ús repetit." },
+        { p: "Se sospita que danya el fetus", c: "Salud - Reproducción", h: "H361d", euh: "EUH361d", a: "H361d", exp: "Danya directament la salut humana (H3XX)." },
+        { p: "Pot ser corrosiu per als metalls", c: "Peligro físico", h: "H290", euh: "EUH290", a: "H290", exp: "La corrosió de materials és un perill físic estàndard." },
+        { p: "Pot formar peròxids explosius", c: "Propiedad química específica", h: "H203", euh: "EUH019", a: "EUH019", exp: "Propietat suplementària d'inestabilitat química específica de la UE." },
+        { p: "Mortal en cas d'ingestió", c: "Peligro para la salud", h: "H300", euh: "EUH300", a: "H300", exp: "La toxicitat aguda és un perill de salut fonamental." },
+        { p: "Explosiu en contacte o no amb l'aire", c: "Inestabilidad específica", h: "H200", euh: "EUH006", a: "EUH006", exp: "Matís europeu sobre la reactivitat amb l'aire." },
+        { p: "Pot provocar una reacció al·lèrgica", c: "Etiquetado específico", h: "H317", euh: "EUH208", a: "EUH208", exp: "EUH208 s'usa per a sensibilitzants sota el llindar estàndard en barreges." },
+        { p: "Nociu per als nens alimentats amb llet materna", c: "Salud - Lactancia", h: "H362", euh: "EUH362", a: "H362", exp: "És un perill de salut (H3XX)." },
+        { p: "Seguiu les instruccions d'ús per evitar riscos per a la salut i el medi ambient", c: "Instrucción técnica", h: "H410", euh: "EUH401", a: "EUH401", exp: "Frase de seguretat específica per a productes fitosanitaris (UE)." },
+        { p: "Molt tòxic per als organismes aquàtics, amb efectes nocius duradors", c: "Peligro ambiental", h: "H410", euh: "EUH410", a: "H410", exp: "Estàndard màxim de perill ambiental (H4XX)." }
+    ];
+
+    let currentIdx = 0;
+    let score = 0;
+    let canAnswer = true;
+    let shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
+
+    function showQuestion() {
+        canAnswer = true;
+        const q = shuffledQuestions[currentIdx];
+        document.getElementById('phrase').innerText = `"${q.p}"`;
+        document.getElementById('category').innerText = q.c;
+        document.getElementById('current').innerText = currentIdx + 1;
+        document.getElementById('progress').style.width = ((currentIdx / questions.length) * 100) + "%";
+        document.getElementById('feedback').style.display = "none";
+
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = `
+            <button class="opt-btn h-style" onclick="check('${q.h}')">${q.h}</button>
+            <button class="opt-btn euh-style" onclick="check('${q.euh}')">${q.euh}</button>
+        `;
+    }
+
+    function check(selected) {
+        if (!canAnswer) return;
+        canAnswer = false;
+
+        const q = shuffledQuestions[currentIdx];
+        const feedback = document.getElementById('feedback');
+        feedback.style.display = "block";
+
+        if (selected === q.a) {
+            score++;
+            document.getElementById('score').innerText = score;
+            feedback.innerHTML = `<strong>✓ CORRECTE!</strong><br>${q.exp}`;
+            feedback.className = "feedback-box feedback-correct";
+        } else {
+            feedback.innerHTML = `<strong>✗ INCORRECTE (Era ${q.a})</strong><br>${q.exp}`;
+            feedback.className = "feedback-box feedback-wrong";
+        }
+
+        setTimeout(() => {
+            currentIdx++;
+            if (currentIdx < shuffledQuestions.length) {
+                showQuestion();
+            } else {
+                finishGame();
+            }
+        }, 3000);
+    }
+
+    function finishGame() {
+        const container = document.querySelector('.container');
+        container.innerHTML = `
+            <h1>Test Finalitzat</h1>
+            <p style="font-size: 1.5em;">Has obtingut <strong>${score}</strong> punts de ${questions.length}.</p>
+            <button onclick="location.reload()" style="padding: 15px 30px; font-weight: bold; cursor: pointer;">Tornar a jugar</button>
+            <br><br>
+            <a href="../../../index.html" style="color: #95a5a6; text-decoration: none;">Tornar a l'Inici</a>
+        `;
+    }
+
+    showQuestion();
+</script>
+</body>
+</html>

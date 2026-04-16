@@ -1,0 +1,24 @@
+{
+  "preguntes": [
+    {"q": "Què signifiquen les sigles DL50?", "o": ["Concentració Letal per al 50% de la població", "Dosi Letal per al 50% de la població", "Distància Lliure de seguretat al 50%", "Dosi Límit de seguretat"], "a": 1, "exp": "DL50 es refereix a la Dosi (quantitat administrada directament)."},
+    {"q": "Quina unitat de mesura s'utilitza per a la via d'Ingestió?", "o": ["mg/l", "ml/m3", "mg/Kg", "Dosi/hora"], "a": 2, "exp": "S'expressa en mil·ligrams de tòxic per cada quilogram de pes de l'animal."},
+    {"q": "Per a quina via d'intoxicació s'utilitza el paràmetre CL50?", "o": ["Ingestió", "Absorció cutània", "Inhalació", "Via parenteral"], "a": 2, "exp": "La CL (Concentració) s'utilitza quan el tòxic està en l'aire que es respira."},
+    {"q": "Quina és l'espècie animal utilitzada per mesurar l'absorció cutània?", "o": ["Rates", "Conills", "Ratolins", "Cobais"], "a": 1, "exp": "S'utilitzen conills per la seva pell sensible i superfície exposable."},
+    {"q": "Quin és el temps d'exposició estàndard per a les proves d'Inhalació?", "o": ["24 hores", "1 dosi única", "1 hora", "12 hores"], "a": 2, "exp": "L'exposició respiratòria estàndard es mesura normalment durant 1 hora."},
+    {"q": "Per a l'Absorció cutània, durant quant de temps s'exposa l'animal?", "o": ["1 hora", "24 hores", "1 dosi", "48 hores"], "a": 1, "exp": "L'animal s'exposa al tòxic per via cutània durant un cicle complet de 24 hores."},
+    {"q": "Quines són les unitats de mesura per a la Concentració Letal (CL50)?", "o": ["mg/Kg", "mg/l o ml/m3", "Kg/m3", "Només ml/m3"], "a": 1, "exp": "S'utilitzen unitats de massa o volum per litre o metre cúbic d'aire."},
+    {"q": "En quina via d'intoxicació s'administra una sola dosi per a la prova?", "o": ["Inhalació", "Absorció cutània", "Ingestió", "En totes les vies"], "a": 2, "exp": "La ingestió és l'única via on s'administra una dosi puntual única."},
+    {"q": "Quina espècie s'utilitza per mesurar la toxicitat per Ingestió?", "o": ["Conills", "Rates", "Primats", "Aus"], "a": 1, "exp": "La rata és el model estàndard per a estudis de toxicitat aguda oral."},
+    {"q": "Per què la Inhalació utilitza 'mg/l' i no 'mg/Kg'?", "o": ["Es mesura la concentració en l'aire, no la dosi directa", "Les rates pesen poc", "És un error", "El gas no té pes"], "a": 0, "exp": "En inhalació no sabem quanta quantitat acaba dins; mesurem quant n'hi ha a l'aire."},
+    {"q": "Quina espècie animal coincideix en les proves d'Inhalació i Ingestió?", "o": ["Conills", "Rates", "Ratolins", "Totes són diferents"], "a": 1, "exp": "Tant per menjar com per respirar, la rata és el subjecte d'estudi principal."},
+    {"q": "Si la DL50 cutània és 20 mg/Kg, què indica el valor 'Kg'?", "o": ["Quilograms de tòxic", "Pes de l'animal (conill)", "Quilograms d'aigua", "Pressió atmosfèrica"], "a": 1, "exp": "El valor Kg serveix per normalitzar la dosi segons la massa de l'animal."},
+    {"q": "El paràmetre CL50 es refereix a:", "o": ["Líquids ingerits", "Sòlids en la pell", "Gasos, vapors o pólvores en suspensió", "Punxades"], "a": 2, "exp": "Concentració en suspensió a l'atmosfera."},
+    {"q": "Quina unitat és equivalent a 'mg/l' per a la via inhalatòria?", "o": ["mg/Kg", "ml/m3", "ppm", "l/m3"], "a": 1, "exp": "Segons la taula, mil·lilitres per metre cúbic és l'alternativa al mg/l."},
+    {"q": "Quantes hores d'exposició s'apliquen per a la via d'ingestió?", "o": ["1 hora", "24 hores", "No s'indiquen hores, sinó 1 dosi", "8 hores"], "a": 2, "exp": "La ingestió no depèn del temps d'exposició continuada, sinó de la ingesta."},
+    {"q": "Per comparar la toxicitat de dos verins sòlids, quin paràmetre miraríem?", "o": ["CL50", "DL50", "Temps d'exposició", "L'espècie de rata"], "a": 1, "exp": "Els sòlids se solen mesurar per dosi administrada (DL)."},
+    {"q": "Què representa el número '50' en CL50 o DL50?", "o": ["Moren 50 individus", "El 50% moren durant la prova", "Dura 50 minuts", "S'utilitzen 50 animals"], "a": 1, "exp": "Representa el punt estadístic de toxicitat on la meitat de la mostra mor."},
+    {"q": "Quina via requereix el temps d'exposició més llarg?", "o": ["Ingestió", "Inhalació", "Absorció cutània", "Totes duren igual"], "a": 2, "exp": "L'absorció cutània necessita 24 hores de contacte per ser mesurada."},
+    {"q": "El valor ml/m3 és propi de la via:", "o": ["Cutània", "Digestiva", "Respiratòria", "Parenteral"], "a": 2, "exp": "Mesura volum de gas dins d'un volum d'aire."},
+    {"q": "Si una substància és molt tòxica, el seu valor DL50 serà:", "o": ["Molt alt", "Molt baix", "Zero", "Sempre mg/l"], "a": 1, "exp": "Com més baix és el valor, més perillosa és la substància (poca quantitat ja mata)."}
+  ]
+}

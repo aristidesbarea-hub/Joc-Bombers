@@ -1,0 +1,28 @@
+{
+  "definicions": [
+    {"q": "Matèries que, inhalades en forma de pols fina, poden perillar la salut.", "a": ["M1", "M2", "M3", "M11"], "c": 0},
+    {"q": "Matèries i aparells que, en cas d'incendi, poden formar dioxines.", "a": ["M5", "M2", "M1", "M8"], "c": 1},
+    {"q": "Matèries que desprenen vapors inflamables.", "a": ["M3", "M6", "M9", "M4"], "c": 0},
+    {"q": "Piles i bateries de liti.", "a": ["M2", "M11", "M4", "M5"], "c": 2},
+    {"q": "Aparells de salvament.", "a": ["M5", "M1", "M10", "M3"], "c": 0},
+    {"q": "Matèries perilloses pel medi ambient aquàtic, líquides.", "a": ["M7", "M6", "M9", "M1"], "c": 1},
+    {"q": "Matèries perilloses pel medi ambient aquàtic, sòlides.", "a": ["M6", "M7", "M8", "M11"], "c": 1},
+    {"q": "Microorganismes i organismes modificats genèticament.", "a": ["M1", "M4", "M8", "M2"], "c": 2},
+    {"q": "Matèries transportades a temperatura elevada (Líquids).", "a": ["M10", "M9", "M3", "M6"], "c": 1},
+    {"q": "Matèries transportades a temperatura elevada (Sòlids).", "a": ["M9", "M10", "M11", "M5"], "c": 1},
+    {"q": "Altres matèries que presenten un risc però no s'ajusten a cap altra definició.", "a": ["M1", "M2", "M8", "M11"], "c": 3}
+  ],
+  "exemples": [
+    {"q": "Amiant (Asbest).", "a": ["M1", "M2", "M5", "M11"], "c": 0},
+    {"q": "PCB (en transformadors vells).", "a": ["M1", "M2", "M3", "M4"], "c": 1},
+    {"q": "Polímers expansibles (Porexpan).", "a": ["M11", "M6", "M3", "M9"], "c": 2},
+    {"q": "Bateries de mòbils, cotxes elèctrics.", "a": ["M4", "M5", "M8", "M10"], "c": 0},
+    {"q": "Balses salvavides, cinturons pretensors.", "a": ["M1", "M5", "M11", "M2"], "c": 1},
+    {"q": "Plaguicides líquids, hidrocarburs.", "a": ["M7", "M6", "M9", "M3"], "c": 1},
+    {"q": "Plaguicides sòlids, residus tòxics.", "a": ["M6", "M7", "M11", "M10"], "c": 1},
+    {"q": "OMGM que no són infecciosos.", "a": ["M8", "M1", "M4", "M2"], "c": 0},
+    {"q": "Asfalt o betum a més de 100°C.", "a": ["M10", "M9", "M3", "M1"], "c": 1},
+    {"q": "Metalls fosos a més de 240°C.", "a": ["M9", "M10", "M11", "M5"], "c": 1},
+    {"q": "Gel sec, kits de química, airbags.", "a": ["M1", "M5", "M8", "M11"], "c": 3}
+  ]
+}

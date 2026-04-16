@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Repte ADR: Completa els 24</title>
+    <style>
+        :root { --primary: #2c3e50; --success: #27ae60; --error: #e74c3c; --accent: #3498db; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { background: white; width: 100%; max-width: 1000px; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; margin-bottom: 20px; padding-bottom: 10px; }
+        .stats { font-weight: bold; font-size: 1.1em; }
+        .stat-win { color: var(--success); margin-right: 15px; }
+        .stat-fail { color: var(--error); }
+
+        /* Estil del botó "Tornar" petit de la capçalera */
+        .btn-home-small {
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-home-small:hover { background: #5a6268; }
+
+        .question-box { background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 5px solid var(--accent); margin-bottom: 25px; text-align: left; }
+        .question-box p { margin: 0; font-size: 1.2em; line-height: 1.6; color: #333; }
+
+        .options-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+        .btn-option { 
+            padding: 15px 5px; 
+            border: 2px solid #ddd; 
+            background: white; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: 0.2s; 
+            font-size: 0.9em; 
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .btn-option:hover:not(:disabled) { border-color: var(--accent); background: #f0f7ff; }
+        .btn-option:disabled { opacity: 0.5; cursor: not-allowed; background: #eee; }
+        
+        .picto-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+        .picto-card { border: 2px solid #eee; border-radius: 8px; cursor: pointer; padding: 5px; transition: 0.2s; background: white; }
+        .picto-card:hover:not(.disabled) { border-color: var(--accent); transform: scale(1.02); }
+        .picto-card.disabled { opacity: 0.5; cursor: not-allowed; }
+        .picto-card img { width: 100%; height: auto; display: block; }
+
+        .feedback { margin-top: 20px; padding: 15px; border-radius: 8px; font-weight: bold; display: none; }
+        .btn-next { display: block; width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; margin-top: 20px; cursor: pointer; font-size: 1.1em; font-weight: bold; }
+        
+        /* Botó de tornada gran al final */
+        .btn-home-large { background: #6c757d; }
+        .btn-home-large:hover { background: #5a6268; }
+
+        #final-screen { display: none; padding: 40px; }
+        .congrats { font-size: 2em; color: var(--success); margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main-container">
+    <div class="header">
+        <button class="btn-home-small" onclick="goHome()">🏠 Inici</button>
+        <div id="progress-text">Restants: 24/24</div>
+        <div class="stats">
+            <span class="stat-win">Encerts: <span id="win-count">0</span></span>
+            <span class="stat-fail">Errades: <span id="fail-count">0</span></span>
+        </div>
+    </div>
+
+    <div id="game-ui">
+        <div class="question-box">
+            <p id="question-text">Identificant mercaderia...</p>
+        </div>
+
+        <div id="phase-1-ui" class="options-grid"></div>
+        <div id="phase-2-ui" class="picto-grid" style="display:none;"></div>
+
+        <div id="feedback" class="feedback"></div>
+        <button id="btn-continue" class="btn-next" style="display:none;" onclick="handleContinue()">Següent Pregunta</button>
+    </div>
+
+    <div id="final-screen">
+        <div class="congrats">🎉 Felicitats!</div>
+        <p>Has completat correctament els 24 pictogrames de l'ADR.</p>
+        <p id="final-stats"></p>
+        <button class="btn-next" onclick="resetGame()">Tornar a jugar</button>
+        <button class="btn-next btn-home-large" onclick="goHome()">Tornar al Menú Principal</button>
+    </div>
+</div>
+
+<script>
+const database = [
+    { id: "1.1", label: "1.1", desc: "Matèries i objectes que presenten un risc d'explosió en massa." },
+    { id: "1.2", label: "1.2", desc: "Matèries i objectes que presenten un risc de projecció sense explosió en massa." },
+    { id: "1.3", label: "1.3", desc: "Matèries amb risc d'incendi i lleuger risc de projecció o ona expansiva." },
+    { id: "1.4", label: "1.4", desc: "Objectes que presenten petit risc d'explosió en cas d'incendi, dins de la caixa, i que no activen altres explosions." },
+    { id: "1.5", label: "1.5", desc: "Matèries molt poc sensibles que presenten un risc poc probable d'explosió en massa." },
+    { id: "1.6", label: "1.6", desc: "Objectes extremadament poc sensibles que no suposen risc d'explosió en massa." },
+    { id: "2.1", label: "2.1", desc: "Gasos inflamables que poden cremar-se en contacte amb l'aire." },
+    { id: "2.2", label: "2.2", desc: "Gasos no inflamables i no tòxics (asfixiants o comburents)." },
+    { id: "2.3", label: "2.3", desc: "Gasos tòxics que poden causar danys greus o la mort per inhalació." },
+    { id: "3",   label: "3",   desc: "Líquids inflamables amb un punt d'inflamació inferior a 60ºC." },
+    { id: "4.1", label: "4.1", desc: "Sòlids inflamables, matèries autoreactives i explosives desensibilitzades." },
+    { id: "4.2", label: "4.2", desc: "Matèries que poden experimentar inflamació espontània (pirofòriques)." },
+    { id: "4.3", label: "4.3", desc: "Matèries que, en contacte amb l'aigua, desprenen gasos inflamables." },
+    { id: "5.1", label: "5.1", desc: "Matèries comburents que poden afavorir incendis alliberant oxigen." },
+    { id: "5.2", label: "5.2", desc: "Peròxids orgànics: inestables, comburents i combustibles alhora." },
+    { id: "6.1", label: "6.1", desc: "Matèries tòxiques que poden danyar la salut per ingestió o contacte." },
+    { id: "6.2", label: "6.2", desc: "Matèries infeccioses que contenen microorganismes patògens." },
+    { id: "7A",  label: "7A", desc: "Matèria radioactiva amb baix nivell de radiació." },
+    { id: "7B",  label: "7B",desc: "Matèria radioactiva amb nivell moderat de radiació." },
+    { id: "7C",  label: "7C",desc: "Matèria radioactiva amb nivell alt de radiació." },
+    { id: "7E",  label: "7F", desc: "Matèries físsiles: materials radioactius amb risc de criticitat." },
+    { id: "8",   label: "8",   desc: "Matèries corrosives que ataquen els teixits vius i els metalls." },
+    { id: "9.1", label: "9",   desc: "Matèries i objectes que presenten perills diversos (ex. medi ambient)." },
+    { id: "9.2", label: "9A",desc: "Bateries de liti" }
+];
+
+const sortedDatabase = [...database].sort((a, b) => a.id.localeCompare(b.id, undefined, {numeric: true, sensitivity: 'base'}));
+
+let pool = [];
+let currentItem = {};
+let wins = 0;
+let fails = 0;
+
+// Funció per tornar al menú (Canvia el path si cal)
+function goHome() {
+    window.location.href = '../index.html'; 
+}
+
+function resetGame() {
+    wins = 0;
+    fails = 0;
+    pool = [...database];
+    document.getElementById('win-count').innerText = "0";
+    document.getElementById('fail-count').innerText = "0";
+    document.getElementById('game-ui').style.display = "block";
+    document.getElementById('final-screen').style.display = "none";
+    startQuestion();
+}
+
+function startQuestion() {
+    if (pool.length === 0) {
+        showFinalScreen();
+        return;
+    }
+    document.getElementById('progress-text').innerText = `Restants: ${pool.length}/24`;
+    currentItem = pool[Math.floor(Math.random() * pool.length)];
+    document.getElementById('question-text').innerHTML = `<b>Definició:</b><br>${currentItem.desc}`;
+    document.getElementById('feedback').style.display = "none";
+    document.getElementById('btn-continue').style.display = "none";
+    document.getElementById('phase-2-ui').style.display = "none";
+    document.getElementById('phase-1-ui').style.display = "grid";
+    renderPhase1();
+}
+
+function renderPhase1() {
+    const container = document.getElementById('phase-1-ui');
+    container.innerHTML = "";
+    sortedDatabase.forEach(item => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-option';
+        btn.innerText = item.label;
+        btn.onclick = () => checkPhase1(item.id, btn);
+        container.appendChild(btn);
+    });
+}
+
+function checkPhase1(selectedId, btn) {
+    if (selectedId === currentItem.id) {
+        showFeedback("✓ Correcte! Busca el pictograma.", "success");
+        setTimeout(setupPhase2, 800);
+    } else {
+        fails++;
+        document.getElementById('fail-count').innerText = fails;
+        showFeedback("✗ Incorrecte. Prova un altre número.", "error");
+        btn.disabled = true;
+    }
+}
+
+function setupPhase2() {
+    document.getElementById('phase-1-ui').style.display = "none";
+    document.getElementById('phase-2-ui').style.display = "grid";
+    document.getElementById('feedback').style.display = "none";
+    const container = document.getElementById('phase-2-ui');
+    container.innerHTML = "";
+    sortedDatabase.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'picto-card';
+        div.innerHTML = `<img src="${item.id}.jpg" onerror="this.src='https://via.placeholder.com/100?text=${item.id}'">`;
+        div.onclick = () => checkPhase2(item.id, div);
+        container.appendChild(div);
+    });
+}
+
+function checkPhase2(selectedId, element) {
+    if (selectedId === currentItem.id) {
+        wins++;
+        document.getElementById('win-count').innerText = wins;
+        pool = pool.filter(i => i.id !== currentItem.id);
+        showFeedback("✓ Molt bé! Pictograma trobat.", "success");
+        document.getElementById('btn-continue').style.display = "block";
+        document.querySelectorAll('.picto-card').forEach(c => c.classList.add('disabled'));
+    } else {
+        fails++;
+        document.getElementById('fail-count').innerText = fails;
+        showFeedback("✗ Pictograma equivocat. Segueix buscant.", "error");
+        element.classList.add('disabled');
+        element.onclick = null;
+    }
+}
+
+function showFeedback(text, type) {
+    const f = document.getElementById('feedback');
+    f.style.display = "block";
+    f.innerText = text;
+    f.style.backgroundColor = type === "success" ? "#d4edda" : "#f8d7da";
+    f.style.color = type === "success" ? "#155724" : "#721c24";
+}
+
+function handleContinue() {
+    startQuestion();
+}
+
+function showFinalScreen() {
+    document.getElementById('game-ui').style.display = "none";
+    document.getElementById('final-screen').style.display = "block";
+    document.getElementById('final-stats').innerText = `Has acabat amb ${wins} encerts i ${fails} errades.`;
+}
+
+resetGame();
+</script>
+</body>
+</html>

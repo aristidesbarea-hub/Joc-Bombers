@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>DGPEIS Builder - Solució Eix Vertical</title>
+    <style>
+        :root { --node-w: 200px; --node-h: 50px; }
+        body { margin: 0; overflow: hidden; font-family: sans-serif; background: #f0f2f5; }
+        .side-panel {
+            position: absolute; left: 0; top: 0; bottom: 0; width: 300px;
+            background: white; border-right: 1px solid #ccc; z-index: 1000;
+            display: flex; flex-direction: column; padding: 15px;
+        }
+        #items-pool { overflow-y: auto; flex-grow: 1; margin: 10px 0; }
+        .draggable-item {
+            padding: 8px; margin-bottom: 5px; background: #2c3e50; color: white;
+            border-radius: 4px; cursor: grab; font-size: 11px;
+        }
+        #viewport { width: 100vw; height: 100vh; cursor: grab; overflow: hidden; position: relative; }
+        #canvas { position: absolute; width: 1px; height: 1px; transform-origin: 0 0; }
+        .node {
+            position: absolute; width: var(--node-w); height: var(--node-h);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold; font-size: 10px; text-align: center;
+            border-radius: 4px; z-index: 10; padding: 5px; box-sizing: border-box;
+        }
+        .bg-sgo { background: #e74c3c; }
+        .bg-sgstaip { background: #27ae60; }
+        .bg-sgair { background: #9b59b6; }
+        .bg-root { background: #222; }
+        #svg-lines { position: absolute; top: 0; left: 0; width: 8000px; height: 8000px; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+<div class="side-panel">
+    <h3>DGPEIS Pool</h3>
+    <div id="items-pool"></div>
+    <button onclick="centerView()">Centrar Vista</button>
+</div>
+
+<div id="viewport">
+    <div id="canvas">
+        <svg id="svg-lines"></svg>
+        <div id="nodes-container"></div>
+    </div>
+</div>
+
+<script>
+    let organigramaData = [];
+    let placedNodes = [{ id: 'root', name: 'DGPEIS', parent: null, cat: 'root' }];
+    let scale = 0.8;
+    let posX = 0, posY = 0;
+
+    async function load() {
+        try {
+            const res = await fetch('organigrama.json');
+            organigramaData = await res.json();
+            render();
+            centerView();
+        } catch (e) {
+            console.error("Error carregant dades:", e);
+        }
+    }
+
+    function calculatePositions() {
+        const gapX = 40; 
+        const gapY = 120;
+        
+        placedNodes.forEach(n => { n.children = []; });
+        placedNodes.forEach(n => {
+            if (n.parent) {
+                const p = placedNodes.find(x => x.id === n.parent);
+                if (p) { p.children.push(n); n.level = (p.level || 1) + 1; }
+            } else { n.level = 1; }
+        });
+
+        function getSubtreeWidth(node) {
+            if (node.level >= 3 || node.children.length === 0) return 200;
+            let width = node.children.reduce((acc, child) => acc + getSubtreeWidth(child), 0);
+            return width + (node.children.length - 1) * gapX;
+        }
+
+        function positionNode(node, xOffset, y) {
+            node.y = y;
+			let currentY = y;
+            const width = getSubtreeWidth(node);
+
+            if (node.level < 3) {
+                // Nivells superiors: Centrat horitzontal clàssic
+                node.x = xOffset + (width / 2) - 60;
+                let currentX = xOffset;
+                node.children.forEach(child => {
+                    positionNode(child, currentX, y + gapY);
+                    currentX += getSubtreeWidth(child) + gapX;
+                });
+            } else {
+                // MODE VERTICAL (Nivell 4+): Estil escala
+                // El node es desplaça a la dreta del seu eix (que és la X del pare)
+                node.x = xOffset + 40; 
+				xOffset = xOffset +40;
+				
+				let nextY = node.y +80;
+				node.children.forEach((child) => {
+					nextY = positionNode(child, node.x, nextY) + 70;
+				});
+				currentY = nextY - 70;
+			}
+			return currentY;
+
+        }
+        
+        const rootWidth = getSubtreeWidth(placedNodes[0]);
+        positionNode(placedNodes[0], 4000 - (rootWidth / 2), 50);
+    }
+
+    function drawLines() {
+        const svg = document.getElementById('svg-lines');
+        svg.innerHTML = '';
+        placedNodes.forEach(node => {
+            if (!node.parent) return;
+            const parent = placedNodes.find(p => p.id === node.parent);
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            
+            let d;
+            if (node.level <= 3) {
+                // Línies horitzontals estàndard
+                const midY = parent.y + 50 + (node.y - (parent.y + 50)) / 2;
+                d = `M ${parent.x + 100} ${parent.y + 50} V ${midY} H ${node.x + 100} V ${node.y}`;
+            } else {
+                // LÓGICA EIX VERTICAL ESQUERRE
+                // L'eix neix al marge esquerre del pare (parent.x)
+                const axisX = parent.x + 20; 
+                const startY = parent.y + 50;   // Base del pare
+                const endY = node.y + 25;       // Centre vertical del fill
+                const endX = node.x;            // Inici del bloc fill
+
+                // Baixa verticalment des del pare i gira a la dreta cap al fill
+                d = `M ${axisX} ${startY} V ${endY} H ${endX}`;
+            }
+
+            path.setAttribute("d", d);
+            path.setAttribute("stroke", "#444");
+            path.setAttribute("stroke-width", "2");
+            path.setAttribute("fill", "none");
+            svg.appendChild(path);
+        });
+    }
+
+    function render() {
+        calculatePositions();
+        const container = document.getElementById('nodes-container');
+        container.innerHTML = '';
+        placedNodes.forEach(node => {
+            const div = document.createElement('div');
+            div.className = `node bg-${node.cat || 'sgo'}`;
+            div.style.left = node.x + 'px';
+            div.style.top = node.y + 'px';
+            div.textContent = node.name;
+            
+            // Drag & Drop
+            div.ondragover = e => e.preventDefault();
+            div.ondrop = e => {
+                e.preventDefault();
+                const id = e.dataTransfer.getData('text');
+                const data = organigramaData.find(o => o.id === id);
+                if (data && data.parent === node.id) {
+                    if (!placedNodes.find(n => n.id === data.id)) {
+                        placedNodes.push(data);
+                        render();
+                    }
+                }
+            };
+            container.appendChild(div);
+        });
+        drawLines();
+        renderPool();
+    }
+
+    function renderPool() {
+        const pool = document.getElementById('items-pool');
+        pool.innerHTML = '';
+        organigramaData
+            .filter(item => !placedNodes.find(n => n.id === item.id))
+            .forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'draggable-item';
+                div.draggable = true;
+                div.textContent = item.name;
+                div.ondragstart = e => e.dataTransfer.setData('text', item.id);
+                pool.appendChild(div);
+            });
+    }
+
+    function centerView() {
+        const root = placedNodes[0];
+        scale = 0.8;
+        posX = (window.innerWidth / 2) - (root.x + 100) * scale;
+        posY = 50;
+        updateTransform();
+    }
+
+    function updateTransform() {
+        document.getElementById('canvas').style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+    }
+
+    // Controls de càmera
+    let isPanning = false, startX, startY;
+    const viewport = document.getElementById('viewport');
+
+    viewport.onmousedown = e => { 
+        if(e.button === 0) { 
+            isPanning = true; 
+            startX = e.clientX - posX; 
+            startY = e.clientY - posY; 
+            viewport.style.cursor = 'grabbing';
+        }
+    };
+    window.onmousemove = e => { 
+        if(isPanning) { 
+            posX = e.clientX - startX; 
+            posY = e.clientY - startY; 
+            updateTransform(); 
+        }
+    };
+    window.onmouseup = () => { 
+        isPanning = false; 
+        viewport.style.cursor = 'grab';
+    };
+    viewport.onwheel = e => {
+        e.preventDefault();
+        
+        const zoomSpeed = 0.001;
+        const delta = e.deltaY * -zoomSpeed;
+        const oldScale = scale;
+        const newScale = Math.min(Math.max(0.1, scale + delta), 2);
+
+        // 1. Obtener la posición del ratón respecto al viewport
+        const rect = viewport.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // 2. Calcular la posición del ratón relativa al contenido del canvas (antes del zoom)
+        const contentX = (mouseX - posX) / oldScale;
+        const contentY = (mouseY - posY) / oldScale;
+
+        // 3. Aplicar la nueva escala
+        scale = newScale;
+
+        // 4. Ajustar posX y posY para que el punto 'contentX/Y' siga bajo el ratón
+        posX = mouseX - contentX * scale;
+        posY = mouseY - contentY * scale;
+
+        updateTransform();
+    };
+
+    load();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>ADR - Subcategories Classe 9</title>
+<style>
+    :root { 
+        --primary: #2c3e50; --success: #27ae60; --error: #e74c3c; 
+        --accent: #007BFF; --bg-color: #f0f2f5; --c9-gray: #95a5a6;
+    }
+    body { display: flex; height: 100vh; margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); overflow: hidden; }
+    #sidebar { width: 350px; background: white; padding: 20px; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
+    .btn-menu { width: 100%; padding: 12px; margin-bottom: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; background: var(--primary); color: white; transition: 0.3s; }
+    .btn-menu:hover { background: var(--accent); }
+    .btn-menu.active { background: var(--c9-gray); }
+    #main-content { flex: 1; padding: 30px; display: flex; justify-content: center; align-items: center; position: relative; }
+    
+    .game-container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 700px; text-align: center; }
+    .question-box { background: #fdfdfd; border-left: 5px solid var(--accent); padding: 20px; margin-bottom: 25px; font-size: 1.3em; font-weight: bold; color: #333; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+    
+    .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .option-btn { padding: 15px; border: 2px solid #ddd; border-radius: 8px; background: white; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1.1em; }
+    .option-btn:hover { border-color: var(--accent); background: #f0f7ff; }
+    .option-btn.correct { background: var(--success) !important; color: white; border-color: #1e7e34; }
+    .option-btn.wrong { background: var(--error) !important; color: white; border-color: #bd2130; }
+
+    #score-panel { margin-top: auto; padding: 15px; background: #eee; border-radius: 8px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" style="text-decoration:none; color:#666; font-weight:bold; margin-bottom:20px; display:block;">🏠 Inici</a>
+    <h2>Classe 9: Diversos</h2>
+    <button class="btn-menu" id="btnDef" onclick="startGame('definicions')">📖 Joc 1: Definicions</button>
+    <button class="btn-menu" id="btnEx" onclick="startGame('exemples')">🧪 Joc 2: Exemples</button>
+    
+    <div id="score-panel">
+        <div>Punts: <span id="points">0</span></div>
+        <div id="status-text" style="font-size:0.8em; color:#666; margin-top:5px;">Selecciona un mode</div>
+    </div>
+</div>
+
+<div id="main-content">
+    <div id="welcome-msg">
+        <h1>Subcategories Classe 9</h1>
+        <p>Tria un mode de joc a l'esquerra per començar.</p>
+    </div>
+
+    <div id="game-ui" class="game-container" style="display:none;">
+        <div id="question" class="question-box"></div>
+        <div id="options" class="options-grid"></div>
+    </div>
+</div>
+
+<script>
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let points = 0;
+
+    // Llista fixa de categories per als botons (M1 a M11)
+    const categories = ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11"];
+
+    async function startGame(type) {
+        document.getElementById('welcome-msg').style.display = 'none';
+        document.getElementById('game-ui').style.display = 'block';
+        
+        // Estètica botons menú
+        document.getElementById('btnDef').classList.toggle('active', type === 'definicions');
+        document.getElementById('btnEx').classList.toggle('active', type === 'exemples');
+
+        try {
+            const response = await fetch('classe9.json');
+            const data = await response.json();
+            currentQuestions = data[type].sort(() => Math.random() - 0.5);
+            currentIndex = 0;
+            points = 0;
+            updateUI();
+            renderQuestion();
+        } catch (e) {
+            alert("Error carregant el fitxer classe9.json");
+        }
+    }
+
+    function renderQuestion() {
+        if (currentIndex >= currentQuestions.length) {
+            document.getElementById('question').innerHTML = "🏁 Joc acabat!";
+            document.getElementById('options').innerHTML = `<button class="btn-menu" onclick="location.reload()">Torna a jugar</button>`;
+            return;
+        }
+
+        const qData = currentQuestions[currentIndex];
+        document.getElementById('question').textContent = qData.q;
+        
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = '';
+
+        // Mostrem sempre tots els botons M1-M11 en ordre
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = cat;
+            btn.onclick = () => checkAnswer(cat, btn);
+            optionsDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selectedCat, btn) {
+        const correctCat = currentQuestions[currentIndex].a[currentQuestions[currentIndex].c];
+        const allBtns = document.querySelectorAll('.option-btn');
+        allBtns.forEach(b => b.style.pointerEvents = 'none');
+
+        if (selectedCat === correctCat) {
+            btn.classList.add('correct');
+            points++;
+        } else {
+            btn.classList.add('wrong');
+            // Mostrem la correcta
+            allBtns.forEach(b => {
+                if(b.textContent === correctCat) b.classList.add('correct');
+            });
+        }
+
+        currentIndex++;
+        setTimeout(() => {
+            updateUI();
+            renderQuestion();
+        }, 1500);
+    }
+
+    function updateUI() {
+        document.getElementById('points').textContent = points;
+        document.getElementById('status-text').textContent = `Pregunta ${currentIndex + 1} de ${currentQuestions.length}`;
+    }
+</script>
+</body>
+</html>

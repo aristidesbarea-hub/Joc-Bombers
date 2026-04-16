@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Test NFPA 704 - Mode Text</title>
+    <style>
+        :root { --primary: #2c3e50; --success: #27ae60; --error: #e74c3c; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 650px; text-align: center; }
+        
+        .header-box { border-bottom: 2px solid #eee; margin-bottom: 25px; padding-bottom: 10px; }
+        h1 { color: var(--primary); margin: 0; }
+        
+        .question-container { margin: 30px 0; }
+        .question-text { font-size: 1.4em; font-weight: bold; color: #333; line-height: 1.4; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
+        
+        .opt-btn { 
+            padding: 18px; border: 2px solid #ddd; border-radius: 10px; 
+            background: white; cursor: pointer; font-size: 1.1em; transition: all 0.2s ease;
+            text-align: left; padding-left: 25px;
+        }
+        .opt-btn:hover:not(:disabled) { border-color: var(--primary); background: #f0f4f8; transform: translateX(5px); }
+        
+        .correct { background: var(--success) !important; color: white; border-color: #219150; }
+        .wrong { background: var(--error) !important; color: white; border-color: #c0392b; }
+        
+        .explanation { 
+            margin-top: 25px; padding: 20px; background: #e8f4fd; 
+            border-left: 5px solid #2980b9; border-radius: 4px; display: none; 
+            text-align: left; color: #2c3e50; line-height: 1.5;
+        }
+        
+        .score-board { margin-top: 30px; font-weight: bold; color: #7f8c8d; font-size: 1.1em; display: flex; justify-content: space-between; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 10px; margin-top: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-box">
+            <h1>Test de Coneixements NFPA 704</h1>
+        </div>
+
+        <div class="question-container">
+            <div id="question" class="question-text">Carregant preguntes...</div>
+            <div id="options" class="options-grid"></div>
+        </div>
+
+        <div id="explanation" class="explanation"></div>
+
+        <div class="score-board">
+            <span>Pregunta <span id="current">0</span> de 50</span>
+            <span>Encerts: <span id="score">0</span></span>
+        </div>
+        <div class="progress-bar">
+            <div id="progress" class="progress-fill"></div>
+        </div>
+    </div>
+
+<script>
+    let questions = [];
+    let currentIdx = 0;
+    let score = 0;
+    let canAnswer = true;
+
+    async function init() {
+        try {
+            // Recorda que el fitxer nfpa_704.json ha d'estar a la mateixa carpeta
+            const res = await fetch('nfpa_704.json');
+            if (!res.ok) throw new Error();
+            const data = await res.json();
+            questions = data.preguntes.sort(() => Math.random() - 0.5);
+            showQuestion();
+        } catch (error) {
+            document.getElementById('question').innerHTML = 
+                "<span style='color:var(--error);'>Error: No s'ha pogut carregar el fitxer nfpa_704.json</span>";
+        }
+    }
+
+    function showQuestion() {
+        canAnswer = true;
+        const q = questions[currentIdx];
+        const progress = ((currentIdx) / questions.length) * 100;
+        
+        document.getElementById('question').textContent = q.q;
+        document.getElementById('current').textContent = currentIdx + 1;
+        document.getElementById('progress').style.width = progress + "%";
+        document.getElementById('explanation').style.display = "none";
+        
+        const optsDiv = document.getElementById('options');
+        optsDiv.innerHTML = '';
+        
+        q.o.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerHTML = `<strong>${String.fromCharCode(65 + idx)})</strong> ${opt}`;
+            btn.onclick = () => check(idx, btn);
+            optsDiv.appendChild(btn);
+        });
+    }
+
+    function check(idx, btn) {
+        if (!canAnswer) return;
+        canAnswer = false;
+        
+        const q = questions[currentIdx];
+        const expDiv = document.getElementById('explanation');
+        const allBtns = document.querySelectorAll('.opt-btn');
+
+        if (idx === q.a) {
+            btn.classList.add('correct');
+            score++;
+            document.getElementById('score').innerText = score;
+        } else {
+            btn.classList.add('wrong');
+            allBtns[q.a].classList.add('correct');
+        }
+
+        allBtns.forEach(b => b.disabled = true);
+
+        expDiv.innerHTML = `<strong>Justificació:</strong> ${q.exp}`;
+        expDiv.style.display = "block";
+
+        setTimeout(() => {
+            currentIdx++;
+            if (currentIdx < questions.length) {
+                showQuestion();
+            } else {
+                finish();
+            }
+        }, 2500);
+    }
+
+    function finish() {
+        const container = document.querySelector('.container');
+        const finalPercent = Math.round((score / questions.length) * 100);
+        document.getElementById('progress').style.width = "100%";
+        
+        container.innerHTML = `
+            <div class="header-box"><h1>Resultats</h1></div>
+            <p style="font-size: 3em; margin: 20px 0;">${score} / ${questions.length}</p>
+            <p style="font-size: 1.3em; margin-bottom: 30px;">Has completat el test amb un <strong>${finalPercent}%</strong> d'encerts.</p>
+            <button onclick="location.reload()" style="padding: 15px 40px; cursor: pointer; font-weight: bold; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1em;">Reiniciar Test</button>
+        `;
+    }
+
+    init();
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>Joc d'Unitats de Relleu</title>
+<style>
+    :root { 
+        --primary: #2c3e50; 
+        --success: #27ae60; 
+        --error: #e74c3c; 
+        --accent: #007BFF; 
+        --bg-color: #f0f2f5;
+        --gray-back: #6c757d;
+        --hint-color: #e67e22;
+    }
+
+    body { 
+        display: flex; 
+        height: 100vh; 
+        margin: 0; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background-color: var(--bg-color);
+    }
+
+    /* Sidebar estilitzat */
+    #sidebar { 
+        width: 300px; 
+        background: white; 
+        padding: 20px; 
+        box-sizing: border-box; 
+        border-right: 1px solid #ddd; 
+        box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        overflow-y: auto; 
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    /* Botó d'Inici (coherent amb ADR i Carreteres) */
+    .btn-home-small {
+        display: inline-block;
+        background: var(--gray-back);
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.2s;
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+    .btn-home-small:hover { background: #5a6268; }
+
+    h2 { color: var(--primary); font-size: 1.4em; margin: 15px 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+    #mapContainer { 
+        flex: 1; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        background: #e9ecef; 
+        padding: 20px;
+    }
+
+    svg { 
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        max-width: 100%; 
+        max-height: 100%; 
+        background: #ffffff; 
+    }
+
+    /* Estils del Mapa */
+    .comarca { stroke: #ccc; stroke-width: 0.5; fill: transparent; }
+
+    .relieve-point { fill: var(--primary); r: 5; cursor: pointer; transition: all 0.3s; stroke: white; stroke-width: 1; }
+    .relieve-point.correct { fill: var(--success); r: 7; }
+    .relieve-point.wrong { fill: var(--error); r: 8; }
+    .relieve-point.hint { fill: var(--hint-color); r: 7; }
+
+    /* Contingut del Joc */
+    #targetName { font-weight: bold; font-size: 1.4em; color: var(--accent); display: block; margin: 10px 0; }
+    
+    #score { font-size: 1.1em; font-weight: bold; color: #555; background: #f8f9fa; padding: 10px; border-radius: 8px; }
+
+    #hintButton, #restartButton {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    #hintButton { background: var(--hint-color); color: white; }
+    #hintButton:hover { background: #d35400; }
+
+    #restartButton { background: var(--success); color: white; }
+    #restartButton:hover { background: #219150; }
+
+    #hintList { 
+        text-align: left; 
+        margin-top: 20px; 
+        font-size: 0.85em; 
+        background: #fff8f0; 
+        padding: 15px; 
+        border-radius: 8px; 
+        border: 1px solid #ffeeda;
+    }
+    #hintList ul { padding-left: 18px; margin: 5px 0 0 0; color: #d35400; }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <a href="../../../index.html" class="btn-home-small">🏠 Inici</a>
+
+    <div id="gameContent">
+        <h2>On es troba...?</h2>
+        <span id="targetName">Carregant...</span>
+        
+        <p id="score">Puntuació: 0 / 0</p>
+        
+        <button id="hintButton">Demanar Pista</button>
+        
+        <div id="hintList">
+            <strong>Resolts amb ajuda:</strong>
+            <ul id="hintItems"></ul>
+        </div>
+        
+        <button id="restartButton" style="display: none;">Reiniciar Joc</button>
+    </div>
+</div>
+
+<div id="mapContainer">
+    <svg viewBox="0 0 800 800">
+        <g id="backgroundLayer">
+            <image href="MRelieve.png" x="0" y="0" width="800" height="800"></image>
+        </g>
+        <g id="comarcasLayer"></g>
+        <g id="relieveLayer"></g>
+    </svg>
+</div>
+
+<script>
+    let comarcas = [];
+    let accidentes = [];
+    let gameItems = []; 
+    let answeredCorrectPermanent = new Set();
+    let answeredWithHelp = new Set();
+    let targetItem = null;
+    let score = 0;
+    
+    const comarcasLayer = document.getElementById('comarcasLayer');
+    const relieveLayer = document.getElementById('relieveLayer');
+    const targetNameEl = document.getElementById('targetName');
+    const scoreEl = document.getElementById('score');
+    const restartButton = document.getElementById('restartButton');
+    const hintButton = document.getElementById('hintButton');
+    const hintItemsEl = document.getElementById('hintItems');
+
+    async function loadData() {
+        try {
+            const timestamp = new Date().getTime();
+            const comarcasResponse = await fetch(`comarcas.json?t=${timestamp}`);
+            comarcas = await comarcasResponse.json();
+
+            const accResponse = await fetch(`accidentes.json?t=${timestamp}`);
+            const accData = await accResponse.json();
+            accidentes = accData.accidentes; 
+            
+            startGame();
+        } catch (error) {
+            console.error('Error al carregar dades:', error);
+        }
+    }
+
+    function startGame() {
+        gameItems = accidentes;
+        score = 0;
+        answeredCorrectPermanent.clear();
+        answeredWithHelp.clear();
+        hintItemsEl.innerHTML = "";
+        restartButton.style.display = 'none';
+
+        drawMap();
+        updateScore();
+        askNewQuestion();
+
+        restartButton.onclick = () => startGame();
+        hintButton.onclick = () => giveHint();
+    }
+
+    function drawMap() {
+        comarcasLayer.innerHTML = "";
+        if (comarcas && comarcas.comarcas) {
+            comarcas.comarcas.forEach(comarca => {
+                comarca.polygons.forEach(polygon => {
+                    const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                    const pointsStr = polygon.points.map(p => `${p.x},${p.y}`).join(" ");
+                    poly.setAttribute("points", pointsStr);
+                    poly.setAttribute("class", "comarca");
+                    comarcasLayer.appendChild(poly);
+                });
+            });
+        }
+
+        relieveLayer.innerHTML = "";
+        gameItems.forEach(item => {
+            const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            point.setAttribute("id", `relieve-${item.nombre.replace(/\s+/g, '-')}`);
+            point.setAttribute("cx", item.x - 100);
+            point.setAttribute("cy", item.y);
+            point.setAttribute("class", "relieve-point");
+            
+            if (answeredCorrectPermanent.has(item.nombre)) point.classList.add("correct");
+            if (answeredWithHelp.has(item.nombre)) point.classList.add("hint");
+            
+            point.addEventListener('click', () => checkAnswer(item));
+            relieveLayer.appendChild(point);
+        });
+    }
+
+    function getRandomItem() {
+        const unaswered = gameItems.filter(i => 
+            !answeredCorrectPermanent.has(i.nombre) && !answeredWithHelp.has(i.nombre)
+        );
+        if (unaswered.length === 0) return null;
+        return unaswered[Math.floor(Math.random() * unaswered.length)];
+    }
+    
+    function askNewQuestion() {
+        targetItem = getRandomItem();
+        if (targetItem) {
+            targetNameEl.textContent = targetItem.nombre;
+            targetNameEl.style.color = "var(--accent)";
+        } else {
+            targetNameEl.textContent = "🏆 Joc completat!";
+            targetNameEl.style.color = "var(--success)";
+            endGame();
+        }
+    }
+
+    function checkAnswer(clickedItem) {
+        if (!targetItem) return;
+        const clickedPoint = document.getElementById(`relieve-${clickedItem.nombre.replace(/\s+/g, '-')}`);
+        
+        if (clickedItem.nombre === targetItem.nombre) {
+            answeredCorrectPermanent.add(targetItem.nombre);
+            clickedPoint.classList.add("correct");
+            updateScore();
+            setTimeout(() => askNewQuestion(), 500);
+        } else {
+            clickedPoint.classList.add("wrong");
+            setTimeout(() => clickedPoint.classList.remove("wrong"), 800);
+        }
+    }
+
+    function giveHint() {
+        if (!targetItem) return;
+        const point = document.getElementById(`relieve-${targetItem.nombre.replace(/\s+/g, '-')}`);
+        answeredWithHelp.add(targetItem.nombre);
+        point.classList.add("hint");
+        updateHintList(targetItem.nombre);
+        updateScore();
+        askNewQuestion();
+    }
+
+    function updateScore() {
+        const total = gameItems.length;
+        const solved = answeredCorrectPermanent.size + answeredWithHelp.size;
+        scoreEl.textContent = `Puntuació: ${solved} / ${total}`;
+    }
+
+    function updateHintList(name) {
+        const li = document.createElement("li");
+        li.textContent = name;
+        hintItemsEl.appendChild(li);
+    }
+
+    function endGame() {
+        restartButton.style.display = 'block';
+    }
+
+    loadData();
+</script>
+</body>
+</html>

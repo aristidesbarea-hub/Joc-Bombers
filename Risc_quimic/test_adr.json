@@ -1,0 +1,88 @@
+{
+  "preguntas": [
+    {
+      "substancia": "Clor (ONU 1017)",
+      "correcta": "268",
+      "opcions": ["26", "263", "268", "286"],
+      "pista": "És un gas tòxic i també corrosiu."
+    },
+    {
+      "substancia": "Amoníac anhidre (ONU 1005)",
+      "correcta": "268",
+      "opcions": ["23", "268", "265", "28"],
+      "pista": "Té el mateix risc que el Clor: toxicitat i corrosió."
+    },
+    {
+      "substancia": "Propà (ONU 1978) / Butà (ONU 1011)",
+      "correcta": "23",
+      "opcions": ["20", "23", "33", "239"],
+      "pista": "Simplement un gas inflamable."
+    },
+    {
+      "substancia": "Acetilè (ONU 1001)",
+      "correcta": "239",
+      "opcions": ["23", "239", "339", "263"],
+      "pista": "Gas inflamable que pot reaccionar violentament (9 final)."
+    },
+    {
+      "substancia": "Benzina (ONU 1203)",
+      "correcta": "33",
+      "opcions": ["30", "33", "X33", "336"],
+      "pista": "Líquid molt inflamable (punt d'inflamació < 23ºC)."
+    },
+    {
+      "substancia": "Gasoil / Dièsel (ONU 1202)",
+      "correcta": "30",
+      "opcions": ["30", "33", "40", "38"],
+      "pista": "Inflamable normal (punt d'inflamació entre 23ºC i 60ºC)."
+    },
+    {
+      "substancia": "Alcohol Etílic (Etanol) (ONU 1170)",
+      "correcta": "33",
+      "opcions": ["30", "33", "338", "36"],
+      "pista": "Com la benzina, és molt inflamable."
+    },
+    {
+      "substancia": "Sodi (ONU 1428)",
+      "correcta": "X423",
+      "opcions": ["423", "X423", "X432", "43"],
+      "pista": "Sòlid que reacciona amb l'aigua. Prohibit fer-ne servir!"
+    },
+    {
+      "substancia": "Carbur de Calci (ONU 1402)",
+      "correcta": "X423",
+      "opcions": ["40", "423", "X423", "X323"],
+      "pista": "Clàssic de bombers: genera acetilè amb l'aigua."
+    },
+    {
+      "substancia": "Sofre (ONU 1350)",
+      "correcta": "40",
+      "opcions": ["40", "44", "43", "50"],
+      "pista": "Sòlid inflamable sense riscos subsidiaris."
+    },
+    {
+      "substancia": "Peròxid d'Hidrogen (ONU 2014)",
+      "correcta": "58",
+      "opcions": ["50", "58", "85", "558"],
+      "pista": "Comburent i corrosiu."
+    },
+    {
+      "substancia": "Nitrat d'Amoni (ONU 1942)",
+      "correcta": "50",
+      "opcions": ["50", "55", "59", "40"],
+      "pista": "Materia comburent que afavoreix l'incendi."
+    },
+    {
+      "substancia": "Àcid Sulfúric (ONU 1830) o Clorhídric (ONU 1789)",
+      "correcta": "80",
+      "opcions": ["80", "X80", "88", "60"],
+      "pista": "Corrosiu bàsic."
+    },
+    {
+      "substancia": "Cianur de Potassi (ONU 1680)",
+      "correcta": "66",
+      "opcions": ["60", "66", "668", "606"],
+      "pista": "Molt tòxic."
+    }
+  ]
+}

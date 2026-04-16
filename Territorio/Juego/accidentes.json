@@ -1,0 +1,154 @@
+{
+  "accidentes": [
+    {
+      "nombre": "Muntanyes d'Ordal",
+      "x": 510.6933898925781,
+      "y": 502.0328674316406
+    },
+    {
+      "nombre": "Parc Natural del Garraf",
+      "x": 520.4956665039062,
+      "y": 524.310791015625
+    },
+    {
+      "nombre": "Serra de Collserola",
+      "x": 570.398193359375,
+      "y": 489.5572204589844
+    },
+    {
+      "nombre": "Parc Natural del Montnegre i el Corredor",
+      "x": 660.4010009765625,
+      "y": 432.5257568359375
+    },
+    {
+      "nombre": "Massís de Cadieretes",
+      "x": 754.859375,
+      "y": 387.96990966796875
+    },
+    {
+      "nombre": "Muntanyes de Begur",
+      "x": 825.257568359375,
+      "y": 332.720703125
+    },
+    {
+      "nombre": "Massís de les Gavarres",
+      "x": 776.2461547851562,
+      "y": 344.3052062988281
+    },
+    {
+      "nombre": "Parc Natural de la Zona Volcànica de la Garrotxa",
+      "x": 682.6788940429688,
+      "y": 259.64910888671875
+    },
+    {
+      "nombre": "Serres de Milany-Santa Magdalena i Puigsacalm-Bellmut",
+      "x": 616.3673706054688,
+      "y": 264.7768249511719
+    },
+    {
+      "nombre": "Serra del Catllaràs",
+      "x": 531.6744384765625,
+      "y": 245.5010528564453
+    },
+    {
+      "nombre": "Serra de Picancel",
+      "x": 531.3701171875,
+      "y": 274.83770751953125
+    },
+    {
+      "nombre": "Parc Natural del Cadí-Moixeró",
+      "x": 507.93731689453125,
+      "y": 222.6160125732422
+    },
+    {
+      "nombre": "Serra d'Ensija-els Rasos de Peguera",
+      "x": 488.52154541015625,
+      "y": 248.05735778808594
+    },
+    {
+      "nombre": "Serra del Verd",
+      "x": 457.8404235839844,
+      "y": 245.1450653076172
+    },
+    {
+      "nombre": "Port del Compte",
+      "x": 430.2384338378906,
+      "y": 257.4169006347656
+    },
+    {
+      "nombre": "Serra de Boumort",
+      "x": 343.36822509765625,
+      "y": 234.177734375
+    },
+    {
+      "nombre": "Vall Alta de Serradell-Terreta-Serra de San Gervàs",
+      "x": 277.52392578125,
+      "y": 225.32473754882812
+    },
+    {
+      "nombre": "Serra del Montsec",
+      "x": 279.7372131347656,
+      "y": 293.38226318359375
+    },
+    {
+      "nombre": "Serra Llarga-Secans de la Noguera",
+      "x": 243.5102996826172,
+      "y": 360.00494384765625
+    },
+    {
+      "nombre": "Muntanyes de Prades",
+      "x": 319.6111145019531,
+      "y": 515.2632446289062
+    },
+    {
+      "nombre": "Parc Natural de la Serra del Montsant",
+      "x": 269.3979187011719,
+      "y": 530.6619262695312
+    },
+    {
+      "nombre": "Reserva Natural Llaberia",
+      "x": 267.1155090332031,
+      "y": 595.3426513671875
+    },
+    {
+      "nombre": "Serres de Cardó-el Boix",
+      "x": 209.4159698486328,
+      "y": 643.9733276367188
+    },
+    {
+      "nombre": "Parc Natural dels Ports de Tortosa-Beseit",
+      "x": 151.168701171875,
+      "y": 653.346435546875
+    },
+    {
+      "nombre": "Badia del Fangar",
+      "x": 245.18190002441406,
+      "y": 689.7214965820312
+    },
+    {
+      "nombre": "Massís de Bonastre",
+      "x": 413.9205322265625,
+      "y": 550.9605102539062
+    },
+    {
+      "nombre": "Parc Natural de la Muntanya de Montserrat",
+      "x": 501.55926513671875,
+      "y": 432.3904724121094
+    },
+    {
+      "nombre": "Serra de Collcardús",
+      "x": 527.9336547851562,
+      "y": 442.3074035644531
+    },
+    {
+      "nombre": "Parc Natural de Sant Llorenç del Munt i l'Obac",
+      "x": 545.5997924804688,
+      "y": 409.30987548828125
+    },
+    {
+      "nombre": "Massís de les Guilleries",
+      "x": 665.6235961914062,
+      "y": 328.0284423828125
+    }
+  ]
+}

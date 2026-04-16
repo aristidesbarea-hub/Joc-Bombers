@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Constructor DGPEIS - Vertical Automàtic i Línies Netes</title>
+    <style>
+        :root {
+            --primary: #2c3e50; --sgo: #e74c3c; --sgstaip: #27ae60; --sgair: #9b59b6;
+            --bg: #ffffff; --line-color: #000000; --line-w: 2px; --node-w: 200px;
+        }
+
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            overflow: hidden; font-family: 'Segoe UI', sans-serif; background: #f4f7f6; 
+        }
+
+        .side-panel {
+            position: absolute; left: 0; top: 0; bottom: 0; width: 340px;
+            background: white; border-right: 2px solid #ddd; display: flex;
+            flex-direction: column; padding: 15px; z-index: 1000;
+        }
+        #items-pool { overflow-y: auto; flex-grow: 1; }
+        .draggable-item {
+            padding: 10px; background: var(--primary); color: white; border-radius: 6px;
+            margin-bottom: 8px; cursor: grab; font-size: 0.8em;
+        }
+
+        #viewport { width: 100%; height: 100%; position: relative; cursor: grab; overflow: hidden; }
+        
+        #canvas { 
+            position: absolute; 
+            transform-origin: 0 0; 
+            padding: 1500px; /* Espai de seguretat per moure's */
+            display: inline-block; 
+            pointer-events: none; 
+        }
+        #canvas * { pointer-events: auto; }
+
+        /* Estructura Base */
+        .tree-container { display: flex; flex-direction: column; align-items: center; position: relative; }
+        
+        /* 1) SOLUCIÓ A LES LÍNIES FINALS (El contenidor buit desapareix) */
+        .children-container:empty { display: none !important; }
+
+        /* --- MODO HORIZONTAL (Fins a Nivell 3) --- */
+        .children-container.horizontal { 
+            display: flex; justify-content: center; gap: 40px; margin-top: 40px; position: relative;
+        }
+        /* Pont horitzontal connectant germans */
+        .children-container.horizontal::before { 
+            content: ""; position: absolute; top: 0; 
+            left: calc(var(--node-w) / 2); right: calc(var(--node-w) / 2); /* Exactament de centre a centre */
+            height: var(--line-w); background: var(--line-color); z-index: 1;
+        }
+        /* Línia vertical del pare al pont */
+        .children-container.horizontal::after {
+            content: ""; position: absolute; top: -40px; left: 50%;
+            width: var(--line-w); height: 40px; background: var(--line-color);
+            transform: translateX(-50%);
+        }
+        .h-item { position: relative; display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
+        /* Línia vertical del fill cap al pont */
+        .h-item::before { 
+            content: ""; position: absolute; top: 0; left: 50%;
+            width: var(--line-w); height: 20px; background: var(--line-color);
+            transform: translateX(-50%);
+        }
+
+        /* --- MODO VERTICAL (A partir de Nivell 4) --- */
+        .children-container.vertical {
+            display: flex; flex-direction: column; align-items: flex-start;
+            margin-top: 20px; position: relative;
+            width: var(--node-w); /* Força que l'amplada base sigui exactament la del node pare */
+        }
+        /* Línia que connecta el node pare a l'inici de la línia vertical */
+        .children-container.vertical::after {
+            content: ""; position: absolute; top: -20px; left: 50%;
+            width: var(--line-w); height: 20px; background: var(--line-color);
+            transform: translateX(-50%);
+        }
+        .v-item {
+            position: relative;
+            padding: 10px 0 10px 30px;
+            margin-left: calc(var(--node-w) / 2); /* Alinea la vora esquerra exactament al centre del pare */
+            width: var(--node-w);
+        }
+        /* L'espina dorsal de l'arbre vertical */
+        .v-item::after { 
+            content: ""; position: absolute; top: 0; bottom: 0; left: 0;
+            width: var(--line-w); background: var(--line-color);
+            transform: translateX(-50%);
+        }
+        /* Tallem l'espina a la meitat de l'últim node perquè no sobresurti per sota */
+        .v-item:last-child::after {
+            bottom: auto;
+            height: 35px; /* Calculat exactament per connectar amb el centre del node */
+        }
+        /* La branqueta que entra al node */
+        .v-item::before {
+            content: ""; position: absolute; top: 35px; left: 0;
+            width: 30px; height: var(--line-w); background: var(--line-color);
+            transform: translateY(-50%);
+        }
+
+        /* Els Nodes */
+        .node {
+            box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+            padding: 10px 15px; border-radius: 4px; color: white;
+            font-size: 0.85em; text-align: center; font-weight: bold; 
+            width: var(--node-w); height: 50px; /* Alçada fixa vital per les línies verticals */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15); z-index: 10; position: relative;
+            background-color: var(--primary);
+        }
+        .node.over { filter: brightness(1.2); outline: 3px solid #3498db; }
+        .bg-sgo { background-color: var(--sgo); }
+        .bg-sgstaip { background-color: var(--sgstaip); }
+        .bg-sgair { background-color: var(--sgair); }
+    </style>
+</head>
+<body>
+
+    <div class="side-panel">
+        <h3 style="margin:0">Constructor DGPEIS</h3>
+        <p style="font-size: 0.75em; color: #666; margin-bottom:15px">Organigrama Intel·ligent: Nivel 4 cau automàticament en vertical.</p>
+        <div id="items-pool"></div>
+        <button onclick="location.reload()" style="margin-top:10px; padding:10px; cursor:pointer; width:100%;">Reiniciar</button>
+    </div>
+
+    <div id="viewport">
+        <div id="canvas">
+            <div id="main-tree" class="tree-container">
+                <div class="node" id="node-root" data-id="root">DGPEIS</div>
+                <div class="children-container horizontal" id="children-root"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let organigrama = [];
+    let scale = 0.85;
+    let posX = 0;
+    let posY = 0;
+    const canvas = document.getElementById('canvas');
+    const viewport = document.getElementById('viewport');
+
+    async function loadData() {
+        try {
+            const response = await fetch('organigrama.json');
+            organigrama = await response.json();
+            init();
+        } catch (e) { console.error("Error carregant JSON"); }
+    }
+
+    function init() {
+        const pool = document.getElementById('items-pool');
+        [...organigrama].sort((a,b) => a.name.localeCompare(b.name)).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'draggable-item';
+            div.draggable = true;
+            div.textContent = item.name;
+            div.id = `drag-${item.id}`;
+            div.addEventListener('dragstart', (e) => e.dataTransfer.setData('text', item.id));
+            pool.appendChild(div);
+        });
+        
+        setupDropZone(document.getElementById('node-root'));
+
+        // El Truco del centrado optimizado
+        setTimeout(() => {
+            const panelWidth = 340;
+            const viewW = viewport.offsetWidth;
+            const canvasW = canvas.offsetWidth;
+            
+            const areaBlancaCentro = panelWidth + (viewW - panelWidth) / 2;
+            
+            posX = areaBlancaCentro - (canvasW * scale / 2);
+            posY = 50 - (1500 * scale);
+
+            updateTransform();
+        }, 50);
+    }
+
+    function setupDropZone(element) {
+        element.addEventListener('dragover', e => { e.preventDefault(); element.classList.add('over'); });
+        element.addEventListener('dragleave', () => element.classList.remove('over'));
+        element.addEventListener('drop', e => {
+            e.preventDefault();
+            element.classList.remove('over');
+            const id = e.dataTransfer.getData('text');
+            const data = organigrama.find(o => o.id === id);
+            if (data && data.parent === element.getAttribute('data-id')) {
+                createNode(data);
+                document.getElementById(`drag-${id}`).remove();
+            }
+        });
+    }
+
+    // LÒGICA PER DETERMINAR SI AQUEST NOU NIVELL HA DE SER VERTICAL
+    function getChildLayout(parentId, itemLayout) {
+        if (itemLayout) return itemLayout; // Si el JSON ho força, manarà el JSON
+        
+        let level = 2; // El fill de root és nivell 2
+        let currId = parentId;
+        
+        // Calculem la profunditat
+        while (currId && currId !== 'root') {
+            const pData = organigrama.find(o => o.id === currId);
+            if (!pData) break;
+            currId = pData.parent;
+            level++;
+        }
+        
+        // Si el node que estic creant és de Nivell 3, els seus FILLS (Nivell 4) aniran en vertical.
+        return level >= 3 ? 'vertical' : 'horizontal';
+    }
+
+    function createNode(data) {
+        const parent = document.getElementById(`children-${data.parent}`);
+        
+        // Quin layout hauran de tenir els fills d'aquest nou node?
+        const childLayout = getChildLayout(data.parent, data.layout);
+        
+        // Estic sent col·locat dins d'un contenidor vertical?
+        const isVerticalParent = parent.classList.contains('vertical');
+        
+        const wrap = document.createElement('div');
+        // Depenent de si el contenidor on em deixen caure és V o H, agafo un wrapper o un altre
+        wrap.className = isVerticalParent ? 'v-item' : 'h-item';
+        
+        wrap.innerHTML = `<div class="tree-container">
+            <div class="node bg-${data.cat}" id="node-${data.id}" data-id="${data.id}">${data.name}</div>
+            <div class="children-container ${childLayout}" id="children-${data.id}"></div>
+        </div>`;
+        
+        parent.appendChild(wrap);
+        setupDropZone(wrap.querySelector('.node'));
+    }
+
+    // Zoom al cursor
+    viewport.addEventListener('wheel', e => {
+        e.preventDefault();
+        const delta = -Math.sign(e.deltaY);
+        const oldScale = scale;
+        const newScale = Math.min(Math.max(0.2, scale + delta * 0.08), 2);
+        const rect = viewport.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        posX = mouseX - (mouseX - posX) * (newScale / oldScale);
+        posY = mouseY - (mouseY - posY) * (newScale / oldScale);
+        scale = newScale;
+        updateTransform();
+    }, { passive: false });
+
+    // Arrastrar (Pan)
+    let isDragging = false, startX, startY;
+    viewport.addEventListener('mousedown', e => { 
+        if(e.button === 0) { isDragging = true; startX = e.clientX - posX; startY = e.clientY - posY; }
+    });
+    window.addEventListener('mousemove', e => { 
+        if (isDragging) { posX = e.clientX - startX; posY = e.clientY - startY; updateTransform(); }
+    });
+    window.addEventListener('mouseup', () => isDragging = false);
+
+    function updateTransform() { 
+        canvas.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`; 
+    }
+
+    loadData();
+</script>
+</body>
+</html>
