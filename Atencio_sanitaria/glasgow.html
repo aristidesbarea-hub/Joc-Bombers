@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Escala de Coma de Glasgow</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --san-color: #4a5568;    /* Gris oscuro elegante acorde al menú */
+            --san-hover: #2d3748;
+            --success: #27ae60;
+            --error: #e74c3c;
+            --bg: #f4f4f4;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-home {
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+
+        h1 { color: var(--primary); margin: 0; font-size: 1.6em; }
+        h2 { color: #555; font-size: 1.2em; margin-top: 0; margin-bottom: 20px; }
+
+        /* Pantalla de Selección de Dificultad */
+        .difficulty-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-mode {
+            background-color: var(--san-color);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        .btn-mode:hover {
+            background-color: var(--san-hover);
+            transform: translateY(-2px);
+        }
+        .btn-mode span {
+            display: block;
+            font-size: 0.85em;
+            font-weight: normal;
+            color: #ddd;
+            margin-top: 5px;
+        }
+
+        /* Zona de Juego */
+        #game-screen { display: none; }
+
+        .case-box {
+            background: #f8f9fa;
+            border-left: 5px solid var(--san-color);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .row-criteria {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .row-criteria label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-num {
+            background: #e9ecef;
+            border: 2px solid #ced4da;
+            color: #333;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-num:hover { background: #dee2e6; }
+        
+        /* Estados de validación */
+        .btn-num.selected {
+            background-color: #007bff;
+            border-color: #0056b3;
+            color: white;
+        }
+        .btn-num.correct {
+            background-color: var(--success) !important;
+            border-color: #1e7e34 !important;
+            color: white !important;
+        }
+        .btn-num.wrong {
+            background-color: var(--error) !important;
+            border-color: #bd2130 !important;
+            color: white !important;
+        }
+
+        .meaning-text {
+            font-weight: normal;
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-action {
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        #btn-check { background: var(--san-color); color: white; }
+        #btn-check:hover { background: var(--san-hover); }
+        #btn-next { background: var(--success); color: white; display: none; }
+        #btn-next:hover { background: #218838; }
+
+        /* Pantalla Final */
+        #final-screen { display: none; text-align: center; }
+        .score-big { font-size: 3em; font-weight: bold; color: var(--success); margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="../index.html" class="btn-home">🏠 Menú Principal</a>
+    <h1>🧠 Escala de Glasgow</h1>
+</div>
+
+<div class="container">
+    
+    <div id="welcome-screen">
+        <h2>Selecciona la dificultat del cas clínic</h2>
+        <div class="difficulty-container">
+            <button class="btn-mode" onclick="startGame('practica')">
+                🟢 Mode Pràctica (Amb pistes)
+                <span>Al prémer un número es mostra el significat del criteri al costat.</span>
+            </button>
+            <button class="btn-mode" onclick="startGame('expert')">
+                🔴 Mode Expert (Sense pistes)
+                <span>Només es mostren els números nus. Hauràs de conèixer de memòria l'escala.</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="game-screen">
+        <h2>Cas Clínic <span id="current-case-num">1</span></h2>
+        <div class="case-box" id="case-description">Carregant cas...</div>
+
+        <div class="row-criteria" id="crit-ojos">
+            <label>Obertura de Ulls (O)</label>
+            <div class="btn-group" data-criteria="ojos"></div>
+        </div>
+
+        <div class="row-criteria" id="crit-verbal">
+            <label>Resposta Verbal (V)</label>
+            <div class="btn-group" data-criteria="verbal"></div>
+        </div>
+
+        <div class="row-criteria" id="crit-motora">
+            <label>Millor Resposta Motora (M)</label>
+            <div class="btn-group" data-criteria="motora"></div>
+        </div>
+
+        <div class="actions">
+            <div><strong>Total GCS calculat: <span id="total-gcs">-</span></strong></div>
+            <button id="btn-check" class="btn-action" onclick="checkAnswers()">Comprovar Resposta</button>
+            <button id="btn-next" class="btn-action" onclick="loadNextCase()">Següent Cas ➔</button>
+        </div>
+    </div>
+
+    <div id="final-screen">
+        <h2>¡Test Completat!</h2>
+        <p>Has avaluat tots els casos clínics disponibles.</p>
+        <div class="score-big"><span id="final-score">0</span> / <span id="final-total">0</span></div>
+        <button class="btn-action" id="btn-check" onclick="location.reload()">Torna a Jugar</button>
+    </div>
+
+</div>
+
+<script>
+// Diccionaris amb les etiquetes i significats de l'escala
+const CRITERIA_TEXTS = {
+    ojos: {
+        4: "Espontània", 3: "Al so", 2: "A la pressió", 1: "Cap"
+    },
+    verbal: {
+        5: "Orientat", 4: "Confús", 3: "Paraules", 2: "Sons", 1: "Cap"
+    },
+    motora: {
+        6: "Obeeix comandes", 5: "Localitza el dolor", 4: "Flexió normal", 
+        3: "Flexió anormal", 2: "Extensió", 1: "Cap"
+    }
+};
+
+let gameMode = 'practica'; // 'practica' o 'expert'
+let casosClinicos = [];
+let currentCaseIndex = 0;
+let userSelections = { ojos: null, verbal: null, motora: null };
+let correctAnswersCount = 0;
+
+// Inicialització: Generar els botons de la interfície dinàmicament
+function setupButtons() {
+    setupGroup('ojos', [4, 3, 2, 1]);
+    setupGroup('verbal', [5, 4, 3, 2, 1]);
+    setupGroup('motora', [6, 5, 4, 3, 2, 1]);
+}
+
+function setupGroup(criteriaKey, scores) {
+    const container = document.querySelector(`[data-criteria="${criteriaKey}"]`);
+    container.innerHTML = '';
+    
+    scores.forEach(num => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-num';
+        btn.dataset.value = num;
+        
+        // Si és mode pràctica, hi afegim el text descriptiu
+        if (gameMode === 'practica') {
+            btn.innerHTML = `${num} <span class="meaning-text">(${CRITERIA_TEXTS[criteriaKey][num]})</span>`;
+        } else {
+            btn.innerHTML = `${num}`;
+        }
+
+        btn.onclick = () => selectValue(criteriaKey, num, btn);
+        container.appendChild(btn);
+    });
+}
+
+// Iniciar el joc important el fitxer JSON extern
+function startGame(mode) {
+    gameMode = mode;
+    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'block';
+    
+    setupButtons(); // Re-renderitzem botons amb o sense pistes
+
+    // Importació del fitxer JSON mitjançant Fetch API
+    fetch('casos_glasgow.json')
+        .then(response => {
+            if (!response.ok) throw new Error("No s'ha pogut carregar el fitxer JSON de casos.");
+            return response.json();
+        })
+        .then(data => {
+            casosClinicos = data;
+            loadCase(0);
+        })
+        .catch(err => {
+            document.getElementById('case-description').innerHTML = `<span style="color:red">${err.message}</span>`;
+            console.error(err);
+        });
+}
+
+function loadCase(index) {
+    if (index >= casosClinicos.length) {
+        showFinalScreen();
+        return;
+    }
+
+    currentCaseIndex = index;
+    userSelections = { ojos: null, verbal: null, motora: null };
+    
+    document.getElementById('current-case-num').textContent = index + 1;
+    document.getElementById('case-description').textContent = casosClinicos[index].caso;
+    document.getElementById('total-gcs').textContent = '-';
+    
+    // Netejar classes dels botons
+    document.querySelectorAll('.btn-num').forEach(b => {
+        b.className = 'btn-num';
+        b.disabled = false;
+    });
+
+    document.getElementById('btn-check').style.display = 'block';
+    document.getElementById('btn-next').style.display = 'none';
+}
+
+function selectValue(criteriaKey, value, clickedBtn) {
+    userSelections[criteriaKey] = value;
+    
+    // Gestionar selecció visual
+    const groupButtons = clickedBtn.parentElement.querySelectorAll('.btn-num');
+    groupButtons.forEach(b => b.classList.remove('selected'));
+    clickedBtn.classList.add('selected');
+
+    // Calcular suma provisional si s'han marcat els tres camps
+    if (userSelections.ojos && userSelections.verbal && userSelections.motora) {
+        document.getElementById('total-gcs').textContent = userSelections.ojos + userSelections.verbal + userSelections.motora;
+    }
+}
+
+function checkAnswers() {
+    if (!userSelections.ojos || !userSelections.verbal || !userSelections.motora) {
+        alert('Per favor, respon a tots tres criteris abans de comprovar.');
+        return;
+    }
+
+    const correct = casosClinicos[currentCaseIndex].respuesta;
+    let totalCorrectInThisCase = true;
+
+    // Verificar cada criteri
+    ['ojos', 'verbal', 'motora'].forEach(key => {
+        const group = document.querySelector(`[data-criteria="${key}"]`);
+        const buttons = group.querySelectorAll('.btn-num');
+        
+        buttons.forEach(b => {
+            const val = parseInt(b.dataset.value);
+            b.disabled = true; // Bloquejar canvis
+
+            if (val === correct[key]) {
+                b.classList.add('correct'); // Pintar la correcta de verd
+            }
+            if (val === userSelections[key] && val !== correct[key]) {
+                b.classList.add('wrong'); // Si l'usuari ha fallat, pintar-la de roig
+                totalCorrectInThisCase = false;
+            }
+        });
+    });
+
+    if (totalCorrectInThisCase) {
+        correctAnswersCount++;
+    }
+
+    // Actualitzar interfície
+    document.getElementById('btn-check').style.display = 'none';
+    document.getElementById('btn-next').style.display = 'block';
+}
+
+function loadNextCase() {
+    loadCase(currentCaseIndex + 1);
+}
+
+function showFinalScreen() {
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('final-screen').style.display = 'block';
+    document.getElementById('final-score').textContent = correctAnswersCount;
+    document.getElementById('final-total').textContent = casosClinicos.length;
+}
+</script>
+
+</body>
+</html>

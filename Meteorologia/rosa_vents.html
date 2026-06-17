@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa dels Vents</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --success: #27ae60;
+            --error:   #e74c3c;
+            --accent:  #2980b9;
+            --hint-gold: #f1c40f;
+            --bg:      #f0f2f5;
+            --met-color: #1a6ca8;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* ── Capçalera ───────────────────────────────────────── */
+        .header {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .btn-home-small {
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-home-small:hover { background: #5a6268; }
+
+        h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        /* ── Contenidor principal ────────────────────────────── */
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 25px 30px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* ── Pantalla de benvinguda ──────────────────────────── */
+        #welcome-screen h2 { color: var(--primary); font-size: 1.6em; margin-bottom: 8px; }
+        #welcome-screen p  { color: #666; margin-bottom: 25px; }
+
+        .btn-start {
+            display: inline-block;
+            background: var(--met-color);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-start:hover { background: #155d8c; transform: translateY(-2px); }
+
+        /* ── Joc ─────────────────────────────────────────────── */
+        #game-screen { display: none; }
+
+        .question-box {
+            background: #eef7ff;
+            border: 1px solid #cce5ff;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            font-size: 1.05em;
+            color: #555;
+        }
+        .question-box strong {
+            display: block;
+            font-size: 1.6em;
+            color: var(--met-color);
+            margin-top: 6px;
+        }
+
+        /* ── Rosa dels vents SVG ─────────────────────────────── */
+        #rosa-container {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        svg#rosa {
+            width: 420px;
+            height: 420px;
+            max-width: 100%;
+        }
+
+        /* Sectors clicables */
+        .sector {
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .sector:hover .sector-fill { opacity: 0.75; }
+
+        .sector-fill {
+            fill: #dce8f5;
+            stroke: #5a90c0;
+            stroke-width: 1.5;
+            transition: fill 0.2s;
+        }
+        .sector.answered-correct .sector-fill { fill: var(--success); stroke: #1e7e34; cursor: default; }
+        .sector.answered-hint    .sector-fill { fill: var(--hint-gold); stroke: #d4a500; cursor: default; }
+        .sector.flash-wrong      .sector-fill { fill: var(--error); stroke: #bd2130; }
+        .sector.flash-correct    .sector-fill { fill: var(--success); stroke: #1e7e34; }
+
+        .sector-label {
+            font-size: 13px;
+            font-weight: bold;
+            fill: var(--primary);
+            text-anchor: middle;
+            dominant-baseline: middle;
+            pointer-events: none;
+            user-select: none;
+        }
+        .sector.answered-correct .sector-label,
+        .sector.flash-correct    .sector-label { fill: white; }
+        .sector.answered-hint    .sector-label { fill: #5a3e00; }
+
+        /* Fletxa central */
+        #arrow-group { transition: transform 0.4s ease; }
+
+        /* ── Puntuació i feedback ────────────────────────────── */
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #7f8c8d;
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+        .progress-bar { height: 8px; background: #eee; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--met-color); width: 0%; transition: width 0.3s; }
+
+        #feedback-msg {
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1em;
+            display: none;
+        }
+        .fb-ok    { background: #d4edda; color: #155724; }
+        .fb-wrong { background: #f8d7da; color: #721c24; }
+        .fb-hint  { background: #fff3cd; color: #856404; }
+
+        /* ── Pantalla final ──────────────────────────────────── */
+        #final-screen { display: none; padding: 20px 0; }
+        #final-screen .trophy { font-size: 3.5em; margin-bottom: 10px; }
+        #final-screen h2 { color: var(--primary); font-size: 1.8em; margin: 0 0 10px; }
+        #final-screen .final-score { font-size: 1.2em; color: #555; margin-bottom: 25px; }
+
+        .btn-replay {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.2s;
+        }
+        .btn-replay:hover { background: #1e7e34; }
+
+        .btn-home-large {
+            background: #6c757d;
+        }
+        .btn-home-large:hover { background: #5a6268; }
+
+        /* Cercle central de la rosa */
+        #center-circle { pointer-events: none; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="../index.html" class="btn-home-small">🏠 Inici</a>
+    <h1>🌬️ Rosa dels Vents</h1>
+    <div style="width:90px;"></div><!-- spacer -->
+</div>
+
+<div class="container">
+
+    <!-- BENVINGUDA -->
+    <div id="welcome-screen">
+        <h2>Rosa dels Vents</h2>
+        <p>Et preguntarem els 8 vents tradicionals de la meteorologia catalana en ordre aleatori.<br>
+        Fes clic sobre la direcció correcta de la rosa per respondre.</p>
+        <div style="display:flex; justify-content:center; margin-bottom:20px;">
+            <svg width="260" height="260" viewBox="0 0 260 260">
+                <defs>
+                    <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                        <path d="M0,0 L6,3 L0,6 Z" fill="#2c3e50"/>
+                    </marker>
+                </defs>
+                <!-- Demo estàtica de la rosa -->
+                <g id="demo-rose"></g>
+                <circle cx="130" cy="130" r="22" fill="white" stroke="#2c3e50" stroke-width="2"/>
+                <text x="130" y="135" text-anchor="middle" font-size="11" font-weight="bold" fill="#2c3e50">Rosa</text>
+            </svg>
+        </div>
+        <button class="btn-start" onclick="startGame()">▶ Començar el joc</button>
+    </div>
+
+    <!-- JOC -->
+    <div id="game-screen">
+        <div class="question-box">
+            On es troba el vent...
+            <strong id="wind-name">—</strong>
+        </div>
+
+        <div id="rosa-container">
+            <svg id="rosa" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+                    </filter>
+                </defs>
+                <g id="sectors-group" filter="url(#shadow)"></g>
+                <g id="center-circle">
+                    <circle cx="210" cy="210" r="38" fill="white" stroke="#5a90c0" stroke-width="2"/>
+                    <text x="210" y="206" text-anchor="middle" font-size="10" fill="#888">vents</text>
+                    <text x="210" y="220" text-anchor="middle" font-size="10" fill="#888">catalans</text>
+                </g>
+            </svg>
+        </div>
+
+        <div class="score-row">
+            <span>Vent <span id="q-current">1</span> de 8</span>
+            <span>Encerts: <span id="score-text">0</span></span>
+        </div>
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+
+        <div id="feedback-msg"></div>
+    </div>
+
+    <!-- FINAL -->
+    <div id="final-screen">
+        <div class="trophy" id="final-trophy">🏆</div>
+        <h2>Joc completat!</h2>
+        <p class="final-score" id="final-text"></p>
+        <button class="btn-replay" onclick="startGame()">🔄 Tornar a jugar</button>
+        <button class="btn-replay btn-home-large" onclick="window.location.href='../index.html'">🏠 Menú principal</button>
+    </div>
+
+</div><!-- /container -->
+
+<script>
+// ── Dades dels 8 vents ───────────────────────────────────────────────
+const WINDS = [
+    {
+        name: 'Tramuntana',
+        angle: 0,       // N
+        label: 'N',
+        desc: 'Vent del nord, fred i sec, provinent dels Pirineus.'
+    },
+    {
+        name: 'Gregal',
+        angle: 45,      // NE
+        label: 'NE',
+        desc: 'Vent del nord-est, fred i sec, típic d\'hivern i primavera.'
+    },
+    {
+        name: 'Llevant',
+        angle: 90,      // E
+        label: 'E',
+        desc: 'Vent de l\'est, humit, porta pluja i tempestes.'
+    },
+    {
+        name: 'Xaloc',
+        angle: 135,     // SE
+        label: 'SE',
+        desc: 'Vent del sud-est, càlid i humit, procedent del Mediterrani.'
+    },
+    {
+        name: 'Migjorn',
+        angle: 180,     // S
+        label: 'S',
+        desc: 'Vent del sud, càlid, del Mediterrani central.'
+    },
+    {
+        name: 'Garbí',
+        angle: 225,     // SW
+        label: 'SW',
+        desc: 'Vent del sud-oest, càlid i humit, porta núvols i pluges.'
+    },
+    {
+        name: 'Ponent',
+        angle: 270,     // W
+        label: 'W',
+        desc: 'Vent de l\'oest, sec i càlid, provinent de l\'interior peninsular.'
+    },
+    {
+        name: 'Mestral',
+        angle: 315,     // NW
+        label: 'NW',
+        desc: 'Vent del nord-oest, fred, fort i sec, molt típic de l\'Ebre.'
+    }
+];
+
+// ── Estat del joc ────────────────────────────────────────────────────
+let pool = [];
+let currentWind = null;
+let answered = {};   // name → 'correct' | 'hint'
+let score = 0;
+let qNum = 0;
+let hintUsed = false;
+let canClick = true;
+
+const CX = 210, CY = 210, R_OUTER = 190, R_INNER = 45;
+
+// ── Dibuix de la rosa ────────────────────────────────────────────────
+function buildRosa() {
+    const g = document.getElementById('sectors-group');
+    g.innerHTML = '';
+
+    WINDS.forEach((wind, i) => {
+        const startAngle = wind.angle - 22.5;
+        const endAngle   = wind.angle + 22.5;
+
+        const path = sectorPath(CX, CY, R_INNER, R_OUTER, startAngle, endAngle);
+
+        // Label position (midpoint angle, distance)
+        const midRad = (wind.angle - 90) * Math.PI / 180;
+        const labelR = (R_INNER + R_OUTER) / 2;
+        const lx = CX + labelR * Math.cos(midRad);
+        const ly = CY + labelR * Math.sin(midRad);
+
+        const sector = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        sector.setAttribute('class', 'sector');
+        sector.setAttribute('id', `sector-${wind.name}`);
+
+        const fill = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        fill.setAttribute('d', path);
+        fill.setAttribute('class', 'sector-fill');
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', lx);
+        label.setAttribute('y', ly);
+        label.setAttribute('class', 'sector-label');
+        //label.textContent = wind.name;
+
+        sector.appendChild(fill);
+        sector.appendChild(label);
+        sector.addEventListener('click', () => handleClick(wind));
+
+        // Restore visual state if already answered
+        if (answered[wind.name] === 'correct') {
+            sector.classList.add('answered-correct');
+        } else if (answered[wind.name] === 'hint') {
+            sector.classList.add('answered-hint');
+        }
+
+        g.appendChild(sector);
+    });
+
+    // Draw the 8 compass direction tick lines
+    WINDS.forEach(wind => {
+        const rad = (wind.angle - 90) * Math.PI / 180;
+        const x1 = CX + R_OUTER * Math.cos(rad);
+        const y1 = CY + R_OUTER * Math.sin(rad);
+        const x2 = CX + (R_OUTER + 10) * Math.cos(rad);
+        const y2 = CY + (R_OUTER + 10) * Math.sin(rad);
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+        line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+        line.setAttribute('stroke', '#aaa'); line.setAttribute('stroke-width', '1');
+        g.appendChild(line);
+    });
+}
+
+function sectorPath(cx, cy, r1, r2, startDeg, endDeg) {
+    // Convert to radians, offset -90 so 0° = North
+    const s = (startDeg - 90) * Math.PI / 180;
+    const e = (endDeg   - 90) * Math.PI / 180;
+    const x1 = cx + r2 * Math.cos(s), y1 = cy + r2 * Math.sin(s);
+    const x2 = cx + r2 * Math.cos(e), y2 = cy + r2 * Math.sin(e);
+    const x3 = cx + r1 * Math.cos(e), y3 = cy + r1 * Math.sin(e);
+    const x4 = cx + r1 * Math.cos(s), y4 = cy + r1 * Math.sin(s);
+    return `M ${x1} ${y1} A ${r2} ${r2} 0 0 1 ${x2} ${y2}
+            L ${x3} ${y3} A ${r1} ${r1} 0 0 0 ${x4} ${y4} Z`;
+}
+
+// ── Control del joc ──────────────────────────────────────────────────
+function startGame() {
+    pool = [...WINDS].sort(() => Math.random() - 0.5);
+    answered = {};
+    score = 0;
+    qNum = 0;
+    canClick = true;
+
+    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('final-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'block';
+
+    buildRosa();
+    nextQuestion();
+}
+
+function nextQuestion() {
+    if (pool.length === 0) {
+        showFinal();
+        return;
+    }
+    hintUsed = false;
+    canClick = true;
+    currentWind = pool.shift();
+    qNum++;
+
+    document.getElementById('wind-name').textContent = currentWind.name;
+    document.getElementById('q-current').textContent = qNum;
+    document.getElementById('score-text').textContent = score;
+    document.getElementById('progress-fill').style.width = ((qNum - 1) / 8 * 100) + '%';
+    hideFeedback();
+}
+
+function handleClick(wind) {
+    if (!canClick || !currentWind) return;
+    if (answered[wind.name]) return; // ja respost
+
+    const sector = document.getElementById(`sector-${wind.name}`);
+    const isCorrect = wind.name === currentWind.name;
+
+    if (isCorrect) {
+        canClick = false;
+        answered[currentWind.name] = hintUsed ? 'hint' : 'correct';
+        sector.classList.add(hintUsed ? 'answered-hint' : 'answered-correct');
+
+        if (!hintUsed) {
+            score++;
+            showFeedback(`✓ Correcte! ${currentWind.name} és el vent de la direcció ${currentWind.label}. ${currentWind.desc}`, 'ok');
+        } else {
+            showFeedback(`✓ Correcte! Però has necessitat pista. ${currentWind.desc}`, 'hint');
+        }
+
+        document.getElementById('score-text').textContent = score;
+        setTimeout(() => nextQuestion(), 2200);
+
+    } else {
+        // Wrong click — flash red briefly
+        sector.classList.add('flash-wrong');
+        showFeedback(`✗ No és ${wind.name}. Torna-ho a intentar!`, 'wrong');
+        setTimeout(() => sector.classList.remove('flash-wrong'), 700);
+    }
+}
+
+// Pista automàtica — si passen 8 seg sense respondre, la rosa parpelleja
+let hintTimer = null;
+function resetHintTimer() {
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => {
+        if (!currentWind || !canClick) return;
+        hintUsed = true;
+        const sector = document.getElementById(`sector-${currentWind.name}`);
+        if (sector) {
+            sector.classList.add('flash-correct');
+            showFeedback(`💡 Pista: el ${currentWind.name} ve de la direcció ${currentWind.label}.`, 'hint');
+            setTimeout(() => sector.classList.remove('flash-correct'), 1500);
+        }
+    }, 10000); // 10 segons sense resposta
+}
+
+// ── Pantalla final ───────────────────────────────────────────────────
+function showFinal() {
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('final-screen').style.display = 'block';
+    document.getElementById('progress-fill').style.width = '100%';
+
+    let trophy = '🏆';
+    if (score === 8)      trophy = '🌟';
+    else if (score >= 6)  trophy = '🏆';
+    else if (score >= 4)  trophy = '👍';
+    else                   trophy = '📚';
+
+    document.getElementById('final-trophy').textContent = trophy;
+    document.getElementById('final-text').textContent =
+        `Has encertat ${score} de 8 vents sense pista.` +
+        (score === 8 ? ' Perfecte! Coneixes la rosa dels vents com un patró!' : ' Repassa els vents i torna-ho a intentar!');
+}
+
+// ── Feedback ─────────────────────────────────────────────────────────
+function showFeedback(msg, type) {
+    const el = document.getElementById('feedback-msg');
+    el.textContent = msg;
+    el.className = '';
+    el.classList.add(type === 'ok' ? 'fb-ok' : type === 'hint' ? 'fb-hint' : 'fb-wrong');
+    el.style.display = 'block';
+}
+function hideFeedback() {
+    const el = document.getElementById('feedback-msg');
+    el.style.display = 'none';
+    el.textContent = '';
+}
+
+// ── Rosa de demostració a la benvinguda ──────────────────────────────
+(function buildDemoRose() {
+    const g = document.getElementById('demo-rose');
+    if (!g) return;
+    const cx = 130, cy = 130, r1 = 28, r2 = 118;
+    WINDS.forEach(wind => {
+        const s = (wind.angle - 22.5 - 90) * Math.PI / 180;
+        const e = (wind.angle + 22.5 - 90) * Math.PI / 180;
+        const x1=cx+r2*Math.cos(s), y1=cy+r2*Math.sin(s);
+        const x2=cx+r2*Math.cos(e), y2=cy+r2*Math.sin(e);
+        const x3=cx+r1*Math.cos(e), y3=cy+r1*Math.sin(e);
+        const x4=cx+r1*Math.cos(s), y4=cy+r1*Math.sin(s);
+        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d', `M${x1},${y1} A${r2},${r2} 0 0 1 ${x2},${y2} L${x3},${y3} A${r1},${r1} 0 0 0 ${x4},${y4} Z`);
+        path.setAttribute('fill', '#dce8f5');
+        path.setAttribute('stroke', '#5a90c0');
+        path.setAttribute('stroke-width', '1');
+        g.appendChild(path);
+        // label
+        const midRad = (wind.angle - 90) * Math.PI / 180;
+        const lr = (r1+r2)/2;
+        const lx = cx + lr * Math.cos(midRad);
+        const ly = cy + lr * Math.sin(midRad);
+        const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+        txt.setAttribute('x', lx); txt.setAttribute('y', ly);
+        txt.setAttribute('text-anchor','middle'); txt.setAttribute('dominant-baseline','middle');
+        txt.setAttribute('font-size','8'); txt.setAttribute('font-weight','bold');
+        txt.setAttribute('fill','#2c3e50'); txt.setAttribute('pointer-events','none');
+        txt.textContent = wind.name;
+        g.appendChild(txt);
+    });
+})();
+</script>
+</body>
+</html>

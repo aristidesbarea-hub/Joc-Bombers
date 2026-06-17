@@ -10,9 +10,17 @@
             --geo-hover: #0056b3;
             --mmpp-color: #e67e22;
             --mmpp-hover: #d35400;
-            --struct-color: #9b59b6; /* Color lila per a Estructura */
+            --struct-color: #9b59b6;
             --struct-hover: #8e44ad;
+            /* Nova categoria: Agents Extintors */
+            --ext-color: #27ae60;
+            --ext-hover: #219150;
+            /* Nova categoria: Meteorologia */
+            --met-color: #1a6ca8;
+            --met-hover: #155d8c;
             --bg-color: #f4f4f4;
+			--san-color: #4a5568;    /* Gris oscuro azulado */
+			--san-hover: #2d3748;    /* Más oscuro al pasar el ratón */
         }
 
         /* Reseteig per evitar desbordaments */
@@ -81,6 +89,15 @@
         .btn-main-struct { background-color: var(--struct-color); }
         .btn-main-struct:hover { background-color: var(--struct-hover); }
 
+        .btn-main-ext { background-color: var(--ext-color); }
+        .btn-main-ext:hover { background-color: var(--ext-hover); }
+
+        .btn-main-met { background-color: var(--met-color); }
+        .btn-main-met:hover { background-color: var(--met-hover); }
+		
+		.btn-main-san { background-color: var(--san-color); }
+        .btn-main-san:hover { background-color: var(--san-hover); }
+
         /* Botó de tornar */
         .btn-back {
             background-color: #6c757d;
@@ -102,16 +119,21 @@
 <body>
 
     <div class="container">
+        <!-- MENÚ PRINCIPAL -->
         <div id="main-menu" class="menu-section active">
             <h1>Menú Principal</h1>
             <h2>Selecciona una Categoria</h2>
             <ul>
                 <li><button class="btn btn-main-geo" onclick="showMenu('geo-menu')">Territori</button></li>
                 <li><button class="btn btn-main-mmpp" onclick="showMenu('mmpp-menu')">Matèries Perilloses</button></li>
+                <li><button class="btn btn-main-ext" onclick="showMenu('ext-menu')">Agents Extintors</button></li>
+                <li><button class="btn btn-main-met" onclick="showMenu('met-menu')">Meteorologia</button></li>
                 <li><button class="btn btn-main-struct" onclick="showMenu('struct-menu')">Estructura DGPEIS</button></li>
+				<li><button class="btn btn-main-san" onclick="showMenu('san-menu')">Atenció Sanitària</button></li>
             </ul>
         </div>
 
+        <!-- TERRITORI -->
         <div id="geo-menu" class="menu-section">
             <h1>Territori</h1>
             <h2>Geografia de Catalunya</h2>
@@ -125,6 +147,7 @@
             </ul>
         </div>
 
+        <!-- MATÈRIES PERILLOSES -->
         <div id="mmpp-menu" class="menu-section">
             <h1>Risc Químic</h1>
             <h2>Matèries Perilloses</h2>
@@ -144,14 +167,46 @@
             </ul>
         </div>
 
+        <!-- AGENTS EXTINTORS (NOVA CATEGORIA) -->
+        <div id="ext-menu" class="menu-section">
+            <h1>Agents Extintors</h1>
+            <h2>Focs Metàl·lics (Classe D)</h2>
+            <ul>
+                <li><a href="Agents_extintors/pols_metallica.html" class="btn btn-main-ext">Pols especials no patentades</a></li>
+                <li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
+            </ul>
+        </div>
+
+        <!-- METEOROLOGIA -->
+        <div id="met-menu" class="menu-section">
+            <h1>Meteorologia</h1>
+            <h2>Fenòmens atmosfèrics</h2>
+            <ul>
+                <li><a href="Meteorologia/rosa_vents.html" class="btn btn-main-met">🌬️ Rosa dels Vents</a></li>
+                <li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
+            </ul>
+        </div>
+
+        <!-- ESTRUCTURA -->
         <div id="struct-menu" class="menu-section">
             <h1>Normativa i Estructura</h1>
             <h2>Decret 12/2023</h2>
             <ul>
                 <li><a href="DGPEIS/organigrama_speis.html" class="btn btn-main-struct">Organigrama DGPEIS</a></li>
+                <li><a href="DGPEIS/tasques_speis.html" class="btn btn-main-struct">Tasques DGPEIS</a></li>
                 <li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
             </ul>
         </div>
+		
+		<!-- ATENCIO SANITARIA -->
+		<div id="san-menu" class="menu-section">
+			<h1>Atenció Sanitària</h1>
+			<h2>Suport Vital i Emergències</h2>
+			<ul>
+				<li><a href="Atencio_sanitaria/glasgow.html" class="btn btn-main-san">🧠 Escala de Coma de Glasgow</a></li>
+				<li><button class="btn btn-back" onclick="showMenu('main-menu')">← Tornar al Menú Principal</button></li>
+			</ul>
+		</div>
     </div>
 
     <script>

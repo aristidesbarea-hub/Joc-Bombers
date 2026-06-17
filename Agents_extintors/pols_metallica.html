@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Joc: Pols per a Focs Metàl·lics</title>
+    <style>
+        :root {
+            --bg: #fdfdfd;
+            --card: #ffffff;
+            --primary: #27ae60;
+            --accent: #2c3e50;
+            --success: #2ecc71;
+            --error: #e74c3c;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { background: var(--card); padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 850px; text-align: center; }
+        
+        h1 { color: var(--accent); margin-bottom: 5px; }
+        h3 { color: #666; margin-bottom: 20px; font-weight: normal; }
+        
+        .question-box { background: #f0fdf4; border-left: 5px solid var(--primary); padding: 20px; margin: 20px 0; font-size: 1.2em; font-weight: bold; min-height: 60px; display: flex; align-items: center; justify-content: center; }
+        
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 20px; }
+        .option-btn { 
+            background: white; border: 2px solid #ddd; padding: 15px; border-radius: 8px; cursor: pointer; 
+            font-weight: 600; transition: all 0.2s; font-size: 0.95em; color: var(--accent);
+        }
+        .option-btn:hover { border-color: var(--primary); background: #f9f9f9; transform: translateY(-2px); }
+        
+        .stats { display: flex; justify-content: space-around; margin-top: 30px; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
+        #feedback { height: 30px; margin-top: 10px; font-weight: bold; }
+        .correct { color: var(--success); }
+        .wrong { color: var(--error); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../index.html" style="float: left; text-decoration: none; color: #95a5a6; font-weight: bold;">← Inici</a>
+    <br>
+    <h1>Agents Extintors: Pols Especials</h1>
+    <h3>Relaciona la definició amb el compost corresponent</h3>
+
+    <div id="question" class="question-box">Carregant definició...</div>
+    <div id="feedback"></div>
+
+    <div class="options-grid" id="options-container">
+        </div>
+
+    <div class="stats">
+        <div>Punts: <span id="points">0</span></div>
+        <div>Restants: <span id="remaining">0</span></div>
+    </div>
+</div>
+
+<script>
+    const data = [
+        { agent: "Pols de coure", def: "Focs de Liti (forma crosta: sufocació)." },
+        { agent: "Pols de talc", def: "Focs de Magnesi (retenen la calor, no l'apaguen)." },
+        { agent: "Pols de grafit", def: "Refredament i sufocació." },
+        { agent: "Sorra seca", def: "Sufocació. Aïllar i controlar." },
+        { agent: "Llimadures de ferro", def: "Focs de magnesi, absorbeix la calor (refredament)." },
+        { agent: "Clorur sòdic", def: "Focs alcalins, crea capa sufocant. Sobretot Na i K." },
+        { agent: "Cendres de sosa", def: "Focs de Na i K, crea capa sufocant." },
+        { agent: "Silicat de zirconi", def: "Focs de Liti. Mineral altament resistent a temperatura. Sufoca i refreda." },
+        { agent: "Dolomita", def: "Focs de Titani i Zirconi (pols de carbonat de calci i magnesi)." },
+        { agent: "Clorur de liti", def: "Focs de Liti. Reacciona amb el liti i genera una capa sufocant." }
+    ];
+
+    let pool = [];
+    let currentItem;
+    let points = 0;
+
+    function initButtons() {
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        // Crear botons per a tots els agents
+        data.forEach(item => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = item.agent;
+            btn.onclick = () => check(item.agent);
+            container.appendChild(btn);
+        });
+    }
+
+    function nextQuestion() {
+        if (pool.length === 0) {
+            pool = [...data];
+            shuffle(pool);
+        }
+        currentItem = pool.pop();
+        document.getElementById('question').innerText = currentItem.def;
+        document.getElementById('remaining').innerText = pool.length;
+        document.getElementById('feedback').innerText = "";
+    }
+
+    function check(selectedAgent) {
+        const feedback = document.getElementById('feedback');
+        if (selectedAgent === currentItem.agent) {
+            points += 10;
+            feedback.innerText = "✓ " + currentItem.agent + ": Correcte!";
+            feedback.className = "correct";
+            document.getElementById('points').innerText = points;
+            setTimeout(nextQuestion, 1200);
+        } else {
+            feedback.innerText = "✗ Incorrecte, torna-ho a intentar";
+            feedback.className = "wrong";
+        }
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    initButtons();
+    nextQuestion();
+</script>
+
+</body>
+</html>

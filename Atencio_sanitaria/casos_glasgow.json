@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "caso": "Pacient que ha patit un accident de trànsit. Obre els ulls únicament quan li apliques un estímul dolorós al llit unguial. En parlar-li, emet sons incomprensibles (gemecs) i, quan apliques pressió supraorbitària, localitza el dolor component el braç cap a la cella.",
+    "respuesta": {
+      "ojos": 2,
+      "verbal": 2,
+      "motora": 5
+    }
+  },
+  {
+    "id": 2,
+    "caso": "Trobes una persona desorientada al carrer. T'hi acostes i té els ulls oberts de forma espontània. Sap dir-te el seu nom correctament, de què treballa i la seva edat, però no sap quin dia és avui ni on es troba exactament. Obeeix sense problemes quan li demanes que aixequi els dos braços.",
+    "respuesta": {
+      "ojos": 4,
+      "verbal": 4,
+      "motora": 6
+    }
+  },
+  {
+    "id": 3,
+    "caso": "Pacient trobat a la via pública en coma profund per possible sobredosi. No realitza cap obertura ocular ni al parlar-li fort ni en aplicar estímuls dolorosos intensos. Tampoc emet cap mena de so o resposta verbal. En aplicar un estímul dolorós central (pressió estenal), estira rígidament ambdós braços i els rota cap a dins (extensió anormal).",
+    "respuesta": {
+      "ojos": 1,
+      "verbal": 1,
+      "motora": 2
+    }
+  },
+  {
+    "id": 4,
+    "caso": "Varó de 45 anys que ha caigut d'una escala de 3 metres. En arribar, obre els ulls immediatament en sentir la teva veu i preguntar-li què ha passat. Respon a les preguntes de manera totalment coherent, conscient, orientat en temps i espai. Quan li demanes que mogui els dits dels peus per valorar mobilitat, ho fa immediatament.",
+    "respuesta": {
+      "ojos": 3,
+      "verbal": 5,
+      "motora": 6
+    }
+  },
+  {
+    "id": 5,
+    "caso": "Dona gran trobada a casa seva després d'un possible ictus. Obre els ulls quan li parles en veu alta. En fer-li preguntes, respon utilitzant paraules soltes i inconnexes que no formen frases amb sentit (p. ex. 'finestra', 'gos', 'demà'). En aplicar un estímul dolorós, intenta enretirar el braç per evitar el dolor, però sense arribar a localitzar l'origen exactament.",
+    "respuesta": {
+      "ojos": 3,
+      "verbal": 3,
+      "motora": 4
+    }
+  },
+  {
+    "id": 6,
+    "caso": "Pacient jove que ha rebut un fort impacte al cap fent esport. No obre els ulls de manera espontània, però sí que ho fa en rebre un estímul dolorós. Es troba confús, parla lentament i canvia de tema sense sentit, encara que pot estructurar frases completes. Davant l'estímul dolorós, apropa les mans cap al pit doblegant els colzes d'una manera estranya i lenta (flexió anormal / decorticació).",
+    "respuesta": {
+      "ojos": 2,
+      "verbal": 4,
+      "motora": 3
+    }
+  },
+  {
+    "id": 7,
+    "caso": "Avís per pacient inconscient al seu domicili. No obre els ulls davant cap estímul (ni verbal ni dolorós). En aplicar dolor central, el pacient fa un lleuger gemec (so incomprensible), però el seu cos no presenta cap tipus de moviment o resposta motora, es mostra completament flàccid.",
+    "respuesta": {
+      "ojos": 1,
+      "verbal": 2,
+      "motora": 1
+    }
+  },
+  {
+    "id": 8,
+    "caso": "Pacient que ha patit una síncope a la línia de metro. Quan arribes ja ha recuperat parcialment la consciència: manté els ulls oberts fixant la mirada en tu de manera espontània. En preguntar-li on està, diu paraules soltes sense sentit, molt desordenades. No obstant això, quan li demanes que agafi la teva mà amb força, ho fa al moment.",
+    "respuesta": {
+      "ojos": 4,
+      "verbal": 3,
+      "motora": 6
+    }
+  },
+  {
+    "id": 9,
+    "caso": "Pacient amb una hipoglúcemia greu. Obre els ulls només quan se li aplica pressió a la zona supraorbitària. No respon verbalment amb cap paraula ni so a les teves preguntes (silenci absolut). Davant d'aquest estímul dolorós al cap, aixeca les mans ràpidament per sobre de la línia dels ulls per intentar retirar els teus dits.",
+    "respuesta": {
+      "ojos": 2,
+      "verbal": 1,
+      "motora": 5
+    }
+  },
+  {
+    "id": 10,
+    "caso": "Noia de 22 anys trobada semiinconscient per intoxicació etílica. Obre els ulls quan li soluciones una seqüència de crits pel seu nom. Quan intentes parlar amb ella, només respon emetent llastimosos gemecs i rulls, sense dir ni una sola paraula real. Quan li soluciones un estímul dolorós al dit, retira ràpidament el braç flexionant-lo correctament de manera reflexa.",
+    "respuesta": {
+      "ojos": 3,
+      "verbal": 2,
+      "motora": 4
+    }
+  },
+  {
+    "id": 11,
+    "caso": "Pacient politraumatitzat crític. Té els ulls tancats i no reacciona a cap estímul físic. No emet cap tipus de resposta verbal. Al realitzar la maniobra de pressió estenal, s'observa una extensió rígida de les extremitats superiors amb pronació dels avantbraços (resposta de descerebració).",
+    "respuesta": {
+      "ojos": 1,
+      "verbal": 1,
+      "motora": 2
+    }
+  },
+  {
+    "id": 12,
+    "caso": "Home que s'ha desmaiat a la feina. En arribar, el trobes assegut, amb obertura ocular espontània de forma sostinguda. Respon correctament dient el dia, l'any, el lloc i recorda l'episodi perfectament sense cap signe de confusió. Aixeca les cames i els braços quan li ho indiques durant l'exploració.",
+    "respuesta": {
+      "ojos": 4,
+      "verbal": 5,
+      "motora": 6
+    }
+  }
+]
