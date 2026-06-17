@@ -1,0 +1,638 @@
+{
+    "Planificar i coordinar amb entitats externes les actuacions de les unitats de grups operatius especials.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Determinar, en col·laboració amb les unitats de la Divisió d'Operacions, l'equipament necessari per a la prestació dels serveis de prevenció i extinció d'incendis i salvaments.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Establir criteris de control de qualitat dels materials emprats a la Direcció General i fer-ne el control, la fiscalització i l'auditoria corresponents.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Assessorar i coordinar les regions d'emergències en matèria d'infraestructures.": [
+        [
+            2,
+            1
+        ],
+        [
+            0,
+            1
+        ]
+    ],
+    "Facilitar i coordinar les relacions institucionals dels parcs de bombers amb l'administració local del seu àmbit territorial.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Informar de les actuacions més rellevants del servei als responsables que es determinin.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Coordinar els mecanismes de participació dels bombers voluntaris en l'organització.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Col·laborar amb l'Institut de Seguretat Pública de Catalunya en l'elaboració dels cursos de formació per les entitats col·laboradores de l'administració.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Gestionar l'acció preventiva de riscos laborals del personal de la Regió llevat del que està adscrit als parcs de bombers.": [
+        [
+            4,
+            0
+        ]
+    ],
+    "Gestionar la tramesa d'informes tècnics relatius a sinistres en què hagi intervingut el cos de Bombers de la Generalitat, requerits per organismes oficials.": [
+        [
+            0,
+            0
+        ]
+    ],
+    "Auditar, supervisar i comprovar l'estat dels equipaments i el control periòdic del seu ús.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Proposar noves estratègies i procediments d'actuació davant de les actuacions amb riscos tecnològics.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Elaborar els informes tècnics i les investigacions que li siguin requerits.": [
+        [
+            1,
+            0
+        ],
+        [
+            0,
+            0
+        ]
+    ],
+    "Fer la gestió operativa dels mitjans aeris i de l'equipament especialitzat i específic d'àmbit territorial general per a tota Catalunya.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Tramitar pagaments d'hores extraordinàries i altres complements retributius i gestionar la tramitació de conceptes indemnitzatoris com ara les compensacions, dietes i assistències generats pel personal adscrit a la Direcció General.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Proposar els mitjans materials necessaris per a una bona gestió informàtica en tots els nivells de l'estructura de la Direcció General. Actuar d'interlocutor tècnic i tecnològic amb altres unitats del Departament.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Donar suport i assessorament en les qüestions derivades de les relacions laborals i dels processos de negociació.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Donar suport a l'Àrea d'Auditoria de Serveis en l'establiment i seguiment dels indicadors de planificació i avaluació de la prestació del servei.": [
+        [
+            9,
+            0
+        ]
+    ],
+    "Coordinar l'arxiu de documentació de la Subdirecció General Operativa.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Analitzar i proposar les actuacions de sostenibilitat dels equipaments i les mesures d'eficiència o autosuficiència energètica de totes les instal·lacions de la Direcció General.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Determinar les necessitats formatives al si del cos de Bombers de la Generalitat, dels bombers voluntaris i del personal tècnic especialitzat per garantir la resposta operativa.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Controlar i supervisar la recepció, distribució i reposició de material, fer el seguiment del seu consum i emetre els informes que es requereixin.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Participar en l'organització de simulacres de desplegament operatiu dels plans d'actuació.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Organitzar en el territori assignat activitats de divulgació a altres actuants en les emergències i a la població en general, relatives al risc i a l'autoprotecció i l'organització de la resposta.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Fer l'estudi, proposta i definició dels requeriments tecnològics aplicables a l'àmbit operatiu del cos de Bombers.": [
+        [
+            6,
+            0
+        ]
+    ],
+    "Dissenyar i supervisar els processos d'habilitació i d'acollida dels membres del cos de Bombers.": [
+        [
+            13,
+            0
+        ]
+    ],
+    "Dissenyar, implantar i gestionar, en col·laboració amb les unitats que es determinin, sistemes d'informació i comunicació interna propis de les polítiques de personal del cos de Bombers de la Generalitat.": [
+        [
+            8,
+            0
+        ]
+    ],
+    "Gestionar el pressupost assignat al seu àmbit funcional i altra documentació econòmica i administrativa.": [
+        [
+            0,
+            0
+        ]
+    ],
+    "Portar a terme la gestió del parc mòbil adscrit al seu àmbit funcional.": [
+        [
+            0,
+            0
+        ]
+    ],
+    "Analitzar i proposar millores operatives i tècniques.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Elaborar propostes de prevenció dels sinistres.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Dirigir el sistema de relacions laborals amb les organitzacions sindicals representatives del cos de Bombers de la Generalitat i participar-hi.": [
+        [
+            4,
+            1
+        ]
+    ],
+    "Aplicar la normativa vigent i els criteris generals del Departament en matèria de personal i assessorar els òrgans de la Direcció General.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Elaborar informes i donar assessorament en matèria de prevenció.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Donar suport a la Subdirecció General de Suport Tècnic, Avaluació i Prevenció en l'assaig i disseny de nous equips, vehicles i instal·lacions. Participar en l'elaboració i implantació de les aplicacions de gestió de personal i logística.": [
+        [
+            3,
+            0
+        ]
+    ],
+    "Realitzar les activitats de formació i pràctiques programades per garantir que tot el personal de Parc conegui les normes, instruccions i procediments d'actuació operativa i d'ús i conservació dels recursos materials disponibles.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Elaborar propostes de normativa específica adreçada als bombers voluntaris.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Realitzar les sortides derivades dels sinistres dins del seu àmbit territorial d'actuació, així com les assignades per la Regió d'Emergències.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Gestionar el registre documental de les instal·lacions.": [
+        [
+            9,
+            0
+        ]
+    ],
+    "Elaborar propostes de normativa específica per al cos de Bombers de la Generalitat i totes aquelles disposicions de caràcter intern adients per al bon funcionament del servei.": [
+        [
+            1,
+            0
+        ]
+    ],
+    "Fer l'atenció al públic específica de la prevenció normativa, d'acord amb les directrius rebudes des de les unitats competents.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Analitzar l'estat, el funcionament i l'adequació dels materials i equipaments de la Direcció General.": [
+        [
+            5,
+            0
+        ]
+    ],
+    "Gestionar el pressupost assignat a l'àmbit territorial i altra documentació econòmica i administrativa.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Organitzar simulacres i exercicis en l'àmbit de la Regió en col·laboració amb altres actuants i donar suport als que organitzi la Subdirecció General Operativa.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Dirigir i inspeccionar els parcs de bombers i, si s'escau, la sala de control de la Regió i els seus recursos humans i materials, d'acord amb les directrius que per a cada àmbit estableixi el cap de Regió.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Definir els requeriments d'equipaments i mobiliari necessari per a la prestació dels serveis i proposar-ne l'adquisició i reposició.": [
+        [
+            6,
+            0
+        ]
+    ],
+    "Gestionar el funcionament ordinari dels equips i sistemes de comunicacions disponibles, planificar conjuntament amb les divisions de la Subdirecció General Operativa la seva actualització operativa i dissenyar-ne els procediments d'utilització.": [
+        [
+            5,
+            0
+        ]
+    ],
+    "Desenvolupar l'estructura de comandament en la resposta operativa a les emergències.": [
+        [
+            4,
+            0
+        ]
+    ],
+    "Inspeccionar i, si s'escau, coordinar els parcs de bombers que es determinin.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Dirigir l'elaboració i la preparació de la documentació referent als diferents elements i recursos operatius de personal i de mitjans que intervenen en la campanya forestal per a la seva presentació al Parlament de Catalunya.": [
+        [
+            4,
+            1
+        ]
+    ],
+    "Implantar als parcs de bombers els procediments de treball, les guies d'actuació i equivalents.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Portar a terme la gestió del parc mòbil adscrit a l'àmbit territorial corresponent.": [
+        [
+            4,
+            1
+        ]
+    ],
+    "Organitzar i gestionar els processos d'accés al cos de Bombers de la Generalitat.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Fer el seguiment de les partides del capítol I del pressupost de la Direcció General. Auditar, analitzar i elaborar informes respecte a l'evolució de la despesa de capítol 1 per centres de treball, especialment les dades d'absentisme laboral i l'evolució de les hores extraordinàries.": [
+        [
+            4,
+            1
+        ]
+    ],
+    "Gestionar les actuacions relacionades amb el manteniment dels edificis i instal·lacions.": [
+        [
+            13,
+            1
+        ],
+        [
+            3,
+            0
+        ]
+    ],
+    "Elaborar els informes tècnics que es requereixin i donar assistència tècnica al comandament operatiu.": [
+        [
+            10,
+            0
+        ]
+    ],
+    "Mantenir l'arxiu de documentació de la Subdirecció General Operativa.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Elaborar els plans d'actuació dels grups d'intervenció en les instal·lacions de risc de la Regió.": [
+        [
+            4,
+            1
+        ]
+    ],
+    "Gestionar l'acció preventiva de riscos laborals en el seu àmbit.": [
+        [
+            5,
+            0
+        ]
+    ],
+    "Vetllar per la conservació i manteniment del Parc, dels vehicles, equipament i mitjans d'intervenció assignats d'acord amb les instruccions que es determinin.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Participar en les activitats de divulgació que es determinin.": [
+        [
+            0,
+            0
+        ]
+    ],
+    "Fer propostes de modificació de la relació de llocs de treball.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Controlar les gestions en matèria de seguretat social i d'absentisme laboral i fer-ne el seguiment.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Estudiar, elaborar i coordinar els plans de desplegament i desenvolupament dels recursos humans de la Subdirecció General Operativa.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Controlar i administrar els centres de cost i donar-los suport.": [
+        [
+            2,
+            1
+        ]
+    ],
+    "Fer campanyes divulgatives a la població en el seu àmbit de competència.": [
+        [
+            0,
+            0
+        ]
+    ],
+    "Gestionar, controlar i supervisar l'activitat d'emmagatzemament de material de la Direcció General i establir el sistema de distribució dels subministraments per a tot el territori.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Gestionar els recursos humans i materials adscrits al parc.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Elaborar les propostes d'expedients de contractació de materials, equips, vehicles, obres i serveis de la Direcció General d'acord amb les prescripcions tècniques proposades per la Subdirecció General de Suport Tècnic, Avaluació i Prevenció.": [
+        [
+            8,
+            1
+        ]
+    ],
+    "Fer el desplegament dels Centres de Comandament Avançat a les actuacions del cos de Bombers.": [
+        [
+            7,
+            1
+        ]
+    ],
+    "Garantir el suport tècnic i administratiu als òrgans de selecció de personal.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Elaborar i, si s'escau, proposar l'elaboració de disposicions legals o reglamentàries adients per a la prevenció d'incendis i altres emergències.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Gestionar el desenvolupament de les polítiques de recursos humans i materials pròpies del cos de Bombers de la Generalitat.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Elaborar els plans d'actuació derivats del desplegament del Pla de protecció civil de Catalunya i dels plans especials.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Proposar la incorporació de recursos humans i materials per tal de millorar l'eficàcia dels serveis.": [
+        [
+            9,
+            0
+        ]
+    ],
+    "Supervisar l'aplicació de les disposicions en matèria de funció pública i normativa interna que afectin el personal.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Realitzar les sortides derivades de sinistre en què correspongui utilitzar eines o mitjans altament especialitzats.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Participar en els programes de comunicació interna de la Direcció General i gestionar la informació de la intranet en l'àmbit de la Subdirecció General Operativa.": [
+        [
+            4,
+            0
+        ]
+    ],
+    "Impulsar i coordinar el pla de formació del personal d'administració i serveis de la Direcció General.": [
+        [
+            4,
+            0
+        ]
+    ],
+    "Coordinar l'elaboració de propostes de planificació i coordinació de les activitats relatives al coneixement del risc i a les infraestructures de suport a les activitats operatives.": [
+        [
+            5,
+            0
+        ]
+    ],
+    "Organitzar i gestionar els processos de promoció interna del personal del cos de Bombers de la Generalitat.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Supervisar l'execució i gestió dels contractes de subministraments i serveis de la Direcció General.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Participar en les activitats d'informació i formació a la població d'acord amb la programació que s'estableixi.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Participar en la tramitació dels expedients d'adquisició, cessió o arrendament dels béns immobles i dels béns mobles. Controlar i dirigir la tramitació dels convenis en matèries pròpies de la Direcció General.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Elaborar els informes preceptius sobre projectes de nova construcció, de reforma i de qualsevol activitat en els municipis que no disposin de servei de prevenció i extinció d'incendis propi.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Proposar noves estratègies i procediments d'actuació davant de les actuacions de col·lapses estructurals.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Dirigir i supervisar la gestió del programa pressupostari de la Direcció General, tramitant els documents de gestió econòmica ordinària i els expedients de despesa, els de contractació administrativa i els de gestió del patrimoni.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Proposar l'adquisició de nou material i la reposició de l'antic, planificant els processos d'adquisició i subministrament.": [
+        [
+            9,
+            0
+        ]
+    ],
+    "Gestionar els expedients relatius a recursos humans i als aspectes retributius del personal adscrit a la regió d'emergències.": [
+        [
+            9,
+            0
+        ]
+    ],
+    "Establir les directrius respecte dels parcs de bombers i, si s'escau, de la unitat de la sala de control de la Regió i dels seus recursos humans i materials d'acord amb les directrius que per cada àmbit estableixin els òrgans responsables.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Fer el seguiment de l'estat dels recursos materials disponibles dels bombers voluntaris.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Analitzar les necessitats de recursos humans i materials i informar-ne per tal de millorar l'eficàcia dels serveis.": [
+        [
+            17,
+            0
+        ]
+    ],
+    "Realitzar inspeccions als establiments i locals públics en matèria de prevenció d'incendis en els municipis que no disposin de servei de prevenció i extinció d'incendis propi.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Definir els criteris de funcionament de les unitats de sala de control territorials.": [
+        [
+            1,
+            1
+        ]
+    ],
+    "Proposar l'ús d'equipament específic per afrontar les actuacions especials.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Proposar l'elaboració de disposicions legals per a la prevenció d'incendis i altres emergències.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Donar suport a la Subdirecció General Operativa en la coordinació operativa dels serveis amb altres activitats.": [
+        [
+            4,
+            0
+        ]
+    ],
+    "Analitzar i, si s'escau, proposar noves tècniques i tecnologies apropiades pels serveis desenvolupats pels bombers.": [
+        [
+            3,
+            0
+        ]
+    ],
+    "Disposar de la informació necessària sobre els recursos disponibles i sobre les intervencions o actuacions en curs.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Preparar la documentació relativa a recursos humans que es requereixi en aplicació de la normativa de transparència i publicitat activa.": [
+        [
+            3,
+            1
+        ]
+    ],
+    "Avaluar periòdicament l'estat dels materials i equipaments per garantir-ne els estàndards de qualitat i seguretat en el seu ús per part dels membres del cos de Bombers.": [
+        [
+            14,
+            0
+        ]
+    ],
+    "Participar en els processos de captació i fidelització de bombers voluntaris.": [
+        [
+            0,
+            1
+        ]
+    ],
+    "Donar suport en la implantació d'accions operatives i, si s'escau, mesures correctores.": [
+        [
+            7,
+            1
+        ]
+    ],
+    "Assessorar en matèria sanitària l'estructura de comandament d'una intervenció.": [
+        [
+            0,
+            1
+        ]
+    ]
+}

@@ -1,0 +1,1582 @@
+[
+  {
+    "tarea": "Dirigir l'elaboració d'informes, preparació de documentació i dossiers en relació amb els serveis realitzats pel personal del cos de Bombers de la Generalitat.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Dirigir l'elaboració i la preparació de la documentació referent als diferents elements i recursos operatius de personal i de mitjans que intervenen en la campanya forestal per a la seva presentació al Parlament de Catalunya.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Estudiar, elaborar i coordinar els plans de desplegament i desenvolupament dels recursos humans de la Subdirecció General Operativa.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Elaborar i actualitzar directrius i col·laborar en la implementació de disposicions en matèria de personal i d'organització de l'activitat de guàrdia pròpia del cos de Bombers de la Generalitat.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Donar suport a la Direcció General en l'àmbit de les relacions laborals amb els col·lectius que conformen la Direcció General.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Col·laborar en els processos de selecció que afectin a llocs de treball que depenen de la Subdirecció General Operativa.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Elaborar propostes de normativa específica adreçada als bombers voluntaris.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Participar en la gestió dels processos de selecció i de revocació del nomenament de bombers voluntaris.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Elaborar estudis i proposar els mitjans materials i equipament adequats per a la prestació dels serveis dels bombers, en coordinació amb la Subdirecció General de Suport Tècnic, Avaluació i Prevenció.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Col·laborar amb l'Àrea d'Auditoria en l'establiment i seguiment dels indicadors de planificació i avaluació de la prestació del servei.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Participar en els programes de comunicació interna de la Direcció General i gestionar la informació de la intranet en l'àmbit de la Subdirecció General Operativa.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Participar en l'elaboració de campanyes i activitats de divulgació a la població.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Coordinar l'arxiu de documentació de la Subdirecció General Operativa.",
+    "correcta": "div_plan",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió"
+  },
+  {
+    "tarea": "Elaborar propostes de desplegament de recursos humans i materials.",
+    "correcta": "u_suport_gestio",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de suport a la Gestió"
+  },
+  {
+    "tarea": "Donar suport a la Subdirecció General de Suport Tècnic, Avaluació i Prevenció en l'assaig i disseny de nous equips, vehicles i instal·lacions. Participar en l'elaboració i implantació de les aplicacions de gestió de personal i logística.",
+    "correcta": "u_suport_gestio",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de suport a la Gestió"
+  },
+  {
+    "tarea": "Fer el seguiment de la normativa i procediments que afectin l'activitat de la Subdirecció General Operativa.",
+    "correcta": "u_suport_gestio",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de suport a la Gestió"
+  },
+  {
+    "tarea": "Elaborar la documentació que sigui requerida en relació amb els serveis realitzats per la Subdirecció General Operativa.",
+    "correcta": "u_suport_gestio",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de suport a la Gestió"
+  },
+  {
+    "tarea": "Donar suport en la implantació d'accions operatives i, si s'escau, mesures correctores.",
+    "correcta": "u_suport_gestio",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de suport a la Gestió"
+  },
+  {
+    "tarea": "Mantenir l'arxiu de documentació de la Subdirecció General Operativa.",
+    "correcta": "u_suport_gestio",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de suport a la Gestió"
+  },
+  {
+    "tarea": "Col·laborar en l'elaboració de la normativa específica de bombers voluntaris de la Generalitat.",
+    "correcta": "u_voluntaris",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de Bombers Voluntaris"
+  },
+  {
+    "tarea": "Coordinar els mecanismes de participació dels bombers voluntaris en l'organització.",
+    "correcta": "u_voluntaris",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de Bombers Voluntaris"
+  },
+  {
+    "tarea": "Participar en els processos de captació i fidelització de bombers voluntaris.",
+    "correcta": "u_voluntaris",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de Bombers Voluntaris"
+  },
+  {
+    "tarea": "Supervisar l'elaboració i la implantació de processos que incentivin la realització de formació contínua i permanent pels bombers voluntaris.",
+    "correcta": "u_voluntaris",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de Bombers Voluntaris"
+  },
+  {
+    "tarea": "Fer el seguiment de l'estat dels recursos materials disponibles dels bombers voluntaris.",
+    "correcta": "u_voluntaris",
+    "pista": "Pertany a: SGO > Divisió de Planificació i Gestió > Unitat de Bombers Voluntaris"
+  },
+  {
+    "tarea": "Coordinar les actuacions de totes les unitats que conformen els grups especials.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Elaborar els plans i procediments d'actuació de les unitats de grups especials en coordinació amb la resta de serveis de l'àmbit operatiu.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Analitzar les tècniques utilitzades en els serveis en què participen.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Estudiar l'aplicació de noves tècniques i tecnologies en el seu àmbit d'actuació i proposar-ne la implantació a l'Àrea d'Equipaments Operatius i Tecnologia.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Dissenyar i impulsar els processos formatius adients als riscos en què intervenen en col·laboració amb les empreses del sector, les universitats i altres centres de formació especialitzada.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Planificar i coordinar amb entitats externes les actuacions de les unitats de grups operatius especials.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Identificar, desenvolupar i implantar noves estratègies d'intervenció específiques i proposar els recursos i equipaments associats.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Assessorar i prestar el servei d'assistència sanitària i psicològica en intervencions al personal operatiu i als afectats per l'emergència.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Col·laborar en la definició dels continguts formatius i els requeriments específics per formar part de les unitats dels grups operatius especials.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Dirigir l'elaboració dels informes tècnics que es requereixin.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Fer la investigació i l'anàlisi dels sinistres en què intervingui, per raó de la seva competència, en col·laboració amb la Divisió d'Operacions i, si s'escau, amb altres cossos operatius o unitats, per tal d'informar sobre les causes i conseqüències dels sinistres i sobre els danys produïts.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Intervenir en operacions de salvament marítim, a requeriment de les autoritats competents, aportant la capacitat operativa necessària en l'extinció d'incendis, recerca i salvament, seguiment de la contaminació marina, suport sanitari i suport a les tripulacions dels recursos de les administracions competents.",
+    "correcta": "div_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials"
+  },
+  {
+    "tarea": "Realitzar les sortides i proposar l'estratègia d'intervenció més adequada en els incendis de vegetació que corresponguin.",
+    "correcta": "a_graf",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Àrea del Grup d'Actuació Forestal"
+  },
+  {
+    "tarea": "Donar assistència tècnica als comandaments operatius en sinistre.",
+    "correcta": "a_graf",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Àrea del Grup d'Actuació Forestal"
+  },
+  {
+    "tarea": "Proposar noves estratègies i procediments d'actuació davant de l'incendi de vegetació.",
+    "correcta": "a_graf",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Àrea del Grup d'Actuació Forestal"
+  },
+  {
+    "tarea": "Proposar l'ús d'equipament específic per afrontar l'incendi de vegetació.",
+    "correcta": "a_graf",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Àrea del Grup d'Actuació Forestal"
+  },
+  {
+    "tarea": "Desenvolupar maniobres indicades específicament per les actuacions en l'incendi de vegetació.",
+    "correcta": "a_graf",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Àrea del Grup d'Actuació Forestal"
+  },
+  {
+    "tarea": "Elaborar els informes tècnics i les investigacions que li siguin requerits.",
+    "correcta": "a_graf",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Àrea del Grup d'Actuació Forestal"
+  },
+  {
+    "tarea": "Realitzar les sortides derivades de sinistre en què correspongui utilitzar eines o mitjans altament especialitzats.",
+    "correcta": "u_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Actuacions Especials"
+  },
+  {
+    "tarea": "Donar assistència tècnica als comandaments operatius en sinistre.",
+    "correcta": "u_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Actuacions Especials"
+  },
+  {
+    "tarea": "Proposar noves estratègies i procediments d'actuació en matèria de rescats, salvaments i altres actuacions que es puguin portar a terme.",
+    "correcta": "u_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Actuacions Especials"
+  },
+  {
+    "tarea": "Proposar l'ús d'equipament específic per afrontar les actuacions especials.",
+    "correcta": "u_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Actuacions Especials"
+  },
+  {
+    "tarea": "Efectuar maniobres indicades específicament per les actuacions en matèria de rescats i salvaments.",
+    "correcta": "u_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Actuacions Especials"
+  },
+  {
+    "tarea": "Elaborar els informes tècnics i les investigacions que li siguin requerits.",
+    "correcta": "u_grae",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Actuacions Especials"
+  },
+  {
+    "tarea": "Prestar assistència sanitària en intervencions als bombers i altre personal operatiu, així com a les víctimes dels sinistres.",
+    "correcta": "u_gem",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Emergències"
+  },
+  {
+    "tarea": "Prestar assistència psicològica al personal operatiu de la Direcció General que ho necessiti derivada de la seva participació en alguna intervenció.",
+    "correcta": "u_gem",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Emergències"
+  },
+  {
+    "tarea": "Assessorar en matèria sanitària l'estructura de comandament d'una intervenció.",
+    "correcta": "u_gem",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Emergències"
+  },
+  {
+    "tarea": "Elaborar els informes tècnics que es requereixin i donar assistència tècnica al comandament operatiu.",
+    "correcta": "u_gem",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Emergències"
+  },
+  {
+    "tarea": "Proposar els requeriments de formació del personal en temes sanitaris.",
+    "correcta": "u_gem",
+    "pista": "Pertany a: SGO > Divisió de Grups Operatius Especials > Unitat del Grup d'Emergències"
+  },
+  {
+    "tarea": "Establir els procediments i guies d'actuació en els serveis realitzats pels bombers quan no correspongui a la Divisió de Grups Operatius Especials.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Analitzar i proposar millores operatives i tècniques.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Analitzar i, si s'escau, proposar noves tècniques i tecnologies apropiades pels serveis desenvolupats pels bombers.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Elaborar els criteris de funcionament de la guàrdia en els seus diferents àmbits.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Desenvolupar l'estructura de comandament en la resposta operativa a les emergències.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Participar en la selecció i formació dels diferents comandaments de la guàrdia.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Determinar les necessitats formatives al si del cos de Bombers de la Generalitat, dels bombers voluntaris i del personal tècnic especialitzat per garantir la resposta operativa.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Organitzar i dur a terme la investigació dels sinistres en coordinació amb la Divisió de Grups Operatius Especials, les regions d'emergències i, si s'escau, amb altres cossos operatius o unitats.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Donar suport a l'Àrea d'Auditoria de Serveis en l'establiment i seguiment dels indicadors de planificació i avaluació de la prestació del servei.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Elaborar els plans d'actuació derivats del desplegament del Pla de protecció civil de Catalunya i dels plans especials.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Participar en l'organització de simulacres de desplegament operatiu dels plans d'actuació.",
+    "correcta": "div_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions"
+  },
+  {
+    "tarea": "Estudiar i analitzar les intervencions realitzades per avaluar noves maniobres tàctiques i estratègies d'intervenció en col·laboració, si s'escau, de les unitats tècniques de la Divisió d'Operacions i de la Divisió de Grups Operatius Especials.",
+    "correcta": "u_innovacio",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Innovació i Desenvolupament Operatiu"
+  },
+  {
+    "tarea": "Col·laborar amb l'Àrea d'Equipaments Operatius i Tecnologia per establir les necessitats tecnològiques del cos de Bombers.",
+    "correcta": "u_innovacio",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Innovació i Desenvolupament Operatiu"
+  },
+  {
+    "tarea": "Estudiar i analitzar altres organitzacions d'emergències per plantejar accions d'innovació en les operacions del cos de Bombers.",
+    "correcta": "u_innovacio",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Innovació i Desenvolupament Operatiu"
+  },
+  {
+    "tarea": "Dissenyar i supervisar els processos d'habilitació i d'acollida dels membres del cos de Bombers.",
+    "correcta": "u_innovacio",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Innovació i Desenvolupament Operatiu"
+  },
+  {
+    "tarea": "Dissenyar i gestionar la guàrdia de suport en l'àmbit dels riscos tecnològics.",
+    "correcta": "u_riscos",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Riscos Tecnològics"
+  },
+  {
+    "tarea": "Donar assistència tècnica als comandaments operatius en sinistre.",
+    "correcta": "u_riscos",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Riscos Tecnològics"
+  },
+  {
+    "tarea": "Proposar noves estratègies i procediments d'actuació davant de les actuacions amb riscos tecnològics.",
+    "correcta": "u_riscos",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Riscos Tecnològics"
+  },
+  {
+    "tarea": "Proposar l'ús d'equipament específic per afrontar les actuacions amb riscos tecnològics.",
+    "correcta": "u_riscos",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Riscos Tecnològics"
+  },
+  {
+    "tarea": "Desenvolupar maniobres indicades específicament per les actuacions en riscos tecnològics.",
+    "correcta": "u_riscos",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Riscos Tecnològics"
+  },
+  {
+    "tarea": "Elaborar els informes tècnics i les investigacions que li siguin requerits.",
+    "correcta": "u_riscos",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Riscos Tecnològics"
+  },
+  {
+    "tarea": "Dissenyar i gestionar la guàrdia de suport en l'àmbit dels col·lapses estructurals.",
+    "correcta": "u_col_lapses",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Col·lapses Estructurals"
+  },
+  {
+    "tarea": "Donar assistència tècnica als comandaments operatius en sinistre.",
+    "correcta": "u_col_lapses",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Col·lapses Estructurals"
+  },
+  {
+    "tarea": "Proposar noves estratègies i procediments d'actuació davant de les actuacions de col·lapses estructurals.",
+    "correcta": "u_col_lapses",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Col·lapses Estructurals"
+  },
+  {
+    "tarea": "Proposar l'ús d'equipament específic per afrontar les actuacions amb col·lapses estructurals.",
+    "correcta": "u_col_lapses",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Col·lapses Estructurals"
+  },
+  {
+    "tarea": "Desenvolupar maniobres indicades específicament per les actuacions en col·lapses estructurals.",
+    "correcta": "u_col_lapses",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Col·lapses Estructurals"
+  },
+  {
+    "tarea": "Elaborar els informes tècnics i les investigacions que li siguin requerits.",
+    "correcta": "u_col_lapses",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Col·lapses Estructurals"
+  },
+  {
+    "tarea": "Proposar noves estratègies i procediments d'actuació davant de les actuacions d'incendis estructurals.",
+    "correcta": "u_incendis",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Incendis Estructurals"
+  },
+  {
+    "tarea": "Proposar l'ús d'equipament específic per afrontar les actuacions d'incendis estructurals.",
+    "correcta": "u_incendis",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Incendis Estructurals"
+  },
+  {
+    "tarea": "Desenvolupar maniobres indicades específicament per les actuacions d'incendis estructurals.",
+    "correcta": "u_incendis",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Incendis Estructurals"
+  },
+  {
+    "tarea": "Elaborar els informes tècnics i les investigacions que li siguin requerits.",
+    "correcta": "u_incendis",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat d'Incendis Estructurals"
+  },
+  {
+    "tarea": "Definir els criteris de participació en els serveis de rereguarda en els esdeveniments de risc.",
+    "correcta": "u_prev_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Prevenció Operativa"
+  },
+  {
+    "tarea": "Definir els criteris de participació d'exercicis i simulacres.",
+    "correcta": "u_prev_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Prevenció Operativa"
+  },
+  {
+    "tarea": "Elaborar criteris per a les visites de coneixement a instal·lacions, edificis i infraestructures de risc.",
+    "correcta": "u_prev_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Prevenció Operativa"
+  },
+  {
+    "tarea": "Establir criteris per a l'elaboració de fitxes operatives d'elements de risc.",
+    "correcta": "u_prev_op",
+    "pista": "Pertany a: SGO > Divisió d'Operacions > Unitat de Prevenció Operativa"
+  },
+  {
+    "tarea": "Donar suport a la Subdirecció General Operativa en la coordinació operativa dels serveis amb altres activitats.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Donar informació i suport logístic a la Subdirecció General Operativa, així com a les regions d'emergències que ho requereixin.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Disposar de la informació necessària sobre els recursos disponibles i sobre les intervencions o actuacions en curs.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Gestionar la mobilització de recursos humans i materials d'acord amb els criteris que determini la persona titular de la Subdirecció General Operativa.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Donar suport al comandament operatiu de la intervenció.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Establir criteris generals de funcionament de les sales de control de les regions d'emergències.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Donar suport a la Unitat de Desenvolupament Tecnològic de la Subdirecció General de Suport Tècnic, Avaluació i Prevenció pel que fa a les aplicacions i eines informàtiques de gestió operativa.",
+    "correcta": "div_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers"
+  },
+  {
+    "tarea": "Fer la gestió operativa dels mitjans aeris i de l'equipament especialitzat i específic d'àmbit territorial general per a tota Catalunya.",
+    "correcta": "u_aeris",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Mitjans Aeris"
+  },
+  {
+    "tarea": "Gestionar les bases dels mitjans aeris d'àmbit territorial general per a tota Catalunya.",
+    "correcta": "u_aeris",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Mitjans Aeris"
+  },
+  {
+    "tarea": "Dirigir i inspeccionar els recursos humans i materials de la Sala Central, d'acord amb les directrius rebudes.",
+    "correcta": "u_coord_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Coordinació de les Sales de Control"
+  },
+  {
+    "tarea": "Definir procediments de treball en l'àmbit de coordinació de la guàrdia.",
+    "correcta": "u_coord_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Coordinació de les Sales de Control"
+  },
+  {
+    "tarea": "Definir els criteris de funcionament de les unitats de sala de control territorials.",
+    "correcta": "u_coord_sala",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Coordinació de les Sales de Control"
+  },
+  {
+    "tarea": "Donar suport logístic a les actuacions del cos de Bombers.",
+    "correcta": "u_suport_op",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Suport Operatiu"
+  },
+  {
+    "tarea": "Fer el desplegament dels Centres de Comandament Avançat a les actuacions del cos de Bombers.",
+    "correcta": "u_suport_op",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Suport Operatiu"
+  },
+  {
+    "tarea": "Donar suport al comandament en les actuacions del cos de Bombers.",
+    "correcta": "u_suport_op",
+    "pista": "Pertany a: SGO > Divisió de Sala Central de Bombers > Unitat de Suport Operatiu"
+  },
+  {
+    "tarea": "Establir les directrius respecte dels parcs de bombers i, si s'escau, de la unitat de la sala de control de la Regió i dels seus recursos humans i materials d'acord amb les directrius que per cada àmbit estableixin els òrgans responsables.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Coordinar i impulsar les tasques de prevenció operativa i preplans d'actuació assignades a l'àmbit territorial respectiu.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Donar suport als ens locals i a les autoritats de protecció civil en situació d'emergència.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Coordinar l'elaboració de propostes de planificació i coordinació de les activitats relatives al coneixement del risc i a les infraestructures de suport a les activitats operatives.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Coordinar les relacions dels parcs de bombers amb l'administració local del seu àmbit territorial.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Proposar la incorporació de recursos humans i materials per tal de millorar l'eficàcia dels serveis.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Proposar procediments per al personal operatiu en l'àmbit de la Regió i proposar la formació més adient per a aquest personal, així com coordinar la implantació de les directrius i procediments establerts per la Subdirecció General Operativa.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Fer els informes que li siguin sol·licitats.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Informar de les actuacions més rellevants del servei als responsables que es determinin.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Dirigir l'acció preventiva de riscos laborals del personal de la Regió.",
+    "correcta": "regions",
+    "pista": "Pertany a: SGO > Regions d'emergències"
+  },
+  {
+    "tarea": "Dirigir i inspeccionar els parcs de bombers i, si s'escau, la sala de control de la Regió i els seus recursos humans i materials, d'acord amb les directrius que per a cada àmbit estableixi el cap de Regió.",
+    "correcta": "a_op_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea d'Operacions"
+  },
+  {
+    "tarea": "Elaborar propostes de planificació i coordinació de les activitats relatives al coneixement del risc i a les infraestructures de suport a les activitats operatives.",
+    "correcta": "a_op_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea d'Operacions"
+  },
+  {
+    "tarea": "Implantar als parcs de bombers els procediments de treball, les guies d'actuació i equivalents.",
+    "correcta": "a_op_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea d'Operacions"
+  },
+  {
+    "tarea": "Elaborar els plans d'actuació dels grups d'intervenció en les instal·lacions de risc de la Regió.",
+    "correcta": "a_op_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea d'Operacions"
+  },
+  {
+    "tarea": "Organitzar simulacres i exercicis en l'àmbit de la Regió en col·laboració amb altres actuants i donar suport als que organitzi la Subdirecció General Operativa.",
+    "correcta": "a_op_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea d'Operacions"
+  },
+  {
+    "tarea": "Elaborar propostes de planificació i coordinació d'activitats de coneixement del risc i infraestructures de suport a les activitats operatives.",
+    "correcta": "u_territorial",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitats Territorials"
+  },
+  {
+    "tarea": "Implantar als parcs de bombers els procediments de treball, les guies d'actuació i equivalents.",
+    "correcta": "u_territorial",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitats Territorials"
+  },
+  {
+    "tarea": "Organitzar en el territori assignat activitats de divulgació a altres actuants en les emergències i a la població en general, relatives al risc i a l'autoprotecció i l'organització de la resposta.",
+    "correcta": "u_territorial",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitats Territorials"
+  },
+  {
+    "tarea": "Facilitar i coordinar les relacions institucionals dels parcs de bombers amb l'administració local del seu àmbit territorial.",
+    "correcta": "u_territorial",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitats Territorials"
+  },
+  {
+    "tarea": "Inspeccionar i, si s'escau, coordinar els parcs de bombers que es determinin.",
+    "correcta": "u_territorial",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitats Territorials"
+  },
+  {
+    "tarea": "Dirigir i inspeccionar els recursos humans i materials de la Sala, d'acord amb les directrius rebudes.",
+    "correcta": "u_sala_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitat de Sala de Control de la Regió"
+  },
+  {
+    "tarea": "Implantar procediments de treball en l'àmbit de coordinació de la guàrdia.",
+    "correcta": "u_sala_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitat de Sala de Control de la Regió"
+  },
+  {
+    "tarea": "Implantar els criteris de funcionament establerts per la Divisió de Sala Central a la Sala de Control.",
+    "correcta": "u_sala_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitat de Sala de Control de la Regió"
+  },
+  {
+    "tarea": "Informar periòdicament el responsable de l'Àrea d'Operacions dels sinistres, actuacions, incidents i qualsevol altra qüestió que es determini.",
+    "correcta": "u_sala_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Unitat de Sala de Control de la Regió"
+  },
+  {
+    "tarea": "Realitzar les sortides derivades dels sinistres dins del seu àmbit territorial d'actuació, així com les assignades per la Regió d'Emergències.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Gestionar els recursos humans i materials adscrits al parc.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Comunicar a la Unitat de Sala de Control de la Regió corresponent totes les incidències del servei.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Vetllar per la conservació i manteniment del Parc, dels vehicles, equipament i mitjans d'intervenció assignats d'acord amb les instruccions que es determinin.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Realitzar les activitats de formació i pràctiques programades per garantir que tot el personal de Parc conegui les normes, instruccions i procediments d'actuació operativa i d'ús i conservació dels recursos materials disponibles.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Efectuar, en el seu àmbit d'actuació, totes les activitats preventives d'acord amb la normativa establerta i les instruccions derivades de les unitats responsables.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Dur a terme les activitats necessàries per conèixer la totalitat dels nuclis urbans, les àrees rurals, les vies de comunicació, les infraestructures i les instal·lacions de la seva àrea territorial d'actuació en primera sortida i mantenir actualitzat el catàleg d'ubicació, tipològic i d'intensitat del risc que se'n deriva.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Mantenir, en l'exercici de les funcions assignades, les relacions de col·laboració corresponents amb els municipis i la resta d'entitats locals amb competència en el seu àmbit territorial.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Participar en les activitats d'informació i formació a la població d'acord amb la programació que s'estableixi.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Gestionar l'acció preventiva de riscos laborals en el seu àmbit.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Executar les ordres i instruccions encomanades pels seus superiors jeràrquics i informar-los de les actuacions en què participi.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Proposar millores respecte als procediments i recursos disponibles.",
+    "correcta": "parcs",
+    "pista": "Pertany a: SGO > Regions d'emergències > Parcs de Bombers"
+  },
+  {
+    "tarea": "Donar suport a les àrees competents en el desenvolupament dels processos formatius que s'hagin de dur a terme a la Regió.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Analitzar les necessitats d'equipaments, subministraments i logística en general, necessaris per millorar els serveis prestats.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Analitzar les necessitats de recursos humans i materials i informar-ne per tal de millorar l'eficàcia dels serveis.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Donar suport a la Divisió de Planificació i Gestió de la Subdirecció General Operativa en l'establiment de directrius de recursos humans i fer-ne la implantació.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Donar suport a la Subdirecció General de Suport Tècnic, Avaluació i Prevenció.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Trametre les directrius i donar suport als caps de parc en la gestió de l'acció preventiva de riscos laborals.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Gestionar l'acció preventiva de riscos laborals del personal de la Regió llevat del que està adscrit als parcs de bombers.",
+    "correcta": "a_gestio_regio",
+    "pista": "Pertany a: SGO > Regions d'emergències > Àrea de Gestió"
+  },
+  {
+    "tarea": "Establir les directrius necessàries per realitzar eficaçment els informes de prevenció sobre edificis d'habitatges, indústries i qualsevol altra instal·lació que es determini.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Coordinar la realització d'inspeccions a establiments i locals de concurrència pública a tot Catalunya.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Elaborar i, si s'escau, proposar l'elaboració de disposicions legals o reglamentàries adients per a la prevenció d'incendis i altres emergències.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Dirigir i coordinar les activitats d'informació i prevenció d'incendis i altres emergències de l'àmbit d'actuació de la Direcció General.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Promoure iniciatives per al desenvolupament de la participació ciutadana en la prevenció.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Promoure i divulgar l'autoprotecció com a mesura de prevenció.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Analitzar, estudiar i proposar l'adopció de les mesures d'optimització i modernització dels recursos materials de la Direcció General i establir instruccions de formació i informació dels usos dels equipaments.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Avaluar periòdicament l'estat dels materials i equipaments per garantir-ne els estàndards de qualitat i seguretat en el seu ús per part dels membres del cos de Bombers.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Proposar l'elaboració dels plans i programes de tecnologies de la informació i de telecomunicacions necessaris per al desplegament de l'activitat d'atenció a les emergències.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Planificar, dissenyar i impulsar la transformació dels equipaments i de les instal·lacions i xarxes d'informació i comunicació necessaris per al desplegament de les activitats d'atenció a les emergències amb l'objectiu d'implantar mesures d'eficiència energètica i sostenibilitat mediambiental.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Analitzar l'estat de les infraestructures i proposar i planificar les actuacions necessàries per complir els objectius d'eficiència energètica i mediambiental.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Elaborar i proposar a la Subdirecció General d'Administració i Recursos la planificació anual de les necessitats d'adquisició, reposició, substitució dels materials i equipaments de la Direcció General, així com de les instal·lacions i serveis.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Garantir la plena participació de les dones en els processos de planificació de les mesures d'implantació de nous procediments organitzatius en relació amb els equipaments, eines tecnològiques i materials específics, i incorporar la perspectiva de gènere en les actuacions en aquest àmbit.",
+    "correcta": "sgstaip",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP)"
+  },
+  {
+    "tarea": "Analitzar, en coordinació amb les divisions de la Subdirecció General Operativa, les necessitats de mitjans tècnics per al desenvolupament de les tasques de la Direcció General.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Determinar les especificacions tècniques relatives als equipaments que s'han d'adquirir.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Estudiar nous materials i tècniques de treball associats a l'àmbit operatiu.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Coordinar amb les diferents regions i divisions les accions formatives i informatives sobre els materials i equipaments de la Direcció General, el seu ús, manteniment i conservació.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Impulsar, d'acord amb les propostes de les diferents unitats, amb altres institucions públiques, les actuacions d'investigació, desenvolupament i innovació d'equips i materials per al cos de Bombers.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Auditar, supervisar i comprovar l'estat dels equipaments i el control periòdic del seu ús.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Establir criteris de control de qualitat dels materials emprats a la Direcció General i fer-ne el control, la fiscalització i l'auditoria corresponents.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Gestionar, coordinar i implementar les mesures correctores previstes en les avaluacions de riscos laborals, d'acord amb la Subdirecció General de Prevenció de Riscos i Salut Laboral.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Fer l'estudi, proposta i definició dels requeriments tecnològics aplicables a l'àmbit operatiu del cos de Bombers.",
+    "correcta": "a_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia"
+  },
+  {
+    "tarea": "Determinar, en col·laboració amb les unitats de la Divisió d'Operacions, l'equipament necessari per a la prestació dels serveis de prevenció i extinció d'incendis i salvaments.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Determinar els requeriments tècnics generals i específics de tot l'equipament i mitjans destinats a la prestació dels serveis de prevenció i extinció d'incendis i salvaments.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Proposar la planificació de les reposicions i adquisicions dels subministraments, serveis i obres de la Direcció General, en coordinació amb la Subdirecció General d'Administració i Recursos.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Impulsar i proposar les instruccions d'ús, manteniment i informació tècnica de tots els materials, mitjans i equipaments.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Analitzar l'estat, el funcionament i l'adequació dels materials i equipaments de la Direcció General.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Realitzar periòdicament auditories de funcionament dels equips i mitjans de la Direcció General i fer les recomanacions i proposar l'adopció de les mesures correctores que corresponguin.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Mantenir la traçabilitat de tots els equips i materials inventariats i controlar periòdicament el compliment de les recomanacions d'ús, manteniment i estat òptim. Dissenyar, en coordinació amb el servei corresponent, els procediments i sistemes d'utilització de l'equipament de la Direcció General.",
+    "correcta": "u_plan_equips",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Planificació de Recursos i Equipaments Operatius"
+  },
+  {
+    "tarea": "Proposar els requeriments tecnològics, les eines i aplicacions informàtiques necessaris com a suport a les emergències.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Proposar sistemes informàtics adequats per als serveis realitzats a la Direcció General.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Proposar els mitjans materials necessaris per a una bona gestió informàtica en tots els nivells de l'estructura de la Direcció General. Actuar d'interlocutor tècnic i tecnològic amb altres unitats del Departament.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Coordinar i controlar el manteniment de les plataformes tecnològiques existents.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Gestionar el funcionament ordinari dels equips i sistemes de comunicacions disponibles, planificar conjuntament amb les divisions de la Subdirecció General Operativa la seva actualització operativa i dissenyar-ne els procediments d'utilització.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Proposar els continguts dels plans de formació dels usuaris dels equips i sistemes de comunicacions.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Planificar i gestionar la cobertura operativa dels equips tècnics de comunicacions de la Divisió de Sala Central de Bombers, de la Subdirecció General Operativa i de les unitats regionals de Sala de Control territorial en tasques de suport tècnic directe en matèria de comunicacions.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Desenvolupar i gestionar la cartografia operativa amb el suport de les regions d'emergències.",
+    "correcta": "u_desenv_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat de Desenvolupament Tecnològic"
+  },
+  {
+    "tarea": "Determinar, conjuntament amb les divisions de la Subdirecció General Operativa, els requeriments de les instal·lacions i infraestructures necessàries per a la prestació dels serveis de prevenció i extinció d'incendis i salvaments i altres de la Direcció General.",
+    "correcta": "u_infra",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat d'Infraestructures i Sostenibilitat"
+  },
+  {
+    "tarea": "Elaborar els programes funcionals de les instal·lacions, definir els nivells d'intervenció, proposar les prioritats d'actuació i fer-ne el seguiment.",
+    "correcta": "u_infra",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat d'Infraestructures i Sostenibilitat"
+  },
+  {
+    "tarea": "Actuar d'interlocutor tècnic amb els municipis per a la gestió dels afers urbanístics i tècnics derivats de les instal·lacions.",
+    "correcta": "u_infra",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat d'Infraestructures i Sostenibilitat"
+  },
+  {
+    "tarea": "Definir els requeriments d'equipaments i mobiliari necessari per a la prestació dels serveis i proposar-ne l'adquisició i reposició.",
+    "correcta": "u_infra",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat d'Infraestructures i Sostenibilitat"
+  },
+  {
+    "tarea": "Analitzar i proposar les actuacions de sostenibilitat dels equipaments i les mesures d'eficiència o autosuficiència energètica de totes les instal·lacions de la Direcció General.",
+    "correcta": "u_infra",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat d'Infraestructures i Sostenibilitat"
+  },
+  {
+    "tarea": "Assessorar i coordinar les regions d'emergències en matèria d'infraestructures.",
+    "correcta": "u_infra",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea d'Equipaments Operatius i Tecnologia > Unitat d'Infraestructures i Sostenibilitat"
+  },
+  {
+    "tarea": "Proposar l'elaboració de disposicions legals per a la prevenció d'incendis i altres emergències.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Elaborar propostes de prevenció dels sinistres.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Elaborar informes i donar assessorament en matèria de prevenció.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Supervisar i controlar la revisió de projectes i la inspecció d'edificis i locals que determini la legislació vigent o que siguin sol·licitats per entitats públiques.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Vetllar per l'autoprotecció de la ciutadania en coordinació amb altres unitats implicades i promoure-la.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Portar a terme el control de qualitat de les entitats col·laboradores de l'administració en matèria de seguretat contra incendis.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Gestionar el registre documental de les instal·lacions.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Coordinar les activitats de les unitats territorials de prevenció i elaborar criteris d'interpretació de la normativa en col·laboració amb les altres unitats implicades.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Fer campanyes divulgatives a la població en el seu àmbit de competència.",
+    "correcta": "a_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció"
+  },
+  {
+    "tarea": "Estudiar i donar suport per a l'elaboració de disposicions legals relatives a la prevenció i col·laborar en l'elaboració de normes i circulars adreçades a la prevenció d'incendis i altres emergències.",
+    "correcta": "u_prev_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat de Prevenció Tècnica"
+  },
+  {
+    "tarea": "Elaborar informes i donar assessorament en matèria de prevenció.",
+    "correcta": "u_prev_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat de Prevenció Tècnica"
+  },
+  {
+    "tarea": "Controlar la revisió de projectes i la inspecció d'edificis i instal·lacions que es determinin.",
+    "correcta": "u_prev_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat de Prevenció Tècnica"
+  },
+  {
+    "tarea": "Elaborar criteris d'interpretació normativa, informar-ne les regions d'emergències i altres entitats afectades i fer el seguiment de la seva aplicació.",
+    "correcta": "u_prev_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat de Prevenció Tècnica"
+  },
+  {
+    "tarea": "Proposar i desenvolupar activitats de sensibilització vers la prevenció.",
+    "correcta": "u_prev_tec",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat de Prevenció Tècnica"
+  },
+  {
+    "tarea": "Elaborar els informes preceptius sobre projectes de nova construcció, de reforma i de qualsevol activitat en els municipis que no disposin de servei de prevenció i extinció d'incendis propi.",
+    "correcta": "u_terr_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat Territorial de Prevenció"
+  },
+  {
+    "tarea": "Realitzar inspeccions als establiments i locals públics en matèria de prevenció d'incendis en els municipis que no disposin de servei de prevenció i extinció d'incendis propi.",
+    "correcta": "u_terr_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat Territorial de Prevenció"
+  },
+  {
+    "tarea": "Fer l'atenció al públic específica de la prevenció normativa, d'acord amb les directrius rebudes des de les unitats competents.",
+    "correcta": "u_terr_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat Territorial de Prevenció"
+  },
+  {
+    "tarea": "Participar en les activitats de divulgació que es determinin.",
+    "correcta": "u_terr_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat Territorial de Prevenció"
+  },
+  {
+    "tarea": "Custodiar i mantenir l'arxiu de l'àmbit de prevenció.",
+    "correcta": "u_terr_prev",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat Territorial de Prevenció"
+  },
+  {
+    "tarea": "Assessorar en el compliment dels requisits mínims per part de les entitats col·laboradores de l'administració en l'àmbit de la prevenció d'incendis.",
+    "correcta": "u_entitats",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat d'Entitats Col·laboradores"
+  },
+  {
+    "tarea": "Assessorar en l'autorització de les entitats col·laboradores de l'administració en l'àmbit de la prevenció d'incendis.",
+    "correcta": "u_entitats",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat d'Entitats Col·laboradores"
+  },
+  {
+    "tarea": "Definir els programes de formació i continguts dels nivells bàsic i avançat en matèria de la certificació tècnica de prevenció i seguretat en cas d'incendi.",
+    "correcta": "u_entitats",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat d'Entitats Col·laboradores"
+  },
+  {
+    "tarea": "Col·laborar amb l'Institut de Seguretat Pública de Catalunya en l'elaboració dels cursos de formació per les entitats col·laboradores de l'administració.",
+    "correcta": "u_entitats",
+    "pista": "Pertany a: Subdirecció General de Serveis Tècnics, Avaluació i Prevenció (SGSTAiP) > Àrea de Prevenció > Unitat d'Entitats Col·laboradores"
+  },
+  {
+    "tarea": "Dirigir, coordinar i supervisar les tasques d'administració i gestió dels recursos materials i serveis necessaris per al desenvolupament de l'activitat d'atenció a les emergències.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Dirigir i supervisar els treballs d'elaboració de l'avantprojecte de pressupost de la Direcció General.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Dirigir i supervisar la gestió del programa pressupostari de la Direcció General, tramitant els documents de gestió econòmica ordinària i els expedients de despesa, els de contractació administrativa i els de gestió del patrimoni.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Dissenyar, implantar i gestionar, en col·laboració amb les unitats que es determinin, sistemes d'informació i comunicació interna propis de les polítiques de personal del cos de Bombers de la Generalitat.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Gestionar el desenvolupament de les polítiques de recursos humans i materials pròpies del cos de Bombers de la Generalitat.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Fer la gestió ordinària i l'aplicació del règim estatutari dels funcionaris del cos de Bombers de la Generalitat, i la gestió dels bombers voluntaris i del personal assignat a l'extinció dels incendis de vegetació.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Elaborar i gestionar els processos de selecció i de provisió de llocs de treball corresponents al cos de Bombers de la Generalitat.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Formular propostes de modificació de la relació de llocs de treball, proposar la valoració dels llocs de treball i participar en la definició dels perfils professionals dels llocs de treball del cos de Bombers de la Generalitat.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Preparar propostes de circulars i instruccions en matèria de personal del cos de Bombers de la Generalitat i de bombers voluntaris.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Dirigir el sistema de relacions laborals amb les organitzacions sindicals representatives del cos de Bombers de la Generalitat i participar-hi.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Participar, en coordinació amb els organismes competents, en la definició dels sistemes de la carrera professional del cos de Bombers de la Generalitat i col·laborar en el seu impuls i desenvolupament.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Coordinar i supervisar els assumptes relatius a la gestió ordinària del personal d'administració i tècnic i del personal laboral adscrit a les unitats de la Direcció General i col·laborar en la seva planificació i desenvolupament.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Dirigir, impulsar i executar les mesures adoptades en el Pla d'Igualtat home-dona i incorporar la perspectiva de gènere en tots els àmbits de la Direcció General.",
+    "correcta": "sgair",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR)"
+  },
+  {
+    "tarea": "Participar en l'elaboració de l'avantprojecte de pressupost de la Direcció General.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Supervisar i controlar la gestió comptable i el seguiment de l'execució pressupostària.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Controlar la tramitació de les subvencions gestionades per la Direcció General.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Assessorar les diferents unitats de la Direcció General en els temes relacionats amb les seves funcions.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Col·laborar en la planificació dels objectius i necessitats dels serveis.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Supervisar i controlar els fons de maniobra.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Controlar i administrar els centres de cost i donar-los suport.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Fer el control i l'execució de la gestió pressupostària i analitzar i proposar mesures de racionalització i optimització dels recursos econòmics.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Gestionar la tramesa d'informes tècnics relatius a sinistres en què hagi intervingut el cos de Bombers de la Generalitat, requerits per organismes oficials.",
+    "correcta": "s_eco",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Gestió Econòmica i Pressupostària"
+  },
+  {
+    "tarea": "Elaborar, controlar i supervisar la tramitació dels expedients de contractació de materials, equips, vehicles, obres i serveis.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Supervisar l'execució i gestió dels contractes de subministraments i serveis de la Direcció General.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Participar en la tramitació dels expedients d'adquisició, cessió o arrendament dels béns immobles i dels béns mobles. Controlar i dirigir la tramitació dels convenis en matèries pròpies de la Direcció General.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Supervisar, validar i analitzar el compliment dels aspectes econòmics dels contractes de la Direcció General.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Administrar els béns immobles de la Direcció General.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Coordinar i gestionar l'inventari dels béns mobles de la Direcció General.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Controlar l'adquisició de béns inventariables i no inventariables de la Direcció General.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Gestionar, controlar i supervisar l'activitat d'emmagatzemament de material de la Direcció General i establir el sistema de distribució dels subministraments per a tot el territori.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Formar part de les meses de contractació.",
+    "correcta": "s_cont",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni"
+  },
+  {
+    "tarea": "Elaborar les propostes d'expedients de contractació de materials, equips, vehicles, obres i serveis de la Direcció General d'acord amb les prescripcions tècniques proposades per la Subdirecció General de Suport Tècnic, Avaluació i Prevenció.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Gestionar i supervisar l'execució dels contractes de serveis de la Direcció General.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Confeccionar la documentació administrativa dels processos d'adquisició de subministraments, obres o serveis.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Controlar i supervisar la recepció, distribució i reposició de material, fer el seguiment del seu consum i emetre els informes que es requereixin.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Gestionar el manteniment dels vehicles de la Direcció General i supervisar la gestió de la flota de vehicles d'arrendament.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Controlar la gestió dels manteniments de les instal·lacions i infraestructures necessàries per a la prestació dels serveis de prevenció i extinció d'incendis i salvaments i altres de la Direcció General.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Dur el control logístic dels magatzems de la Direcció General i la seva organització en la recepció, distribució i relacions amb els proveïdors.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Participar en les meses de contractació i comissió d'obres i subministraments del comitè de seguretat i salut dels bombers.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Proposar l'adquisició de nou material i la reposició de l'antic, planificant els processos d'adquisició i subministrament.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Controlar la gestió dels magatzems de la Direcció General.",
+    "correcta": "sec_log",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Contractació i Patrimoni > Secció de Gestió Logística i Execució de la Contractació"
+  },
+  {
+    "tarea": "Elaborar estudis i fer propostes de dimensionament de les plantilles del cos de Bombers de la Generalitat.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Planificar i elaborar la proposta de l'oferta d'ocupació anual.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Col·laborar en l'elaboració i actualització d'un sistema d'accés i promoció del cos de Bombers de la Generalitat.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Elaborar les propostes de les bases de convocatòries de selecció i promoció interna del cos de Bombers de la Generalitat.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Garantir el suport tècnic i administratiu als òrgans de selecció de personal.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Participar en la millora dels processos de selecció.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Coordinar les convocatòries específiques dels bombers voluntaris i de Campanya Forestal i donar-hi suport.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Planificar, organitzar i gestionar els concursos generals de mèrits i capacitats del cos de Bombers de la Generalitat, així com de la provisió de llocs d'especialitats i carrera professional.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Coordinar la selecció del personal temporal i donar-hi suport.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Planificar, conjuntament amb l'Institut de Seguretat Pública de Catalunya, els processos de selecció i promoció professional establint els calendaris de realització dels cursos de formació de les respectives convocatòries.",
+    "correcta": "s_conv",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries"
+  },
+  {
+    "tarea": "Organitzar i gestionar els processos d'accés al cos de Bombers de la Generalitat.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Organitzar i gestionar els processos de promoció interna del personal del cos de Bombers de la Generalitat.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Donar suport administratiu i tècnic als òrgans tècnics de selecció i a les comissions d'avaluació.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Organitzar i gestionar els processos de selecció de bomber voluntari i donar-hi suport tècnic i administratiu.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Organitzar i gestionar els processos de selecció de les borses de treball del personal laboral de la Direcció General.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Elaborar estadístiques i informes.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Mantenir i custodiar els expedients referents a convocatòries del personal del cos de Bombers de la Generalitat.",
+    "correcta": "sec_sel",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Convocatòries > Secció de Selecció i Promoció Interna"
+  },
+  {
+    "tarea": "Elaborar propostes de normativa específica per al cos de Bombers de la Generalitat i totes aquelles disposicions de caràcter intern adients per al bon funcionament del servei.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Supervisar l'aplicació de les disposicions en matèria de funció pública i normativa interna que afectin el personal.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Aplicar la normativa vigent i els criteris generals del Departament en matèria de personal i assessorar els òrgans de la Direcció General.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Fer el seguiment del capítol I del pressupost de la Direcció General.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar la tramitació derivada dels expedients de personal funcionari i laboral i el règim retributiu.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Donar suport i assessorament en les qüestions derivades de les relacions laborals i dels processos de negociació.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Fer propostes de modificació de la relació de llocs de treball.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar la tramitació derivada de les associacions de personal bomber voluntari i de l'activitat dels personal bomber voluntari de la Generalitat.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Controlar les gestions en matèria de seguretat social i d'absentisme laboral i fer-ne el seguiment.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar el pla de formació del personal administratiu i tècnic i del personal laboral de la Direcció General.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Exercir el comandament orgànic de tot el personal laboral de la DGPEIS, mantenint la dependència funcional de cada col·lectiu a les respectives àrees operatives, i coordinar les condicions laborals amb la Direcció de Serveis.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Coordinar i implantar els objectius i les accions de la diagnosi del Pla d'igualtat del cos de Bombers.",
+    "correcta": "s_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar processos de selecció i provisió temporal de personal d'administració i tècnic i contractació laboral, així com supervisar el funcionament de les borses de treball pròpies de la Direcció General, en especial pel que fa als procediments de selecció específics de Campanya Forestal.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar els canvis administratius relacionats amb els processos de selecció i provisió del personal del cos de Bombers de la Generalitat.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Tramitar expedients relatius a les diferents situacions administratives de la Direcció General.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Impulsar i coordinar el pla de formació del personal d'administració i serveis de la Direcció General.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Tramitar els expedients relatius a permisos i llicències i altres incidències del personal de la Direcció General, així com supervisar i assessorar sobre el compliment de les condicions de treball.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Fer el seguiment de les partides del capítol I del pressupost de la Direcció General. Auditar, analitzar i elaborar informes respecte a l'evolució de la despesa de capítol 1 per centres de treball, especialment les dades d'absentisme laboral i l'evolució de les hores extraordinàries.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Tramitar pagaments d'hores extraordinàries i altres complements retributius i gestionar la tramitació de conceptes indemnitzatoris com ara les compensacions, dietes i assistències generats pel personal adscrit a la Direcció General.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar moviments en la Seguretat Social i altres gestions associades a les situacions d'incapacitat.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Coordinar el règim intern de la Direcció General.",
+    "correcta": "sec_gest_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció de Gestió de Recursos Humans"
+  },
+  {
+    "tarea": "Planificar necessitats de personal, tramitar les propostes de modificació de la relació de llocs de treball, gestionar el manual d'organització, elaborar les descripcions dels llocs de treball, proposar-ne la classificació i gestionar les convocatòries de concursos específics i lliure designació.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Revisar, analitzar i proposar modificacions, actualitzacions i adaptacions de la normativa interna que regula el funcionament i l'organització del cos de Bombers de la Generalitat i d'altre personal de la DGPEIS.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Participar en el disseny, revisió i avaluació dels procediments, instruccions, circuits administratius i models normalitzats en l'àmbit de la Direcció General.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Participar en l'elaboració de projectes i disposicions de caràcter intern en matèria de personal per al col·lectiu del cos de Bombers de la Generalitat i d'altres categories de la DGPEIS.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Preparar la documentació relativa a recursos humans que es requereixi en aplicació de la normativa de transparència i publicitat activa.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Col·laborar amb la Unitat de Vigilància de la Salut del Departament en l'execució de les adaptacions dels llocs de treball, i de les situacions administratives de segona activitat del cos de Bombers.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar els expedients dels bombers voluntaris de la Generalitat i el registre d'associacions dels bombers voluntaris.",
+    "correcta": "sec_plan_rhh",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Servei de Recursos Humans > Secció d'Organització i Planificació de Recursos Humans"
+  },
+  {
+    "tarea": "Gestionar els expedients relatius a recursos humans i als aspectes retributius del personal adscrit a la regió d'emergències.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Fer el seguiment de l'execució dels contractes de subministraments, obres i serveis.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Gestionar el pressupost assignat a l'àmbit territorial i altra documentació econòmica i administrativa.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Controlar els consums de recursos materials de la seva regió d'emergències.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Donar suport tecnicoadministratiu i jurídic a la Regió d'Emergències.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Gestionar l'arxivament, custòdia i registre de la documentació pròpia de la Regió.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Gestionar les actuacions relacionades amb el manteniment dels edificis i instal·lacions.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Gestionar la distribució dels subministraments i equipaments propis i gestionar el magatzem territorial corresponent, si escau.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Portar a terme la gestió del parc mòbil adscrit a l'àmbit territorial corresponent.",
+    "correcta": "sec_terr_adm",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció Territorial d'Administració i Recursos Materials"
+  },
+  {
+    "tarea": "Gestionar els expedients relatius a recursos humans, i als aspectes retributius dels personal adscrit a les diferents àrees i unitats centrals de la Subdirecció General Operativa i de la Subdirecció General de Suport Tècnic, Avaluació i Prevenció.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Fer el seguiment de l'execució dels contractes de subministraments, obres i serveis.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Gestionar el pressupost assignat al seu àmbit funcional i altra documentació econòmica i administrativa.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Controlar els consums de recursos materials del seu àmbit funcional.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Donar suport tecnicoadministratiu i jurídic en el seu àmbit funcional.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Gestionar l'arxivament, custòdia i registre de la documentació pròpia de la seva secció.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Gestionar les actuacions relacionades amb el manteniment dels edificis i instal·lacions.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Gestionar la distribució dels subministraments i equipaments propis i gestionar el magatzem del seu àmbit funcional, si escau.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  },
+  {
+    "tarea": "Portar a terme la gestió del parc mòbil adscrit al seu àmbit funcional.",
+    "correcta": "sec_adm_cent",
+    "pista": "Pertany a: Subdirecció General d'Administració i Recursos (SGAiR) > Secció d'Administració i Recursos Materials de les Unitats Centrals"
+  }
+]
